@@ -206,7 +206,7 @@ export default function HowItWorks() {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
   return (
-    <section ref={containerRef} id="how-it-works" className="relative py-32 bg-gradient-to-b from-white via-light-slate/20 to-white overflow-hidden">
+    <section ref={containerRef} id="how-it-works" className="relative py-20 bg-gradient-to-b from-white via-light-slate/20 to-white overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
