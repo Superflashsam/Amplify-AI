@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Check, CheckCircle, TrendingUp, TrendingDown, Play, Calendar, ChevronRight, Sparkles } from 'lucide-react';
+import { Check, CheckCircle, TrendingUp, TrendingDown, Play, Calendar, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
@@ -110,7 +110,6 @@ const Hero = () => {
                 <div className="h-2 w-2 rounded-full bg-amplify-coral animate-pulse"></div>
                 <div className="absolute h-3 w-3 rounded-full bg-amplify-coral/30 animate-ping"></div>
               </div>
-              <Sparkles className="h-4 w-4 text-electric-purple animate-sparkle" />
               <span className="relative z-10">New: Multi-channel campaign orchestration</span>
               <ChevronRight className="h-3.5 w-3.5 text-slate-gray group-hover:translate-x-1 transition-transform duration-200" />
             </div>
