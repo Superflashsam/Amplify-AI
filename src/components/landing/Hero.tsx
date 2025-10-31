@@ -139,7 +139,7 @@ const Hero = () => {
               Get Started Free
               <ChevronRight className="h-5 w-5 btn-arrow" />
             </Button>
-            <Button size="lg" variant="outline" className="btn-secondary group inline-flex items-center gap-3 px-8 py-4 bg-white hover:bg-light-slate text-deep-charcoal font-semibold rounded-2xl transition-all duration-300 border-2 border-slate-gray/20 hover:border-slate-gray/40 text-lg shadow-sm w-full sm:w-auto">
+            <Button size="lg" className="btn-secondary group inline-flex items-center gap-3 px-8 py-4 bg-white hover:bg-light-slate text-deep-charcoal font-semibold rounded-2xl transition-all duration-300 border-2 border-slate-gray/20 hover:border-slate-gray/40 text-lg shadow-sm w-full sm:w-auto">
               <Play className="h-5 w-5 btn-arrow" />
               Watch Demo
             </Button>
