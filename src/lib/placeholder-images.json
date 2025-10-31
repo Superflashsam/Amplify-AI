@@ -1,12 +1,6 @@
 {
   "placeholderImages": [
     {
-      "id": "heroDashboard",
-      "description": "A mockup of the AmplifyAI dashboard interface showing charts and content previews.",
-      "imageUrl": "https://images.unsplash.com/photo-1691725909676-105654d24649?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkYXNoYm9hcmQlMjB1aXxlbnwwfHx8fDE3NjE3ODY3Mzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "dashboard ui"
-    },
-    {
       "id": "socialProofLogo1",
       "description": "Logo for a trusted brand using AmplifyAI.",
       "imageUrl": "https://images.unsplash.com/photo-1562705121-e624542c7b9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y29tcGFueSUyMGxvZ298ZW58MHx8fHwxNzYxODMwMDM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
