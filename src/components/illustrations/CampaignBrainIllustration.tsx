@@ -144,10 +144,12 @@ export default function CampaignBrainIllustration() {
           key={`packet-${i}`}
           r="4"
           fill="#FDE047"
-          initial={{ offsetDistance: "0%", opacity: 0 }}
+          initial={{ opacity: 0 }}
           animate={{
-            offsetDistance: ["0%", "100%"],
             opacity: [0, 1, 0],
+          }}
+          style={{
+            offsetPath: `path("M ${nodes[0].x} ${nodes[0].y} L ${nodes[i+1].x} ${nodes[i+1].y}")`
           }}
           transition={{
             duration: 2,
@@ -155,15 +157,7 @@ export default function CampaignBrainIllustration() {
             repeat: Infinity,
             ease: "linear",
           }}
-        >
-          <animateMotion
-            dur="2s"
-            repeatCount="indefinite"
-            begin={`${1.5 + i * 0.7}s`}
-          >
-            <mpath xlinkHref={`#path${i}`} />
-          </animateMotion>
-        </motion.circle>
+        />
       ))}
 
       {/* Hidden paths for motion */}
