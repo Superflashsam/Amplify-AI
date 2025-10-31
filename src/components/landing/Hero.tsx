@@ -1,7 +1,48 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Check, CheckCircle, TrendingUp, TrendingDown, Play, Calendar, ChevronRight } from 'lucide-react';
 
+const useCountUp = (end: number, duration: number, isFloat = false) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const startTime = Date.now();
+
+    const animateCount = () => {
+      const now = Date.now();
+      const progress = Math.min(1, (now - startTime) / duration);
+      const current = start + progress * (end - start);
+
+      if (isFloat) {
+        setCount(parseFloat(current.toFixed(2)));
+      } else {
+        setCount(Math.floor(current));
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(animateCount);
+      }
+    };
+
+    const timeout = setTimeout(() => {
+      requestAnimationFrame(animateCount);
+    }, 1500);
+
+    return () => clearTimeout(timeout);
+  }, [end, duration, isFloat]);
+
+  return count;
+};
+
+
 const Hero = () => {
+  const engagement = useCountUp(127, 2000);
+  const reach = useCountUp(3.8, 2000, true);
+  const cpc = useCountUp(2.18, 2000, true);
+
   return (
     <section className="relative pt-12 pb-20 overflow-hidden">
       {/* Enhanced Background */}
@@ -65,7 +106,7 @@ const Hero = () => {
         </div>
 
         {/* Hero Dashboard Preview */}
-        <div className="relative max-w-6xl mx-auto animate-slideUp" style={{animationDelay: '1.2s'}}>
+        <div className="relative max-w-6xl mx-auto animate-slideUp [animation-delay:1.2s] [animation-duration:8s] animate-dashboard-float" style={{animationPlayState: 'running'}}>
           <div className="absolute -inset-4 bg-gradient-to-r from-amplify-coral/20 via-electric-purple/20 to-vibrant-magenta/20 rounded-3xl blur-3xl"></div>
           <div className="relative shadow-2xl shadow-slate-gray/20 border-2 border-slate-gray/10 overflow-hidden bg-white rounded-3xl">
             
@@ -84,7 +125,7 @@ const Hero = () => {
 
                 <div className="flex items-center gap-3">
                   <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-lime-green/10 to-lime-green/5 border border-lime-green/20">
-                    <div className="h-2 w-2 rounded-full bg-lime-green animate-pulse"></div>
+                    <div className="h-2 w-2 rounded-full bg-lime-green animate-pulse-glow"></div>
                     <span className="text-sm text-lime-green font-medium">Live</span>
                   </div>
                   <Button variant="outline" className="h-9 px-4 rounded-xl bg-light-slate hover:bg-slate-gray/10 transition-all duration-200 border-slate-gray/10 text-sm">
@@ -99,8 +140,8 @@ const Hero = () => {
             <div className="p-8 bg-gradient-to-br from-white to-light-slate/30">
               <div className="grid md:grid-cols-3 gap-6 mb-6">
                 {/* Stat Card 1 */}
-                <div className="p-6 rounded-2xl bg-white border-2 border-amplify-coral/20 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="text-4xl font-bold text-amplify-coral mb-2 font-display">+127%</div>
+                <div className="p-6 rounded-2xl bg-white border-2 border-amplify-coral/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
+                  <div className="text-4xl font-bold text-amplify-coral mb-2 font-display">+{engagement}%</div>
                   <div className="text-sm text-slate-gray">Campaign Engagement</div>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-3.5 w-3.5 text-lime-green" />
@@ -109,8 +150,8 @@ const Hero = () => {
                 </div>
 
                 {/* Stat Card 2 */}
-                <div className="p-6 rounded-2xl bg-white border-2 border-electric-purple/20 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="text-4xl font-bold text-electric-purple mb-2 font-display">3.8M</div>
+                <div className="p-6 rounded-2xl bg-white border-2 border-electric-purple/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
+                  <div className="text-4xl font-bold text-electric-purple mb-2 font-display">{reach}M</div>
                   <div className="text-sm text-slate-gray">Total Reach</div>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-3.5 w-3.5 text-lime-green" />
@@ -119,8 +160,8 @@ const Hero = () => {
                 </div>
 
                 {/* Stat Card 3 */}
-                <div className="p-6 rounded-2xl bg-white border-2 border-sky-blue/20 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="text-4xl font-bold text-sky-blue mb-2 font-display">$2.18</div>
+                <div className="p-6 rounded-2xl bg-white border-2 border-sky-blue/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
+                  <div className="text-4xl font-bold text-sky-blue mb-2 font-display">${cpc}</div>
                   <div className="text-sm text-slate-gray">Avg. Cost Per Click</div>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingDown className="h-3.5 w-3.5 text-vibrant-magenta" />
@@ -131,21 +172,25 @@ const Hero = () => {
 
               {/* Platform Performance Pills */}
               <div className="flex flex-wrap gap-3 justify-center">
-                <div className="px-4 py-2 rounded-full bg-gradient-to-r from-amplify-coral/10 to-amplify-coral/5 border border-amplify-coral/20 text-sm font-medium text-deep-charcoal">
-                  <span className="text-amplify-coral">●</span> Instagram • 24.7%
-                </div>
-                <div className="px-4 py-2 rounded-full bg-gradient-to-r from-sky-blue/10 to-sky-blue/5 border border-sky-blue/20 text-sm font-medium text-deep-charcoal">
-                  <span className="text-sky-blue">●</span> LinkedIn • 18.3%
-                </div>
-                <div className="px-4 py-2 rounded-full bg-gradient-to-r from-electric-purple/10 to-electric-purple/5 border border-electric-purple/20 text-sm font-medium text-deep-charcoal">
-                  <span className="text-electric-purple">●</span> Google Ads • 22.1%
-                </div>
-                <div className="px-4 py-2 rounded-full bg-gradient-to-r from-vibrant-magenta/10 to-vibrant-magenta/5 border border-vibrant-magenta/20 text-sm font-medium text-deep-charcoal">
-                  <span className="text-vibrant-magenta">●</span> Meta • 19.6%
-                </div>
-                <div className="px-4 py-2 rounded-full bg-gradient-to-r from-lime-green/10 to-lime-green/5 border border-lime-green/20 text-sm font-medium text-deep-charcoal">
-                  <span className="text-lime-green">●</span> TikTok • 15.3%
-                </div>
+                {[
+                  { color: 'amplify-coral', platform: 'Instagram', value: '24.7%', delay: '1.7s' },
+                  { color: 'sky-blue', platform: 'LinkedIn', value: '18.3%', delay: '1.8s' },
+                  { color: 'electric-purple', platform: 'Google Ads', value: '22.1%', delay: '1.9s' },
+                  { color: 'vibrant-magenta', platform: 'Meta', value: '19.6%', delay: '2.0s' },
+                  { color: 'lime-green', platform: 'TikTok', value: '15.3%', delay: '2.1s' },
+                ].map(item => (
+                  <div key={item.platform} className="px-4 py-2 rounded-full bg-gradient-to-r from-transparent to-transparent border text-sm font-medium text-deep-charcoal animate-fadeIn"
+                    style={{
+                      '--tw-gradient-from': `hsl(var(--${item.color})) / 10%`,
+                      '--tw-gradient-to': `hsl(var(--${item.color})) / 5%`,
+                      'borderColor': `hsl(var(--${item.color})) / 20%`,
+                      'animationDelay': item.delay,
+                      'animationFillMode': 'backwards',
+                    } as React.CSSProperties}
+                  >
+                    <span style={{ color: `hsl(var(--${item.color}))` }}>●</span> {item.platform} • {item.value}
+                  </div>
+                ))}
               </div>
             </div>
           </div>

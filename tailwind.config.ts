@@ -108,6 +108,18 @@ export default {
           "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
           "100%": { transform: "translate(0px, 0px) scale(1)" },
         },
+        'pulse-glow': {
+          '0%, 100%': { boxShadow: '0 0 0 0 hsl(var(--lime-green) / 0.7)' },
+          '50%': { boxShadow: '0 0 8px 3px hsl(var(--lime-green) / 0.3)' },
+        },
+        'dashboard-float': {
+          '0%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+          '100%': { transform: 'translateY(0px)' },
+        },
+        'shimmer': {
+          '100%': { transform: 'translateX(100%)' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -115,6 +127,9 @@ export default {
         'fadeIn': 'fadeIn 0.8s ease-out forwards',
         'slideUp': 'slideUp 0.8s ease-out forwards',
         'blob': 'blob 20s infinite ease-in-out',
+        'pulse-glow': 'pulse-glow 2s infinite ease-in-out',
+        'dashboard-float': 'dashboard-float 8s infinite ease-in-out',
+        'shimmer': 'shimmer 1.5s infinite',
       },
     },
   },

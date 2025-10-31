@@ -142,3 +142,50 @@
 		transform: translate(0px, 0px) scale(1);
 	}
 }
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 hsl(var(--lime-green) / 0.7);
+  }
+  50% {
+    box-shadow: 0 0 8px 3px hsl(var(--lime-green) / 0.3);
+  }
+}
+
+@keyframes dashboard-float {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(100%) skewX(-15deg);
+  }
+}
+
+.shimmer-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: transform 0.5s;
+  transform: translateX(-150%);
+}
+
+.shimmer-effect:hover::after {
+  transform: translateX(200%);
+  animation: shimmer 1.5s infinite;
+}
