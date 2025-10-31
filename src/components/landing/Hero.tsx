@@ -6,6 +6,13 @@ import { Check, CheckCircle, TrendingUp, TrendingDown, Play, Calendar, ChevronRi
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { MovingBorderButton } from '@/components/ui/moving-border';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Badge } from "@/components/ui/badge";
 
 const useCountUp = (end: number, duration: number, isFloat = false) => {
   const [count, setCount] = useState(0);
@@ -139,18 +146,41 @@ const Hero = () => {
           </div>
 
           <div className="flex items-center justify-center gap-4 sm:gap-8 mt-12 text-sm text-slate-gray animate-fadeIn flex-wrap" style={{animationDelay: '1s'}}>
-            <div className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-lime-green" />
-              No credit card required
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-lime-green" />
-              14-day free trial
-            </div>
-            <div className="flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-lime-green" />
-              Setup in 5 minutes
-            </div>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                   <Badge variant="outline" className="bg-background/60 backdrop-blur-sm">
+                      <Check className="h-4 w-4 mr-2 text-lime-green animate-pulse" />
+                      No credit card required
+                   </Badge>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Start your trial instantly, no payment details needed.</p>
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Badge variant="outline" className="bg-background/60 backdrop-blur-sm">
+                    <CheckCircle className="h-4 w-4 mr-2 text-lime-green animate-pulse" />
+                    14-day free trial
+                  </Badge>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Explore all features for two weeks, completely free.</p>
+                </TooltipContent>
+              </Tooltip>
+               <Tooltip>
+                <TooltipTrigger>
+                   <Badge variant="outline" className="bg-background/60 backdrop-blur-sm">
+                      <TrendingUp className="h-4 w-4 mr-2 text-lime-green animate-pulse" />
+                      Setup in 5 minutes
+                   </Badge>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Connect your brand and start generating content fast.</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
 
