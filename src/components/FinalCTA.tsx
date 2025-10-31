@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Calendar } from 'lucide-react';
 import FloatingAvatar from './finalCTA/FloatingAvatar';
 import GeometricShapes from './finalCTA/GeometricShapes';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function FinalCTA() {
   const avatars = [
@@ -13,6 +14,8 @@ export default function FinalCTA() {
       color: '#FF6B5B',
       position: { x: '8%', y: '20%' },
       delay: 0.3,
+      imgSrc: PlaceHolderImages.find(p => p.id === 'avatarSarah')?.imageUrl || '',
+      imgHint: PlaceHolderImages.find(p => p.id === 'avatarSarah')?.imageHint || '',
     },
     {
       name: 'Mike',
@@ -20,6 +23,8 @@ export default function FinalCTA() {
       color: '#8B5CF6',
       position: { x: '15%', y: '55%' },
       delay: 0.5,
+      imgSrc: PlaceHolderImages.find(p => p.id === 'avatarMike')?.imageUrl || '',
+      imgHint: PlaceHolderImages.find(p => p.id === 'avatarMike')?.imageHint || '',
     },
     {
       name: 'Emily',
@@ -27,6 +32,8 @@ export default function FinalCTA() {
       color: '#EC4899',
       position: { x: '85%', y: '25%' },
       delay: 0.7,
+      imgSrc: PlaceHolderImages.find(p => p.id === 'avatarEmily')?.imageUrl || '',
+      imgHint: PlaceHolderImages.find(p => p.id === 'avatarEmily')?.imageHint || '',
     },
     {
       name: 'Alex',
@@ -34,6 +41,8 @@ export default function FinalCTA() {
       color: '#38BDF8',
       position: { x: '88%', y: '60%' },
       delay: 0.9,
+      imgSrc: PlaceHolderImages.find(p => p.id === 'avatarAlex')?.imageUrl || '',
+      imgHint: PlaceHolderImages.find(p => p.id === 'avatarAlex')?.imageHint || '',
     },
   ];
 

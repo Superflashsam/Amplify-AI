@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface FloatingAvatarProps {
   name: string;
@@ -8,9 +9,11 @@ interface FloatingAvatarProps {
   color: string;
   position: { x: string; y: string };
   delay: number;
+  imgSrc: string;
+  imgHint: string;
 }
 
-export default function FloatingAvatar({ name, role, color, position, delay }: FloatingAvatarProps) {
+export default function FloatingAvatar({ name, role, color, position, delay, imgSrc, imgHint }: FloatingAvatarProps) {
   return (
     <motion.div
       className="absolute hidden lg:flex flex-col items-center gap-2"
@@ -43,8 +46,15 @@ export default function FloatingAvatar({ name, role, color, position, delay }: F
         />
         
         {/* Avatar Circle */}
-        <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-white to-light-slate border-4 border-white flex items-center justify-center text-2xl shadow-lg">
-          {name.charAt(0)}
+        <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-white to-light-slate border-4 border-white flex items-center justify-center text-2xl shadow-lg overflow-hidden">
+          <Image 
+            src={imgSrc}
+            alt={`Avatar for ${name}, ${role}`}
+            width={64}
+            height={64}
+            className="object-cover"
+            data-ai-hint={imgHint}
+          />
         </div>
         
         {/* Pulse Ring */}
