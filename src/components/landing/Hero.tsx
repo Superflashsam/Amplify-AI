@@ -32,7 +32,7 @@ const useCountUp = (end: number, duration: number, isFloat = false) => {
 
     const timeout = setTimeout(() => {
       animationFrameId = requestAnimationFrame(animateCount);
-    }, 1200);
+    }, 1500);
 
     return () => {
       clearTimeout(timeout);
@@ -102,11 +102,20 @@ const Hero = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Hero Content */}
         <div className="text-center max-w-4xl mx-auto mb-16">
-          <Link href="#" className="announcement-badge group mb-8 inline-flex items-center gap-2 overflow-hidden rounded-full px-4 py-2 text-sm font-medium text-deep-charcoal opacity-0 animate-slide-in-from-top" style={{animationDelay: '0.2s'}}>
-            <Sparkles className="h-4 w-4 text-amber-500 animate-sparkle" />
-            <span className="z-10">New: Multi-channel campaign orchestration</span>
-            <ChevronRight className="h-4 w-4 text-slate-gray transition-transform duration-300 group-hover:translate-x-1" />
+          <Link href="#">
+            <div className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-gradient-to-r from-amplify-coral/10 via-electric-purple/10 to-vibrant-magenta/10 border border-amplify-coral/30 text-deep-charcoal text-sm font-medium mb-8 animate-slideDown font-inter cursor-pointer hover:scale-105 transition-transform duration-300 group relative overflow-hidden" style={{ animationDelay: '0.2s' }}>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amplify-coral via-electric-purple to-vibrant-magenta opacity-20 blur-sm animate-spin-slow"></div>
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent announcement-shimmer"></div>
+              <div className="relative flex items-center justify-center">
+                <div className="h-2 w-2 rounded-full bg-amplify-coral animate-pulse"></div>
+                <div className="absolute h-3 w-3 rounded-full bg-amplify-coral/30 animate-ping"></div>
+              </div>
+              <Sparkles className="h-4 w-4 text-electric-purple animate-sparkle" />
+              <span className="relative z-10">New: Multi-channel campaign orchestration</span>
+              <ChevronRight className="h-3.5 w-3.5 text-slate-gray group-hover:translate-x-1 transition-transform duration-200" />
+            </div>
           </Link>
+          
 
           <h1 className="text-5xl md:text-7xl animate-slideUp text-deep-charcoal tracking-tight font-display mb-6 font-bold" style={{animationDelay: '0.4s'}}>
             Amplify Your Brand<br/>
