@@ -29,7 +29,12 @@ function AnimatedStat({ value, suffix, label, delay }: StatProps) {
       if (suffix === 'M+') {
         setDisplayValue(latest.toFixed(1));
       } else if (suffix === '+' && latest >= 1000) {
-        setDisplayValue(Math.floor(latest / 1000).toString() + 'K');
+        const kValue = Math.floor(latest / 1000);
+        if (kValue > 0) {
+            setDisplayValue(kValue.toString() + 'K');
+        } else {
+            setDisplayValue(Math.floor(latest).toString());
+        }
       }
       else {
         setDisplayValue(Math.floor(latest).toString());
