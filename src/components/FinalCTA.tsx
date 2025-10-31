@@ -5,6 +5,7 @@ import { ArrowRight, Calendar } from 'lucide-react';
 import FloatingAvatar from './finalCTA/FloatingAvatar';
 import GeometricShapes from './finalCTA/GeometricShapes';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import Image from 'next/image';
 
 export default function FinalCTA() {
   const avatars = [
@@ -167,16 +168,18 @@ export default function FinalCTA() {
                 </motion.button>
 
                 {/* Secondary CTA */}
-                <motion.button
-                  className="px-8 py-5 bg-white text-deep-charcoal border-2 border-slate-gray/20 rounded-2xl font-bold text-lg hover:border-electric-purple hover:bg-light-slate transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span className="flex items-center gap-2">
-                    <Calendar size={20} />
-                    Get a Demo
-                  </span>
-                </motion.button>
+                <a href="#contact-demo">
+                  <motion.button
+                    className="px-8 py-5 bg-white text-deep-charcoal border-2 border-slate-gray/20 rounded-2xl font-bold text-lg hover:border-electric-purple hover:bg-light-slate transition-all duration-300"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <span className="flex items-center gap-2">
+                      <Calendar size={20} />
+                      Get a Demo
+                    </span>
+                  </motion.button>
+                </a>
               </motion.div>
 
               {/* Trust Indicators */}
