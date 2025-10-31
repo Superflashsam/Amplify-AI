@@ -10,22 +10,35 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import Logo from './Logo';
+import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '#features', label: 'Features' },
   { href: '#pricing', label: 'Pricing' },
   { href: '#how-it-works', label: 'How It Works' },
-  { href: '#case-studies', label: 'Case Studies' },
+  { href: '#testimonials', label: 'Testimonials' },
 ];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <header
-      className="sticky top-0 z-50 w-full transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0s' }}
+      className={cn(
+        'sticky top-0 z-50 w-full transition-all duration-300',
+        isScrolled ? 'bg-background/80 backdrop-blur-lg border-b border-border' : 'bg-transparent'
+      )}
     >
-      <div className="container mx-auto flex h-24 items-center justify-between px-4 md:px-6">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <Link href="/" aria-label="AmplifyAI Home">
           <Logo />
         </Link>
@@ -49,37 +62,39 @@ const Header = () => {
 
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="outline" size="icon" className="h-9 w-9 rounded-xl bg-light-slate hover:bg-slate-gray/10 transition-all duration-200 border-slate-gray/10">
+              <Button variant="outline" size="icon" className="h-9 w-9 rounded-xl bg-light-slate/80 hover:bg-slate-gray/10 transition-all duration-200 border-slate-gray/20">
                 <Menu className="h-4 w-4 text-deep-charcoal" />
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs bg-white">
-              <div className="flex h-full flex-col p-6">
-                <div className="mb-8 flex items-center justify-between">
+            <SheetContent side="right" className="w-full max-w-xs bg-background p-0">
+              <div className="flex h-full flex-col">
+                <div className="flex h-20 items-center justify-between px-6 border-b">
                   <Link href="/" onClick={() => setIsMenuOpen(false)}>
                     <Logo />
                   </Link>
-                  <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
-                    <X className="h-6 w-6" />
-                    <span className="sr-only">Close menu</span>
-                  </Button>
+                  <SheetTrigger asChild>
+                    <Button variant="ghost" size="icon" className="h-9 w-9 rounded-xl">
+                      <X className="h-5 w-5 text-slate-gray" />
+                      <span className="sr-only">Close menu</span>
+                    </Button>
+                  </SheetTrigger>
                 </div>
-                <nav className="flex flex-col gap-6">
+                <nav className="flex flex-col gap-2 p-6">
                   {navLinks.map((link) => (
                     <Link
                       key={link.href}
                       href={link.href}
                       onClick={() => setIsMenuOpen(false)}
-                      className="text-lg font-medium text-slate-gray transition-colors hover:text-deep-charcoal"
+                      className="text-lg font-medium text-slate-gray transition-colors hover:text-deep-charcoal py-2 px-4 rounded-lg hover:bg-muted"
                     >
                       {link.label}
                     </Link>
                   ))}
                 </nav>
-                <div className="mt-auto flex flex-col gap-4">
+                <div className="mt-auto flex flex-col gap-4 p-6 border-t">
                    <Button variant="ghost" size="lg">Sign In</Button>
-                   <Button size="lg" className="bg-gradient-to-r from-amplify-coral to-electric-purple">Start Free Trial</Button>
+                   <Button size="lg" className="bg-gradient-to-r from-amplify-coral to-electric-purple text-white">Start Free Trial</Button>
                 </div>
               </div>
             </SheetContent>
