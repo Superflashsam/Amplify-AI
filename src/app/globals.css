@@ -112,6 +112,8 @@
      -webkit-background-clip: text;
      color: transparent;
      background-image: linear-gradient(to right, hsl(var(--amplify-coral)), hsl(var(--electric-purple)), hsl(var(--vibrant-magenta)));
+     background-size: 200% auto;
+     animation: text-gradient-animation 5s ease-in-out infinite alternate;
    }
    .perspective-container {
      perspective: 1500px;
@@ -365,4 +367,13 @@
  .animate-spin-slow {
    animation: spin-slow 8s linear infinite;
  }
+
+ @keyframes text-gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
  
