@@ -14,6 +14,13 @@ export default function FloatingParticles() {
     delay: Math.random() * 5,
   })), []);
 
+  const sparkles = useMemo(() => Array.from({ length: 8 }, (_, i) => ({
+    id: i,
+    left: `${(i * 12.5) + 5}%`,
+    top: `${Math.random() * 80 + 10}%`,
+    delay: i * 0.4,
+  })), []);
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {particles.map((particle) => (
@@ -41,13 +48,13 @@ export default function FloatingParticles() {
       ))}
 
       {/* Sparkles */}
-      {[...Array(8)].map((_, i) => (
+      {sparkles.map((sparkle) => (
         <motion.div
-          key={`sparkle-${i}`}
+          key={`sparkle-${sparkle.id}`}
           className="absolute"
           style={{
-            left: `${(i * 12.5) + 5}%`,
-            top: `${Math.random() * 80 + 10}%`,
+            left: sparkle.left,
+            top: sparkle.top,
           }}
           initial={{ scale: 0, rotate: 0 }}
           animate={{
@@ -57,7 +64,7 @@ export default function FloatingParticles() {
           }}
           transition={{
             duration: 3,
-            delay: i * 0.4,
+            delay: sparkle.delay,
             repeat: Infinity,
             repeatDelay: 2,
           }}
