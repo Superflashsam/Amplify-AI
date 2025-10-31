@@ -1,10 +1,10 @@
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { ArrowRight, BookOpen, BrainCircuit, ShieldCheck, SquarePen } from 'lucide-react';
-import BrandIntelligenceIllustration from '../icons/brand-intelligence-illustration';
-import ContentStudioIllustration from '../icons/content-studio-illustration';
-import CampaignBrainIllustration from '../icons/campaign-brain-illustration';
-import PerformanceShieldIllustration from '../icons/performance-shield-illustration';
+import BrandIntelligenceIllustration from '../illustrations/BrandIntelligenceIllustration';
+import ContentStudioIllustration from '../illustrations/ContentStudioIllustration';
+import CampaignBrainIllustration from '../illustrations/CampaignBrainIllustration';
+import PerformanceShieldIllustration from '../illustrations/PerformanceShieldIllustration';
 
 const capabilities = [
   {
@@ -111,7 +111,7 @@ const Capabilities = () => {
                 </div>
 
                 <div className="mt-8 flex-grow flex items-end justify-center">
-                    <Illustration className="w-full h-auto max-w-[250px] transition-transform duration-300 group-hover:scale-110"/>
+                    <Illustration />
                 </div>
                 
                 <a href="#" className="mt-8 inline-flex items-center font-semibold text-foreground group-hover:text-primary transition-colors">
