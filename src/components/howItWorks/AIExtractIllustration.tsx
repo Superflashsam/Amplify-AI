@@ -3,6 +3,31 @@
 import { motion } from 'framer-motion';
 
 export default function AIExtractIllustration() {
+  // Pre-calculate coordinates to avoid hydration mismatch
+  const nodePositions = [
+    { x: 70, y: 0 },
+    { x: 35, y: 60.62 },
+    { x: -35, y: 60.62 },
+    { x: -70, y: 0 },
+    { x: -35, y: -60.62 },
+    { x: 35, y: -60.62 },
+  ];
+
+  const particlePositions = [
+    { x: 100, y: 0 },
+    { x: 86.6, y: 50 },
+    { x: 50, y: 86.6 },
+    { x: 0, y: 100 },
+    { x: -50, y: 86.6 },
+    { x: -86.6, y: 50 },
+    { x: -100, y: 0 },
+    { x: -86.6, y: -50 },
+    { x: -50, y: -86.6 },
+    { x: 0, y: -100 },
+    { x: 50, y: -86.6 },
+    { x: 86.6, y: -50 },
+  ];
+
   return (
     <svg
       width="100%"
@@ -13,7 +38,7 @@ export default function AIExtractIllustration() {
       className="w-full h-auto"
     >
       {/* AI Brain Center */}
-      <motion.g transform="translate(250, 150)">
+      <g transform="translate(250, 150)">
         {/* Outer Pulse Ring */}
         <motion.circle
           r="60"
@@ -45,14 +70,14 @@ export default function AIExtractIllustration() {
           AI
         </text>
 
-        {/* Processing Lines */}
-        {[0, 1, 2, 3, 4, 5].map((i) => (
+        {/* Processing Lines - Fixed coordinates */}
+        {nodePositions.map((node, i) => (
           <motion.line
             key={i}
             x1="0"
             y1="0"
-            x2={Math.cos((i * 60 * Math.PI) / 180) * 70}
-            y2={Math.sin((i * 60 * Math.PI) / 180) * 70}
+            x2={node.x}
+            y2={node.y}
             stroke="#8B5CF6"
             strokeWidth="2"
             opacity="0.5"
@@ -66,7 +91,7 @@ export default function AIExtractIllustration() {
             }}
           />
         ))}
-      </motion.g>
+      </g>
 
       {/* Color Swatches */}
       <motion.g
@@ -157,20 +182,20 @@ export default function AIExtractIllustration() {
         />
       </motion.g>
 
-      {/* Data Particles */}
-      {[...Array(12)].map((_, i) => (
+      {/* Data Particles - Fixed coordinates */}
+      {particlePositions.map((particle, i) => (
         <motion.circle
           key={i}
           r="3"
           fill="#FDE047"
           initial={{
-            x: 250,
-            y: 150,
+            cx: 250,
+            cy: 150,
             opacity: 0,
           }}
           animate={{
-            x: 250 + Math.cos((i * 30 * Math.PI) / 180) * 100,
-            y: 150 + Math.sin((i * 30 * Math.PI) / 180) * 100,
+            cx: 250 + particle.x,
+            cy: 150 + particle.y,
             opacity: [0, 1, 0],
           }}
           transition={{

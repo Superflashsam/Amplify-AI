@@ -11,7 +11,23 @@ function ClientOnlyChart() {
     }, []);
   
     if (!isClient) {
-      return null;
+      // Return a static placeholder or null on the server
+      const staticBars = [30, 45, 25, 50, 35, 40, 28];
+      return (
+        <g>
+          {staticBars.map((height, i) => (
+            <rect
+              key={i}
+              x={240 + i * 30}
+              y={220 - height}
+              width="20"
+              height={height}
+              rx="4"
+              fill="url(#gradient-chart)"
+            />
+          ))}
+        </g>
+      );
     }
   
     return (

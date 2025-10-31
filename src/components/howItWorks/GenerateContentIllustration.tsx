@@ -3,6 +3,15 @@
 import { motion } from 'framer-motion';
 
 export default function GenerateContentIllustration() {
+  // Pre-calculate coordinates to avoid hydration mismatch
+  const sparklePositions = [
+    { cx: 25, cy: 0 },
+    { cx: 7.72, cy: 23.78 },
+    { cx: -20.22, cy: 14.69 },
+    { cx: -20.22, cy: -14.69 },
+    { cx: 7.72, cy: -23.78 },
+  ];
+
   return (
     <svg
       width="100%"
@@ -118,11 +127,11 @@ export default function GenerateContentIllustration() {
         />
         
         {/* Magic Sparkles */}
-        {[0, 1, 2, 3, 4].map((i) => (
+        {sparklePositions.map((pos, i) => (
           <motion.circle
             key={i}
-            cx={Math.cos((i * 72 * Math.PI) / 180) * 25}
-            cy={Math.sin((i * 72 * Math.PI) / 180) * 25}
+            cx={pos.cx}
+            cy={pos.cy}
             r="2"
             fill="#FDE047"
             animate={{
