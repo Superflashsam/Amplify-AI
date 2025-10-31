@@ -16,10 +16,10 @@ const Cursors = () => {
         animation: {
           keyframes: [
             { x: '20vw', y: '20vh', scale: 1, transition: { duration: 5, ease: 'easeInOut' } }, // start
-            { x: '48vw', y: '65vh', scale: 1, transition: { duration: 3, ease: 'easeOut' } }, // move to "start free trial"
+            { x: '40vw', y: '65vh', scale: 1, transition: { duration: 3, ease: 'easeOut' } }, // move to "start free trial"
             { scale: 0.9, transition: { duration: 0.2 } }, // click down
             { scale: 1, transition: { duration: 0.2 } }, // click up
-            { x: '60vw', y: '30vh', scale: 1, transition: { duration: 4, ease: 'easeInOut' } }, // move away
+            { x: '50vw', y: '30vh', scale: 1, transition: { duration: 4, ease: 'easeInOut' } }, // move away
             { x: '20vw', y: '20vh', scale: 1, transition: { duration: 5, ease: 'easeInOut' } } // back to start
           ],
           repeat: Infinity,
@@ -34,7 +34,7 @@ const Cursors = () => {
         animation: {
             keyframes: [
                 { x: '80vw', y: '30vh', scale: 1, transition: { duration: 4, ease: 'easeInOut' } }, // start
-                { x: '60vw', y: '65vh', scale: 1, transition: { duration: 4, ease: 'easeOut' } }, // move to "get a demo"
+                { x: '55vw', y: '65vh', scale: 1, transition: { duration: 4, ease: 'easeOut' } }, // move to "get a demo"
                 { scale: 0.9, transition: { duration: 0.2 } }, // click down
                 { scale: 1, transition: { duration: 0.2 } },   // click up
                 { x: '70vw', y: '40vh', scale: 1, transition: { duration: 3, ease: 'easeInOut' } }, // move away
