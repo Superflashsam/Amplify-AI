@@ -148,6 +148,21 @@
   .animation-delay-6000 {
     animation-delay: 6s;
   }
+  
+  .btn-primary .btn-arrow {
+    transition: transform 0.2s ease-out;
+  }
+  .btn-primary:hover .btn-arrow {
+    transform: translateX(4px);
+  }
+
+  .btn-secondary .btn-arrow {
+    transition: transform 0.2s ease-out;
+  }
+  .btn-secondary:hover .btn-arrow {
+    transform: scale(1.1) rotate(90deg);
+  }
+
 
   @media (hover: hover) {
     .dashboard-3d:hover {

@@ -128,12 +128,12 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slideUp hero-cta-stack" style={{animationDelay: '0.8s'}}>
-            <Button size="lg" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-amplify-coral to-electric-purple hover:shadow-xl text-white font-semibold rounded-2xl shadow-lg shadow-amplify-coral/30 transition-all duration-200 text-lg w-full sm:w-auto">
+            <Button size="lg" className="btn-primary group inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-amplify-coral to-electric-purple hover:shadow-xl text-white font-semibold rounded-2xl shadow-lg shadow-amplify-coral/30 transition-all duration-300 text-lg w-full sm:w-auto">
               Get Started Free
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="h-5 w-5 btn-arrow" />
             </Button>
-            <Button size="lg" variant="outline" className="inline-flex items-center gap-3 px-8 py-4 bg-white hover:bg-light-slate text-deep-charcoal hover:text-deep-charcoal font-semibold rounded-2xl transition-all duration-200 border-2 border-slate-gray/20 hover:border-slate-gray/40 text-lg shadow-sm w-full sm:w-auto">
-              <Play className="h-5 w-5" />
+            <Button size="lg" variant="outline" className="btn-secondary group inline-flex items-center gap-3 px-8 py-4 bg-white hover:bg-light-slate text-deep-charcoal font-semibold rounded-2xl transition-all duration-300 border-2 border-slate-gray/20 hover:border-slate-gray/40 text-lg shadow-sm w-full sm:w-auto">
+              <Play className="h-5 w-5 btn-arrow" />
               Watch Demo
             </Button>
           </div>
