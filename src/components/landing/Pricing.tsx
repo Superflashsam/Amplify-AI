@@ -1,170 +1,201 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Check, Zap } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
+import { motion } from 'framer-motion';
+import { DollarSign, Shield, CreditCard, Award } from 'lucide-react';
+import BillingToggle from '../pricing/BillingToggle';
+import PricingCard from '../pricing/PricingCard';
+import FeatureComparison from '../pricing/FeatureComparison';
+import PricingFAQ from '../pricing/PricingFAQ';
+import {
+  StarterPlanIllustration,
+  ProfessionalPlanIllustration,
+  EnterprisePlanIllustration,
+} from '../pricing/PlanIllustrations';
+import { PricingPlan } from '../pricing/types';
 
-const pricingTiers = [
+const pricingPlans: PricingPlan[] = [
   {
+    id: 'starter',
     name: 'Starter',
+    description: 'Perfect for solo marketers and freelancers getting started',
     monthlyPrice: 29,
     annualPrice: 24,
-    description: 'For solo marketers and freelancers getting started.',
+    popular: false,
+    color: '#38BDF8',
+    gradient: 'from-sky-blue to-electric-purple',
+    icon: <StarterPlanIllustration />,
     features: [
-      '1 Brand DNA Profile',
-      '50 Content Generations/mo',
-      'Basic Analytics',
-      '2 Social integrations',
-      'Email Support',
+      { name: 'AI Content Generation', tooltip: 'Create blog posts, social media, and more' },
+      { name: 'Brand DNA Extraction' },
+      { name: 'Basic Analytics Dashboard' },
+      { name: 'Email Support' },
+      { name: '10+ Content Templates' },
+      { name: 'Export to All Formats' },
     ],
-    cta: 'Start Free Trial',
-    isPopular: false,
-    color: 'sky-blue',
+    cta: {
+      text: 'Start Free Trial',
+      link: '/signup',
+    },
+    limits: {
+      content: '50',
+      brands: '1',
+      users: '1',
+    },
   },
   {
+    id: 'professional',
     name: 'Professional',
+    description: 'For growing teams that need advanced features and scale',
     monthlyPrice: 79,
     annualPrice: 63,
-    description: 'For growing businesses that need to scale content.',
+    popular: true,
+    color: '#8B5CF6',
+    gradient: 'from-electric-purple to-vibrant-magenta',
+    icon: <ProfessionalPlanIllustration />,
     features: [
-      '5 Brand DNA Profiles',
-      'Unlimited Content Generations',
-      'Advanced Analytics & AI Loop',
-      'All Platform Integrations',
-      'Team Collaboration (3 users)',
-      'Priority Support',
+      { name: 'Everything in Starter' },
+      { name: 'Advanced AI Models', tooltip: 'Access to GPT-4 and specialized models' },
+      { name: 'Multi-Brand Management' },
+      { name: 'Priority Support' },
+      { name: 'Advanced Analytics & Reports' },
+      { name: 'Campaign Orchestration' },
+      { name: 'A/B Testing', tooltip: 'Test multiple content variations' },
+      { name: 'API Access' },
     ],
-    cta: 'Start Free Trial',
-    isPopular: true,
-    color: 'electric-purple',
+    cta: {
+      text: 'Start Free Trial',
+      link: '/signup?plan=professional',
+    },
+    limits: {
+      content: '500',
+      brands: '5',
+      users: '5',
+    },
   },
   {
+    id: 'enterprise',
     name: 'Enterprise',
-    monthlyPrice: null,
-    annualPrice: null,
-    description: 'For large agencies and brands with custom needs.',
+    description: 'For large organizations with custom needs and compliance',
+    monthlyPrice: 0, // Custom pricing
+    annualPrice: 0,
+    popular: false,
+    color: '#EC4899',
+    gradient: 'from-vibrant-magenta to-amplify-coral',
+    icon: <EnterprisePlanIllustration />,
     features: [
-      'Unlimited Brand Profiles',
-      'Dedicated AI models',
-      'Custom Integrations & API Access',
-      'White-label options',
-      'Dedicated Success Manager',
-      'SOC 2 & GDPR',
+      { name: 'Everything in Professional' },
+      { name: 'Unlimited Everything' },
+      { name: 'White-Label Solution', tooltip: 'Rebrand the platform as your own' },
+      { name: 'Dedicated Account Manager' },
+      { name: 'Custom Integrations' },
+      { name: 'SSO & Advanced Security' },
+      { name: 'SLA Guarantee' },
+      { name: 'Custom Onboarding' },
     ],
-cta: 'Contact Sales',
-    isPopular: false,
-    color: 'vibrant-magenta',
+    cta: {
+      text: 'Contact Sales',
+      link: '/contact',
+    },
+    limits: {
+      content: '∞',
+      brands: '∞',
+      users: '∞',
+    },
   },
 ];
 
-const Pricing = () => {
-  const [isAnnual, setIsAnnual] = useState(true);
+export default function Pricing() {
+  const [isAnnual, setIsAnnual] = useState(false);
 
   return (
-    <section id="pricing" className="py-20 sm:py-28 bg-gradient-to-b from-white via-light-slate/30 to-white">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-electric-purple/10 to-sky-blue/10 border border-electric-purple/20 text-deep-charcoal text-sm font-medium mb-6">
-            <Zap size={16} className="text-electric-purple" />
-            Flexible Plans for Teams of All Sizes
-          </div>
-          <h2 className="text-5xl md:text-6xl font-bold font-display text-deep-charcoal tracking-tight mb-6">
-            Plans That Scale With You
-          </h2>
-          <p className="mt-4 text-xl text-slate-gray">
-            Choose the perfect plan for your brand's growth journey. All plans start with a 14-day free trial, no credit card required.
-          </p>
-        </div>
+    <section id="pricing" className="relative py-20 bg-gradient-to-b from-white via-light-slate/20 to-white overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          className="absolute top-20 left-10 w-96 h-96 bg-electric-purple/10 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 10, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-amplify-coral/10 rounded-full blur-3xl"
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 12, repeat: Infinity }}
+        />
+      </div>
 
-        <div className="flex justify-center items-center gap-4 mb-12">
-          <Label htmlFor="billing-toggle" className={cn("font-medium", !isAnnual && "text-primary")}>
-            Monthly
-          </Label>
-          <Switch
-            id="billing-toggle"
-            checked={isAnnual}
-            onCheckedChange={setIsAnnual}
-            aria-label="Toggle between monthly and annual billing"
-          />
-          <Label htmlFor="billing-toggle" className={cn("font-medium", isAnnual && "text-primary")}>
-            Annually
-          </Label>
-          <div className="relative">
-            <span className={cn("ml-2 inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold transition-all duration-300",
-              isAnnual
-                ? 'bg-lime-green/20 text-lime-green-700 scale-100 opacity-100'
-                : 'scale-90 opacity-0'
-            )}>
-              Save 20%
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-sunshine-yellow/10 to-amplify-orange/10 border border-sunshine-yellow/20 text-deep-charcoal text-sm font-medium mb-6"
+          >
+            <DollarSign size={16} className="text-sunshine-yellow" />
+            Simple, Transparent Pricing
+          </motion.div>
+
+          <h2 className="text-5xl md:text-6xl font-bold text-deep-charcoal tracking-tight mb-6 font-display">
+            Choose Your{' '}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-amplify-coral via-electric-purple to-vibrant-magenta">
+              Perfect Plan
             </span>
-          </div>
-        </div>
+          </h2>
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 items-stretch">
-          {pricingTiers.map((tier) => (
-            <Card key={tier.name} className={cn(
-              "flex flex-col rounded-2xl border-2 transition-all duration-300",
-              tier.isPopular 
-                ? 'border-electric-purple shadow-2xl shadow-electric-purple/20 scale-105' 
-                : 'border-slate-200 hover:border-slate-300 hover:shadow-lg'
-            )}>
-              <CardHeader className="p-8 border-b">
-                {tier.isPopular && (
-                   <div className="absolute top-0 right-8 -translate-y-1/2">
-                    <div className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold bg-gradient-to-r from-amplify-coral to-electric-purple text-white shadow-lg">
-                      Most Popular
-                    </div>
-                   </div>
-                )}
-                <CardTitle className={cn("text-3xl font-display", `text-${tier.color}`)}>{tier.name}</CardTitle>
-                <CardDescription className="text-base">{tier.description}</CardDescription>
-                <div className="pt-6">
-                  {tier.monthlyPrice !== null ? (
-                    <>
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-5xl font-bold font-display tracking-tight text-deep-charcoal">
-                          ${isAnnual ? tier.annualPrice : tier.monthlyPrice}
-                        </span>
-                        <span className="text-lg text-slate-gray">/ month</span>
-                      </div>
-                      <p className="text-sm text-slate-gray mt-1">
-                        Billed {isAnnual ? 'annually' : 'monthly'}
-                      </p>
-                    </>
-                  ) : (
-                    <span className="text-4xl font-bold font-display text-deep-charcoal">Custom</span>
-                  )}
-                </div>
-              </CardHeader>
-              <CardContent className="flex-1 p-8">
-                <p className="font-semibold text-deep-charcoal mb-4">What's included:</p>
-                <ul className="space-y-4">
-                  {tier.features.map((feature) => (
-                    <li key={feature} className="flex items-start">
-                      <Check className="h-5 w-5 text-lime-green mr-3 mt-0.5 shrink-0" />
-                      <span className="text-base text-slate-gray">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardFooter className="p-8">
-                <Button size="lg" className={cn(
-                  "w-full text-lg",
-                  tier.isPopular ? 'bg-gradient-to-r from-amplify-coral to-electric-purple text-white hover:shadow-xl' : 'bg-white border-2 border-slate-300 text-deep-charcoal hover:bg-slate-50'
-                )}>
-                  {tier.cta}
-                </Button>
-              </CardFooter>
-            </Card>
+          <p className="text-xl text-slate-gray leading-relaxed mb-8">
+            Start with a 14-day free trial. No credit card required. Cancel anytime.
+          </p>
+
+          {/* Trust Badges */}
+          <div className="flex items-center justify-center gap-6 text-sm text-slate-gray flex-wrap">
+            {[
+              { icon: Shield, text: '14-day free trial' },
+              { icon: CreditCard, text: 'No credit card required' },
+              { icon: Award, text: '30-day money-back' },
+            ].map((badge, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 + i * 0.1 }}
+                className="flex items-center gap-2"
+              >
+                <badge.icon size={16} className="text-lime-green" />
+                {badge.text}
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Billing Toggle */}
+        <BillingToggle isAnnual={isAnnual} onToggle={() => setIsAnnual(!isAnnual)} />
+
+        {/* Pricing Cards */}
+        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          {pricingPlans.map((plan, index) => (
+            <PricingCard
+              key={plan.id}
+              plan={plan}
+              isAnnual={isAnnual}
+              index={index}
+            />
           ))}
         </div>
+
+        {/* Feature Comparison */}
+        <FeatureComparison />
+
+        {/* FAQ */}
+        <PricingFAQ />
       </div>
     </section>
   );
-};
-
-export default Pricing;
+}
