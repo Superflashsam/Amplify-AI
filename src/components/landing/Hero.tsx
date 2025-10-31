@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Check, CheckCircle, TrendingUp, TrendingDown, Play, Calendar, ChevronRight } from 'lucide-react';
+import { Check, CheckCircle, TrendingUp, TrendingDown, Play, Calendar, ChevronRight, Sparkles } from 'lucide-react';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 const useCountUp = (end: number, duration: number, isFloat = false) => {
@@ -101,10 +102,11 @@ const Hero = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Hero Content */}
         <div className="text-center max-w-4xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amplify-coral/10 to-electric-purple/10 border border-amplify-coral/20 text-deep-charcoal text-sm font-medium mb-8 animate-fadeIn" style={{animationDelay: '0.2s'}}>
-            <div className="h-2 w-2 rounded-full bg-amplify-coral animate-pulse"></div>
-            New: Multi-channel campaign orchestration
-          </div>
+          <Link href="#" className="announcement-badge group mb-8 inline-flex items-center gap-2 overflow-hidden rounded-full px-4 py-2 text-sm font-medium text-deep-charcoal opacity-0 animate-slide-in-from-top" style={{animationDelay: '0.2s'}}>
+            <Sparkles className="h-4 w-4 text-amber-500 animate-sparkle" />
+            <span className="z-10">New: Multi-channel campaign orchestration</span>
+            <ChevronRight className="h-4 w-4 text-slate-gray transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
 
           <h1 className="text-5xl md:text-7xl animate-slideUp text-deep-charcoal tracking-tight font-display mb-6 font-bold" style={{animationDelay: '0.4s'}}>
             Amplify Your Brand<br/>
@@ -116,17 +118,17 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slideUp" style={{animationDelay: '0.8s'}}>
-            <Button size="lg" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-amplify-coral to-electric-purple hover:shadow-xl text-white font-semibold rounded-2xl shadow-lg shadow-amplify-coral/30 transition-all duration-200 text-lg">
+            <Button size="lg" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-amplify-coral to-electric-purple hover:shadow-xl text-white font-semibold rounded-2xl shadow-lg shadow-amplify-coral/30 transition-all duration-200 text-lg w-full sm:w-auto">
               Get Started Free
               <ChevronRight className="h-5 w-5" />
             </Button>
-            <Button size="lg" variant="outline" className="inline-flex items-center gap-3 px-8 py-4 bg-white hover:bg-light-slate text-deep-charcoal font-semibold rounded-2xl transition-all duration-200 border-2 border-slate-gray/20 hover:border-slate-gray/40 text-lg shadow-sm">
+            <Button size="lg" variant="outline" className="inline-flex items-center gap-3 px-8 py-4 bg-white hover:bg-light-slate text-deep-charcoal font-semibold rounded-2xl transition-all duration-200 border-2 border-slate-gray/20 hover:border-slate-gray/40 text-lg shadow-sm w-full sm:w-auto">
               <Play className="h-5 w-5" />
               Watch Demo
             </Button>
           </div>
 
-          <div className="flex items-center justify-center gap-8 mt-12 text-sm text-slate-gray animate-fadeIn flex-wrap" style={{animationDelay: '1s'}}>
+          <div className="flex items-center justify-center gap-4 sm:gap-8 mt-12 text-sm text-slate-gray animate-fadeIn flex-wrap" style={{animationDelay: '1s'}}>
             <div className="flex items-center gap-2">
               <Check className="h-4 w-4 text-lime-green" />
               No credit card required
@@ -173,26 +175,26 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className="p-8 bg-gradient-to-br from-white/80 to-light-slate/30">
-              <div className="grid md:grid-cols-3 gap-6 mb-6">
-                <div className="p-6 rounded-2xl bg-white/80 border-2 border-amplify-coral/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
-                  <div className="text-4xl font-bold text-amplify-coral mb-2 font-display">+{engagement}%</div>
+            <div className="p-4 sm:p-8 bg-gradient-to-br from-white/80 to-light-slate/30">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6">
+                <div className="p-4 sm:p-6 rounded-2xl bg-white/80 border-2 border-amplify-coral/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
+                  <div className="text-3xl sm:text-4xl font-bold text-amplify-coral mb-2 font-display">+{engagement}%</div>
                   <div className="text-sm text-slate-gray">Campaign Engagement</div>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-3.5 w-3.5 text-lime-green" />
                     <span className="text-xs text-lime-green">+24% vs last month</span>
                   </div>
                 </div>
-                <div className="p-6 rounded-2xl bg-white/80 border-2 border-electric-purple/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
-                  <div className="text-4xl font-bold text-electric-purple mb-2 font-display">{reach}M</div>
+                <div className="p-4 sm:p-6 rounded-2xl bg-white/80 border-2 border-electric-purple/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
+                  <div className="text-3xl sm:text-4xl font-bold text-electric-purple mb-2 font-display">{reach}M</div>
                   <div className="text-sm text-slate-gray">Total Reach</div>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-3.5 w-3.5 text-lime-green" />
                     <span className="text-xs text-lime-green">Across 5 platforms</span>
                   </div>
                 </div>
-                <div className="p-6 rounded-2xl bg-white/80 border-2 border-sky-blue/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
-                  <div className="text-4xl font-bold text-sky-blue mb-2 font-display">${cpc}</div>
+                <div className="p-4 sm:p-6 rounded-2xl bg-white/80 border-2 border-sky-blue/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect hidden md:block">
+                  <div className="text-3xl sm:text-4xl font-bold text-sky-blue mb-2 font-display">${cpc}</div>
                   <div className="text-sm text-slate-gray">Avg. Cost Per Click</div>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingDown className="h-3.5 w-3.5 text-vibrant-magenta" />
@@ -209,7 +211,7 @@ const Hero = () => {
                   { color: 'lime-green', platform: 'TikTok', value: '15.3%', delay: 2.1 },
                 ].map(item => (
                   <div key={item.platform}
-                    className={cn("px-4 py-2 rounded-full bg-gradient-to-r from-transparent to-transparent border text-sm font-medium text-deep-charcoal opacity-0", isMounted && "animate-fadeIn")}
+                    className={cn("px-3 sm:px-4 py-2 rounded-full bg-gradient-to-r from-transparent to-transparent border text-xs sm:text-sm font-medium text-deep-charcoal opacity-0", isMounted && "animate-fadeIn")}
                     style={
                       {
                         '--tw-gradient-from': `hsl(var(--${item.color})) / 10%`,
@@ -233,3 +235,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
