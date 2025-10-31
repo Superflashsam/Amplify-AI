@@ -1,6 +1,6 @@
 import Header from '@/components/landing/Header';
 import Hero from '@/components/landing/Hero';
-import Capabilities from '@/components/landing/Capabilities';
+import PlatformShowcase from '@/components/PlatformShowcase';
 import Testimonials from '@/components/landing/Testimonials';
 import Pricing from '@/components/landing/Pricing';
 import CTA from '@/components/landing/CTA';
@@ -12,7 +12,7 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <Hero />
-        <Capabilities />
+        <PlatformShowcase />
         <Testimonials />
         <Pricing />
         <CTA />

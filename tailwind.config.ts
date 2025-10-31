@@ -146,6 +146,7 @@ export default {
         'pulse-glow': 'pulse-glow 2s infinite ease-in-out',
         'dashboard-float': 'dashboard-float 8s infinite ease-in-out',
         'shimmer': 'shimmer 1.5s infinite',
+        'spin-slow': 'spin 8s linear infinite',
       },
     },
   },
