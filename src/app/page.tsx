@@ -4,7 +4,7 @@ import PlatformShowcase from '@/components/PlatformShowcase';
 import HowItWorks from '@/components/landing/HowItWorks';
 import Testimonials from '@/components/landing/Testimonials';
 import Pricing from '@/components/landing/Pricing';
-import CTA from '@/components/landing/CTA';
+import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/landing/Footer';
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
         <HowItWorks />
         <Testimonials />
         <Pricing />
-        <CTA />
+        <FinalCTA />
       </main>
       <Footer />
     </div>
