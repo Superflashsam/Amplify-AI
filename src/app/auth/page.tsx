@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { motion }
-from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -70,17 +69,21 @@ export default function AuthPage() {
     const userRef = doc(firestore, 'users', user.uid);
     const userDoc = await getDoc(userRef);
 
+    let userData;
+
     if (!userDoc.exists()) {
-      await setDoc(userRef, {
+      const newUser = {
         email: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
         subscriptionStatus: 'trial', // Default to trial on new sign-up
-      });
+      };
+      await setDoc(userRef, newUser);
+      userData = newUser;
+    } else {
+      userData = userDoc.data();
     }
-
-    const userData = userDoc.exists() ? userDoc.data() : { subscriptionStatus: 'trial' };
-
+    
     toast({
       title: 'Success!',
       description: 'You have successfully logged in.',
