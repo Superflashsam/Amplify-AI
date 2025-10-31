@@ -257,17 +257,6 @@ export default function PricingCard({ plan, isAnnual, index }: PricingCardProps)
             </div>
           </div>
         </div>
-
-        {/* Corner Sparkle */}
-        {plan.popular && (
-          <motion.div
-            className="absolute top-4 right-4"
-            animate={{ rotate: [0, 360], scale: [1, 1.2, 1] }}
-            transition={{ duration: 4, repeat: Infinity }}
-          >
-            <div className="text-sunshine-yellow">⭐</div>
-          </motion.div>
-        )}
       </div>
     </motion.div>
   );
