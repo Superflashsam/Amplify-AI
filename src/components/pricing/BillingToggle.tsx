@@ -24,18 +24,18 @@ export default function BillingToggle({ isAnnual, onToggle }: BillingToggleProps
       {/* Toggle Switch */}
       <button
         onClick={onToggle}
-        className="relative w-20 h-10 rounded-full bg-gradient-to-r from-slate-gray/20 to-slate-gray/10 border-2 border-slate-gray/20 transition-all duration-300 hover:border-electric-purple focus:outline-none focus:ring-4 focus:ring-electric-purple/20"
+        className="relative w-20 h-10 rounded-full bg-light-slate shadow-[inset_4px_4px_8px_#c5c5c5,inset_-4px_-4px_8px_#ffffff] focus:outline-none focus:ring-2 focus:ring-electric-purple/50 transition-all"
         aria-label="Toggle billing period"
         role="switch"
         aria-checked={isAnnual}
       >
         {/* Toggle Indicator */}
         <motion.div
-          className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gradient-to-r from-electric-purple to-vibrant-magenta shadow-lg"
+          className="absolute top-1 left-1 w-8 h-8 rounded-full bg-gradient-to-r from-electric-purple to-vibrant-magenta shadow-md"
           animate={{
-            x: isAnnual ? 36 : 0,
+            x: isAnnual ? 40 : 0,
           }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          transition={{ type: "spring", stiffness: 700, damping: 30 }}
         />
       </button>
 
