@@ -1,4 +1,3 @@
-// src/components/FinalCTA.tsx (COMPLETE REPLACEMENT)
 'use client';
 
 import { motion } from 'framer-motion';
