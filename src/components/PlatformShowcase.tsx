@@ -141,7 +141,7 @@ function FeatureCardComponent({ feature, index }: { feature: FeatureCard; index:
 
       {/* Card Container */}
       <div
-        className={`relative bg-gradient-to-br ${feature.bgGradient} rounded-3xl p-8 border-2 border-white/20 shadow-lg group-hover:shadow-2xl transition-all duration-500 overflow-hidden h-full flex flex-col`}
+        className={`relative bg-gradient-to-br ${feature.bgGradient} rounded-3xl p-6 border-2 border-white/20 shadow-lg group-hover:shadow-2xl transition-all duration-500 overflow-hidden h-full flex flex-col`}
         style={{ transformStyle: 'preserve-3d' }}
       >
         {/* Grid Pattern Overlay */}
@@ -164,28 +164,28 @@ function FeatureCardComponent({ feature, index }: { feature: FeatureCard; index:
         <div className="relative z-10 flex flex-col flex-grow" style={{ transform: 'translateZ(40px)' }}>
           {/* Icon */}
           <motion.div
-            className="inline-flex items-center justify-center w-16 h-16 rounded-2xl shadow-lg mb-6"
+            className="inline-flex items-center justify-center w-12 h-12 rounded-xl shadow-lg mb-4"
             style={{ backgroundColor: feature.color }}
             whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="text-white">{feature.icon}</div>
+            <div className="text-white scale-90">{feature.icon}</div>
           </motion.div>
 
           {/* Title */}
-          <h3 className="text-3xl font-bold text-deep-charcoal mb-4 font-display">
+          <h3 className="text-2xl font-bold text-deep-charcoal mb-2 font-display">
             {feature.title}
           </h3>
 
           {/* Illustration Container */}
           <div className="flex-grow flex items-center justify-center my-4">
-            <div className="w-[300px] h-[220px] bg-white/40 backdrop-blur-sm rounded-2xl p-4 border border-white/30 flex items-center justify-center">
+            <div className="w-[280px] h-[180px] bg-white/40 backdrop-blur-sm rounded-2xl p-4 border border-white/30 flex items-center justify-center">
               {feature.illustration}
             </div>
           </div>
           
           {/* Description */}
-          <p className="text-slate-gray text-base leading-relaxed text-center mt-4">
+          <p className="text-slate-gray text-sm leading-relaxed text-center mt-4">
             {feature.description}
           </p>
         </div>
