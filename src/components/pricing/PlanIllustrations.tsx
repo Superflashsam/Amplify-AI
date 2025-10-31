@@ -58,95 +58,99 @@ export function StarterPlanIllustration() {
   );
 }
 
-export function ProfessionalPlanIllustration() {
+export function ProfessionalPlanIllustration({ isHovered }: { isHovered: boolean }) {
   return (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-      {/* Brain Shape */}
-      <motion.g
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.8, type: "spring" }}
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Globe */}
+      <motion.g 
+        animate={{ rotate: isHovered ? 360 : 0 }}
+        transition={{ duration: 10, repeat: isHovered ? Infinity : 0, ease: 'linear' }}
       >
-        <circle cx="60" cy="60" r="35" fill="currentColor" opacity="0.9" />
-        
-        {/* Brain Patterns */}
-        {[0, 1, 2, 3, 4, 5].map((i) => (
-          <motion.path
-            key={i}
-            d={`M ${40 + i * 7} 50 Q ${43 + i * 7} 40 ${46 + i * 7} 50 Q ${43 + i * 7} 60 ${40 + i * 7} 50`}
-            stroke="white"
-            strokeWidth="2"
-            fill="none"
-            opacity="0.6"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 1, delay: 0.5 + i * 0.1 }}
-          />
-        ))}
+        <circle cx="60" cy="60" r="30" fill="currentColor" opacity="0.9" />
+        <motion.path
+          d="M60 30 C 76.57 30 90 43.43 90 60 C 90 76.57 76.57 90 60 90 C 43.43 90 30 76.57 30 60 C 30 43.43 43.43 30 60 30 Z"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeOpacity="0.4"
+          fill="none"
+        />
+        <motion.path
+          d="M 35 45 C 50 55, 70 55, 85 45"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeOpacity="0.4"
+          fill="none"
+        />
+        <motion.path
+          d="M 35 75 C 50 65, 70 65, 85 75"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeOpacity="0.4"
+          fill="none"
+        />
       </motion.g>
 
-      {/* Gears */}
-      {[
-        { x: 40, y: 40, size: 12, speed: 4 },
-        { x: 80, y: 45, size: 10, speed: 5 },
-        { x: 75, y: 75, size: 14, speed: 6 },
-      ].map((gear, i) => (
-        <motion.g
-          key={i}
-          animate={{ rotate: 360 }}
-          transition={{ duration: gear.speed, repeat: Infinity, ease: "linear" }}
-          style={{ transformOrigin: `${gear.x}px ${gear.y}px` }}
-        >
-          <circle cx={gear.x} cy={gear.y} r={gear.size} fill="white" opacity="0.3" />
-          <circle cx={gear.x} cy={gear.y} r={gear.size / 2} fill="currentColor" />
-          {[0, 60, 120, 180, 240, 300].map((angle) => (
-            <rect
-              key={angle}
-              x={gear.x - 2}
-              y={gear.y - gear.size - 2}
-              width="4"
-              height="4"
-              fill="white"
-              opacity="0.8"
-              transform={`rotate(${angle} ${gear.x} ${gear.y})`}
-            />
-          ))}
-        </motion.g>
-      ))}
-
-      {/* Neural Connections */}
-      {[
-        { x1: 40, y1: 40, x2: 80, y2: 45 },
-        { x1: 80, y1: 45, x2: 75, y2: 75 },
-        { x1: 75, y1: 75, x2: 40, y2: 40 },
-      ].map((line, i) => (
-        <motion.line
-          key={i}
-          x1={line.x1}
-          y1={line.y1}
-          x2={line.x2}
-          y2={line.y2}
+      {/* Orbit 1 */}
+      <motion.g
+        animate={{ rotate: 360 }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+      >
+        <path
+          d="M 20 60 a 40 20 0 1 0 80 0 a 40 20 0 1 0 -80 0"
           stroke="currentColor"
-          strokeWidth="2"
-          opacity="0.3"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1, delay: 1 + i * 0.2 }}
+          strokeWidth="1.5"
+          strokeOpacity="0.3"
+          fill="none"
         />
-      ))}
-
-      {/* Energy Pulse */}
-      <motion.circle
-        cx="60"
-        cy="60"
-        r="35"
-        stroke="currentColor"
-        strokeWidth="2"
-        fill="none"
-        opacity="0.4"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0, 0.4] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
+        <motion.circle
+          cx="20"
+          cy="60"
+          r="4"
+          fill="white"
+          opacity="0.8"
+          animate={{
+            cx: [20, 100, 20],
+            cy: [60, 60, 60],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: 'linear',
+            times: [0, 0.5, 1]
+          }}
+        />
+      </motion.g>
+      
+      {/* Orbit 2 */}
+      <motion.g
+        animate={{ rotate: -360 }}
+        transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
+      >
+        <path
+          d="M 60 20 a 20 40 0 1 0 0 80 a 20 40 0 1 0 0 -80"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeOpacity="0.3"
+          fill="none"
+        />
+         <motion.circle
+          cx="60"
+          cy="20"
+          r="4"
+          fill="#FDE047"
+          opacity="0.9"
+          animate={{
+            cx: [60, 60, 60],
+            cy: [20, 100, 20],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: 'linear',
+            times: [0, 0.5, 1]
+          }}
+        />
+      </motion.g>
     </svg>
   );
 }

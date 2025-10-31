@@ -52,7 +52,7 @@ const pricingPlans: PricingPlan[] = [
     popular: true,
     color: '#8B5CF6',
     gradient: 'from-electric-purple to-vibrant-magenta',
-    icon: <ProfessionalPlanIllustration />,
+    icon: <ProfessionalPlanIllustration isHovered={false} />,
     features: [
       { name: 'Everything in Starter' },
       { name: 'Advanced AI Models', tooltip: 'Access to GPT-4 and specialized models' },

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Check, Info, ArrowRight } from 'lucide-react';
 import { PricingPlan } from './types';
+import React from 'react';
 
 interface PricingCardProps {
   plan: PricingPlan;
@@ -44,6 +45,10 @@ export default function PricingCard({ plan, isAnnual, index }: PricingCardProps)
 
   const price = isAnnual ? plan.annualPrice : plan.monthlyPrice;
   const displayPrice = plan.id === 'enterprise' ? 'Custom' : `$${price}`;
+  
+  const planIcon = React.isValidElement(plan.icon)
+    ? React.cloneElement(plan.icon as React.ReactElement<any>, { isHovered })
+    : plan.icon;
 
   return (
     <motion.div
@@ -124,7 +129,7 @@ export default function PricingCard({ plan, isAnnual, index }: PricingCardProps)
             animate={isHovered ? { rotate: [0, 5, -5, 0] } : {}}
             transition={{ duration: 0.6 }}
           >
-            {plan.icon}
+            {planIcon}
           </motion.div>
 
           {/* Plan Name */}
