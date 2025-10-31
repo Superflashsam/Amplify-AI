@@ -117,12 +117,12 @@ const Hero = () => {
             Generate on-brand content, orchestrate campaigns across all channels, and track performance—all powered by intelligent AI that learns and optimizes for your success.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slideUp" style={{animationDelay: '0.8s'}}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slideUp hero-cta-stack" style={{animationDelay: '0.8s'}}>
             <Button size="lg" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-amplify-coral to-electric-purple hover:shadow-xl text-white font-semibold rounded-2xl shadow-lg shadow-amplify-coral/30 transition-all duration-200 text-lg w-full sm:w-auto">
               Get Started Free
               <ChevronRight className="h-5 w-5" />
             </Button>
-            <Button size="lg" variant="outline" className="inline-flex items-center gap-3 px-8 py-4 bg-white hover:bg-light-slate text-deep-charcoal font-semibold rounded-2xl transition-all duration-200 border-2 border-slate-gray/20 hover:border-slate-gray/40 text-lg shadow-sm w-full sm:w-auto">
+            <Button size="lg" variant="outline" className="inline-flex items-center gap-3 px-8 py-4 bg-white hover:bg-light-slate text-deep-charcoal hover:text-deep-charcoal font-semibold rounded-2xl transition-all duration-200 border-2 border-slate-gray/20 hover:border-slate-gray/40 text-lg shadow-sm w-full sm:w-auto">
               <Play className="h-5 w-5" />
               Watch Demo
             </Button>
@@ -167,7 +167,7 @@ const Hero = () => {
                     <div className="h-2 w-2 rounded-full bg-lime-green animate-pulse-glow"></div>
                     <span className="text-sm text-lime-green font-medium">Live</span>
                   </div>
-                  <Button variant="outline" className="h-9 px-4 rounded-xl bg-light-slate hover:bg-slate-gray/10 transition-all duration-200 border-slate-gray/10 text-sm">
+                  <Button variant="outline" className="h-9 px-4 rounded-xl bg-light-slate text-slate-gray hover:bg-slate-gray/10 hover:text-deep-charcoal transition-all duration-200 border-slate-gray/10 text-sm">
                     <Calendar className="h-4 w-4 mr-2" />
                     Last 30 Days
                   </Button>
@@ -176,7 +176,7 @@ const Hero = () => {
             </div>
 
             <div className="p-4 sm:p-8 bg-gradient-to-br from-white/80 to-light-slate/30">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6 dashboard-grid">
                 <div className="p-4 sm:p-6 rounded-2xl bg-white/80 border-2 border-amplify-coral/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
                   <div className="text-3xl sm:text-4xl font-bold text-amplify-coral mb-2 font-display">+{engagement}%</div>
                   <div className="text-sm text-slate-gray">Campaign Engagement</div>
@@ -235,4 +235,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
