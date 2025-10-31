@@ -9,7 +9,6 @@ import {
   SheetContent,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { cn } from '@/lib/utils';
 import Logo from './Logo';
 
 const navLinks = [
