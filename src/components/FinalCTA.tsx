@@ -8,9 +8,42 @@ import Image from 'next/image';
 
 const Cursors = () => {
     const cursors = [
-      { id: 1, x: '20%', y: '30%', name: 'Digital Marketer', color: 'bg-red-500', imgSrc: 'https://picsum.photos/seed/101/48/48' },
-      { id: 2, x: '80%', y: '40%', name: 'Product Marketer', color: 'bg-lime-500', imgSrc: 'https://picsum.photos/seed/102/48/48' },
-      { id: 3, x: '75%', y: '85%', name: 'Content Marketer', color: 'bg-pink-500', imgSrc: 'https://picsum.photos/seed/103/48/48' },
+      { 
+        id: 1, 
+        name: 'Digital Marketer', 
+        color: 'bg-red-500', 
+        imgSrc: 'https://picsum.photos/seed/101/48/48',
+        animation: {
+          x: ['20vw', '50vw', '45vw', '30vw', '20vw'],
+          y: ['20vh', '40vh', '55vh', '60vh', '20vh'],
+          scale: [1, 1, 1.2, 1, 1],
+          transition: { duration: 15, repeat: Infinity, ease: 'easeInOut', times: [0, 0.4, 0.5, 0.8, 1] }
+        }
+      },
+      { 
+        id: 2, 
+        name: 'Product Marketer', 
+        color: 'bg-lime-500', 
+        imgSrc: 'https://picsum.photos/seed/102/48/48',
+        animation: {
+          x: ['80vw', '60vw', '55vw', '70vw', '80vw'],
+          y: ['30vh', '60vh', '55vh', '40vh', '30vh'],
+          scale: [1, 1, 1.2, 1, 1],
+          transition: { duration: 18, repeat: Infinity, ease: 'easeInOut', times: [0, 0.3, 0.5, 0.7, 1] }
+        }
+      },
+      { 
+        id: 3, 
+        name: 'Content Marketer', 
+        color: 'bg-pink-500', 
+        imgSrc: 'https://picsum.photos/seed/103/48/48',
+        animation: {
+          x: ['10vw', '30vw', '20vw', '10vw'],
+          y: ['70vh', '50vh', '80vh', '70vh'],
+          scale: [1, 1.2, 1, 1],
+          transition: { duration: 12, repeat: Infinity, ease: 'easeInOut' }
+        }
+      },
     ];
   
     return (
@@ -18,18 +51,14 @@ const Cursors = () => {
         {cursors.map((cursor) => (
           <motion.div
             key={cursor.id}
-            className="absolute z-20"
-            initial={{ x: cursor.x, y: cursor.y }}
+            className="absolute z-10"
+            initial={{ x: cursor.animation.x[0], y: cursor.animation.y[0] }}
             animate={{
-              x: [cursor.x, `calc(${cursor.x} + ${Math.random() * 100 - 50}px)`],
-              y: [cursor.y, `calc(${cursor.y} + ${Math.random() * 100 - 50}px)`],
+                x: cursor.animation.x,
+                y: cursor.animation.y,
+                scale: cursor.animation.scale
             }}
-            transition={{
-              duration: Math.random() * 5 + 5,
-              repeat: Infinity,
-              repeatType: 'mirror',
-              ease: 'easeInOut',
-            }}
+            transition={cursor.animation.transition}
           >
             <div className="relative">
               <svg
@@ -81,7 +110,7 @@ export default function FinalCTA() {
         animate={{ rotate: [0, 5, -5, 0]}}
         transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
       >
-        <div className="w-64 h-64 bg-red-500" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 20%, 0 80%)' }} />
+        <div className="w-64 h-64 bg-red-500/80" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 20%, 0 80%)' }} />
       </motion.div>
       <motion.div
         className="absolute z-10"
@@ -89,14 +118,15 @@ export default function FinalCTA() {
         animate={{ scale: [1, 1.05, 1]}}
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       >
-        <div className="w-56 h-56 rounded-full bg-lime-500" />
+        <div className="w-56 h-56 rounded-full bg-lime-500/80" />
       </motion.div>
 
       {/* Main Card */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="w-[80vw] max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden"
         >
