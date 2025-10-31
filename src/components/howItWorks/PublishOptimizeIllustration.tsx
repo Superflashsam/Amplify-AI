@@ -1,6 +1,41 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+
+function ClientOnlyChart() {
+    const [isClient, setIsClient] = useState(false);
+  
+    useEffect(() => {
+      setIsClient(true);
+    }, []);
+  
+    if (!isClient) {
+      return null;
+    }
+  
+    return (
+        <motion.g>
+        {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+          <motion.rect
+            key={i}
+            x={240 + i * 30}
+            y={220}
+            width="20"
+            height="0"
+            rx="4"
+            fill="url(#gradient-chart)"
+            initial={{ height: 0, y: 220 }}
+            animate={{ 
+              height: 20 + Math.random() * 30,
+              y: 220 - (20 + Math.random() * 30)
+            }}
+            transition={{ delay: 2.5 + i * 0.1, duration: 0.5 }}
+          />
+        ))}
+      </motion.g>
+    );
+  }
 
 export default function PublishOptimizeIllustration() {
   return (
@@ -128,25 +163,7 @@ export default function PublishOptimizeIllustration() {
         ))}
 
         {/* Chart */}
-        <motion.g>
-          {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-            <motion.rect
-              key={i}
-              x={240 + i * 30}
-              y={220}
-              width="20"
-              height="0"
-              rx="4"
-              fill="url(#gradient-chart)"
-              initial={{ height: 0, y: 220 }}
-              animate={{ 
-                height: 20 + Math.random() * 30,
-                y: 220 - (20 + Math.random() * 30)
-              }}
-              transition={{ delay: 2.5 + i * 0.1, duration: 0.5 }}
-            />
-          ))}
-        </motion.g>
+        <ClientOnlyChart />
 
         {/* Success Checkmark */}
         <motion.g
