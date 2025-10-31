@@ -76,18 +76,15 @@ const steps: Step[] = [
 ];
 
 function StepCard({ step, index, isActive }: { step: Step; index: number; isActive: boolean }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: '-200px' });
   const [isHovered, setIsHovered] = useState(false);
-
   const isLeft = index % 2 === 0;
 
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, x: isLeft ? -100 : 100 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.8, delay: 0.2 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`flex items-center gap-12 mb-32 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
     >
       {/* Content Side */}
@@ -130,7 +127,8 @@ function StepCard({ step, index, isActive }: { step: Step; index: number; isActi
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.5 + i * 0.1 }}
               className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 shadow-sm"
               style={{ borderColor: `${step.color}40` }}
