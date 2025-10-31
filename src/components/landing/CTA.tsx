@@ -6,10 +6,10 @@ const CTA = () => {
     <section className="py-20 sm:py-28">
       <div className="container mx-auto px-4 md:px-6">
         <div className="rounded-2xl bg-gradient-to-br from-primary/80 to-electric-purple/80 p-10 text-center text-primary-foreground shadow-xl">
-          <h2 className="text-display font-bold">
+          <h2 className="text-5xl font-bold font-display">
             Ready to Amplify Your Marketing?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-body-lg text-primary-foreground/80">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-primary-foreground/80">
             Join 10,000+ brands creating smarter campaigns with AI. Start your free 14-day trial today.
           </p>
           <Button size="lg" variant="secondary" className="mt-8 text-lg font-semibold bg-white text-primary hover:bg-gray-100">

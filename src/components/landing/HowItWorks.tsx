@@ -29,10 +29,10 @@ const HowItWorks = () => {
     <section id="how-it-works" className="py-20 sm:py-28 bg-background">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-display font-bold">
+          <h2 className="text-5xl font-bold font-display">
             From Brand DNA to Campaign Launch in Minutes
           </h2>
-          <p className="mt-4 text-body-lg text-foreground/70">
+          <p className="mt-4 text-lg text-foreground/70">
             Our intelligent workflow simplifies marketing so you can focus on growth.
           </p>
         </div>
@@ -44,8 +44,8 @@ const HowItWorks = () => {
                 <div className="relative z-10 mx-auto flex h-20 w-20 items-center justify-center rounded-full border-2 border-primary/20 bg-background text-primary shadow-lg">
                   {step.icon}
                 </div>
-                <h3 className="mt-6 text-heading-sm font-semibold">{step.title}</h3>
-                <p className="mt-2 text-body text-foreground/80">{step.description}</p>
+                <h3 className="mt-6 text-2xl font-semibold font-display">{step.title}</h3>
+                <p className="mt-2 text-base text-foreground/80">{step.description}</p>
               </div>
             ))}
           </div>

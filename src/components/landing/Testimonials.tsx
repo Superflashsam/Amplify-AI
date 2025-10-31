@@ -28,10 +28,10 @@ const Testimonials = () => {
     <section id="testimonials" className="py-20 sm:py-28 bg-background/70">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-display font-bold">
+          <h2 className="text-5xl font-bold font-display">
             Trusted by Brands That Move Fast
           </h2>
-          <p className="mt-4 text-body-lg text-foreground/70">
+          <p className="mt-4 text-lg text-foreground/70">
             Hear from marketing leaders who are scaling their brands with AmplifyAI.
           </p>
         </div>
@@ -41,7 +41,7 @@ const Testimonials = () => {
             return (
               <Card key={testimonial.name} className="flex flex-col justify-between bg-card/80 p-6 backdrop-blur-sm">
                 <CardContent className="p-0">
-                  <p className="text-body text-foreground/90">"{testimonial.quote}"</p>
+                  <p className="text-base text-foreground/90">"{testimonial.quote}"</p>
                 </CardContent>
                 <div className="mt-6 flex items-center gap-4">
                   {authorImage && (
@@ -56,7 +56,7 @@ const Testimonials = () => {
                     </div>
                   )}
                   <div>
-                    <p className="font-semibold text-foreground">{testimonial.name}</p>
+                    <p className="font-semibold text-foreground font-display">{testimonial.name}</p>
                     <p className="text-sm text-foreground/70">{testimonial.title}</p>
                   </div>
                 </div>

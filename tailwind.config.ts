@@ -17,8 +17,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['var(--font-display)', 'sans-serif'],
+        display: ['var(--font-display)', 'serif'],
         body: ['var(--font-body)', 'sans-serif'],
+        inter: ['var(--font-body)', 'sans-serif'],
       },
       colors: {
         'amplify-coral': 'hsl(var(--amplify-coral))',

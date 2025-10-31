@@ -39,10 +39,10 @@ const Features = () => {
     <section id="features" className="py-20 sm:py-28 bg-background/70">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-display font-bold">
+          <h2 className="text-5xl font-bold font-display">
             Everything You Need to Amplify Your Marketing
           </h2>
-          <p className="mt-4 text-body-lg text-foreground/70">
+          <p className="mt-4 text-lg text-foreground/70">
             From brand analysis to performance tracking, AmplifyAI provides a complete suite of tools to scale your marketing efforts.
           </p>
         </div>
@@ -52,11 +52,11 @@ const Features = () => {
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="bg-primary/10 p-3 rounded-lg">{feature.icon}</div>
-                   <CardTitle className="text-heading-sm font-semibold">{feature.title}</CardTitle>
+                   <CardTitle className="text-2xl font-semibold font-display">{feature.title}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-body text-foreground/80">{feature.description}</p>
+                <p className="text-base text-foreground/80">{feature.description}</p>
               </CardContent>
             </Card>
           ))}
