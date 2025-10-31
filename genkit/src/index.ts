@@ -8,7 +8,6 @@
  */
 
 import {setGlobalOptions} from "firebase-functions";
-import {logger} from "firebase-functions";
 
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
