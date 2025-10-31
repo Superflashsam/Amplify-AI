@@ -187,20 +187,6 @@ function FeatureCardComponent({ feature, index }: { feature: FeatureCard; index:
             {feature.illustration}
           </div>
 
-          {/* Learn More Link */}
-          <motion.button
-            className={`inline-flex items-center gap-2 ${feature.accentColor} font-semibold text-base group/link`}
-            whileHover={{ x: 5 }}
-            transition={{ duration: 0.2 }}
-          >
-            Learn more
-            <motion.div
-              animate={isHovered ? { x: [0, 5, 0] } : {}}
-              transition={{ duration: 1, repeat: Infinity }}
-            >
-              <ArrowRight size={18} />
-            </motion.div>
-          </motion.button>
         </div>
 
         {/* Corner Sparkle */}
