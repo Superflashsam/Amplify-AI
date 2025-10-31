@@ -376,4 +376,94 @@
     background-position: 100% 50%;
   }
 }
+
+/* Illustration animations */
+.animate-illustration-slide-in {
+  animation: illustration-slide-in 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  opacity: 0;
+}
+@keyframes illustration-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float-subtle {
+  animation: float-subtle 8s ease-in-out infinite;
+}
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px) translateX(3px); }
+}
+
+.animate-arrow-draw {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: draw 1s cubic-bezier(0.5, 0, 0.2, 1) 0.5s forwards;
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-neural-node {
+  animation: neural-node-pulse 2s infinite ease-in-out;
+}
+@keyframes neural-node-pulse {
+  0%, 100% { r: 2; opacity: 1; }
+  50% { r: 3; opacity: 0.7; }
+}
+.animate-neural-path {
+  stroke-dasharray: 10;
+  stroke-dashoffset: 10;
+  animation: neural-path-draw 3s infinite linear;
+}
+@keyframes neural-path-draw {
+  from {
+    stroke-dashoffset: 20;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-lightbulb-brain-pulse {
+  animation: lightbulb-brain-pulse 2.5s infinite ease-in-out;
+  transform-origin: center;
+}
+@keyframes lightbulb-brain-pulse {
+  0%, 100% { transform: scale(0.4); opacity: 0.8; }
+  50% { transform: scale(0.42); opacity: 1; }
+}
+
+.animate-text-bubble-appear {
+  opacity: 0;
+  animation: text-bubble-appear 0.5s ease-out 1s forwards;
+}
+@keyframes text-bubble-appear {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-pie-chart-draw {
+  transform: scale(0);
+  animation: pie-chart-draw 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+}
+@keyframes pie-chart-draw {
+  to {
+    transform: scale(1);
+  }
+}
  
