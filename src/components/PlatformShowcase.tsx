@@ -24,7 +24,7 @@ const features: FeatureCard[] = [
   {
     id: 'brand-intelligence',
     title: 'Brand Intelligence',
-    description: 'Our AI learns your brand DNA to ensure all content is consistently on-brand.',
+    description: 'Our AI analyzes your brand to create a consistent identity.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
@@ -39,7 +39,7 @@ const features: FeatureCard[] = [
   {
     id: 'content-studio',
     title: 'Content Studio',
-    description: 'Create on-brand content in minutes. Scale your output effortlessly.',
+    description: 'Generate on-brand content in minutes and scale your output.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/>
@@ -54,7 +54,7 @@ const features: FeatureCard[] = [
   {
     id: 'campaign-brain',
     title: 'Campaign Brain',
-    description: 'Our AI strategist plans and optimizes multi-channel campaigns for max impact.',
+    description: 'Our AI strategist plans and optimizes campaigns for max impact.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
@@ -69,7 +69,7 @@ const features: FeatureCard[] = [
   {
     id: 'performance-shield',
     title: 'Performance Shield',
-    description: 'Get real-time analytics and insights to ensure your marketing hits the mark.',
+    description: 'Get real-time analytics to ensure your marketing hits the mark.',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
@@ -141,7 +141,7 @@ function FeatureCardComponent({ feature, index }: { feature: FeatureCard; index:
 
       {/* Card Container */}
       <div
-        className={`relative bg-gradient-to-br ${feature.bgGradient} rounded-3xl p-10 border-2 border-white/20 shadow-lg group-hover:shadow-2xl transition-all duration-500 overflow-hidden`}
+        className={`relative bg-gradient-to-br ${feature.bgGradient} rounded-3xl p-8 border-2 border-white/20 shadow-lg group-hover:shadow-2xl transition-all duration-500 overflow-hidden h-full flex flex-col`}
         style={{ transformStyle: 'preserve-3d' }}
       >
         {/* Grid Pattern Overlay */}
@@ -161,7 +161,7 @@ function FeatureCardComponent({ feature, index }: { feature: FeatureCard; index:
         />
 
         {/* Content */}
-        <div className="relative z-10" style={{ transform: 'translateZ(50px)' }}>
+        <div className="relative z-10 flex flex-col flex-grow" style={{ transform: 'translateZ(40px)' }}>
           {/* Icon */}
           <motion.div
             className="inline-flex items-center justify-center w-16 h-16 rounded-2xl shadow-lg mb-6"
@@ -177,16 +177,17 @@ function FeatureCardComponent({ feature, index }: { feature: FeatureCard; index:
             {feature.title}
           </h3>
 
+          {/* Illustration Container */}
+          <div className="flex-grow flex items-center justify-center my-4">
+            <div className="w-[300px] h-[220px] bg-white/40 backdrop-blur-sm rounded-2xl p-4 border border-white/30 flex items-center justify-center">
+              {feature.illustration}
+            </div>
+          </div>
+          
           {/* Description */}
-          <p className="text-slate-gray text-base leading-relaxed mb-8">
+          <p className="text-slate-gray text-base leading-relaxed text-center mt-4">
             {feature.description}
           </p>
-
-          {/* Illustration */}
-          <div className="mb-8 bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-white/30">
-            {feature.illustration}
-          </div>
-
         </div>
 
         {/* Corner Sparkle */}
