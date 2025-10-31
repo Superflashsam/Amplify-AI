@@ -3,9 +3,20 @@ import { Check, CheckCircle, TrendingUp, TrendingDown, Play, Calendar, ChevronRi
 
 const Hero = () => {
   return (
-    <section className="relative pt-12 pb-20 bg-gradient-to-br from-white via-light-slate/30 to-white">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-30" style={{backgroundImage: 'radial-gradient(circle at 25% 25%, rgba(255, 107, 91, 0.08) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.06) 0%, transparent 50%)'}}></div>
+    <section className="relative pt-12 pb-20 overflow-hidden">
+      {/* Enhanced Background */}
+      <div className="absolute inset-0 z-0">
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_6rem] opacity-20"></div>
+        
+        {/* Floating Blobs */}
+        <div className="absolute inset-0">
+          <div className="absolute top-[-5%] left-[-10%] h-96 w-96 rounded-full bg-amplify-coral/10 blur-3xl animate-blob"></div>
+          <div className="absolute top-[20%] right-[-5%] h-80 w-80 rounded-full bg-electric-purple/10 blur-3xl animate-blob animation-delay-2000"></div>
+          <div className="absolute bottom-[-10%] left-[20%] h-72 w-72 rounded-full bg-vibrant-magenta/5 blur-3xl animate-blob animation-delay-4000"></div>
+          <div className="absolute bottom-[5%] right-[15%] h-64 w-64 rounded-full bg-sky-blue/10 blur-3xl animate-blob animation-delay-6000"></div>
+        </div>
+      </div>
       
       <div className="container mx-auto px-6 sm:px-8 lg:px-10 relative">
         
