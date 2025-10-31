@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
 import DemoForm from './demo/DemoForm';
-import BrandLogoMarquee from './socialProof/BrandLogoMarquee';
 
 export default function ContactDemo() {
   const benefits = [
@@ -58,11 +57,6 @@ export default function ContactDemo() {
           >
             <DemoForm />
           </motion.div>
-        </div>
-
-        {/* Brand Logo Marquee */}
-        <div className="mt-24">
-          <BrandLogoMarquee />
         </div>
       </div>
     </section>
