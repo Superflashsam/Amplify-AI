@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Check, CheckCircle, TrendingUp, TrendingDown, Play, Calendar, ChevronRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const useCountUp = (end: number, duration: number, isFloat = false) => {
   const [count, setCount] = useState(0);
@@ -10,6 +11,7 @@ const useCountUp = (end: number, duration: number, isFloat = false) => {
   useEffect(() => {
     let start = 0;
     const startTime = Date.now();
+    let animationFrameId: number;
 
     const animateCount = () => {
       const now = Date.now();
@@ -23,44 +25,73 @@ const useCountUp = (end: number, duration: number, isFloat = false) => {
       }
 
       if (progress < 1) {
-        requestAnimationFrame(animateCount);
+        animationFrameId = requestAnimationFrame(animateCount);
       }
     };
 
     const timeout = setTimeout(() => {
-      requestAnimationFrame(animateCount);
-    }, 1500);
+      animationFrameId = requestAnimationFrame(animateCount);
+    }, 1200);
 
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, [end, duration, isFloat]);
 
   return count;
 };
 
-
 const Hero = () => {
   const engagement = useCountUp(127, 2000);
   const reach = useCountUp(3.8, 2000, true);
   const cpc = useCountUp(2.18, 2000, true);
+  const [isMounted, setIsMounted] = useState(false);
+  const dashboardRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    setIsMounted(true);
+    const ref = dashboardRef.current;
+    if (!ref) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const { left, top, width, height } = ref.getBoundingClientRect();
+      const x = (e.clientX - left) / width;
+      const y = (e.clientY - top) / height;
+
+      const rotateX = (y - 0.5) * -12;
+      const rotateY = (x - 0.5) * 12;
+
+      ref.style.setProperty('--x', `${x * 100}%`);
+      ref.style.setProperty('--y', `${y * 100}%`);
+      ref.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1, 1, 1)`;
+    };
+    
+    const handleMouseLeave = () => {
+      ref.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+    };
+    
+    ref.addEventListener('mousemove', handleMouseMove);
+    ref.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      ref.removeEventListener('mousemove', handleMouseMove);
+      ref.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
 
   return (
-    <section className="relative pt-12 pb-20 overflow-hidden">
+    <section className="relative pt-12 pb-20 overflow-hidden bg-background">
       {/* Enhanced Background */}
       <div className="absolute inset-0 z-0">
-        {/* Grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_6rem] opacity-20"></div>
-        
-        {/* Floating Blobs */}
-        <div className="absolute inset-0">
-          <div className="absolute top-[-5%] left-[-10%] h-96 w-96 rounded-full bg-amplify-coral/10 blur-3xl animate-blob"></div>
-          <div className="absolute top-[20%] right-[-5%] h-80 w-80 rounded-full bg-electric-purple/10 blur-3xl animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-[-10%] left-[20%] h-72 w-72 rounded-full bg-vibrant-magenta/5 blur-3xl animate-blob animation-delay-4000"></div>
-          <div className="absolute bottom-[5%] right-[15%] h-64 w-64 rounded-full bg-sky-blue/10 blur-3xl animate-blob animation-delay-6000"></div>
-        </div>
+        <div className="absolute top-[-5%] left-[-10%] h-96 w-96 rounded-full bg-amplify-coral/10 blur-3xl animate-blob"></div>
+        <div className="absolute top-[20%] right-[-5%] h-80 w-80 rounded-full bg-electric-purple/10 blur-3xl animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-[-10%] left-[20%] h-72 w-72 rounded-full bg-vibrant-magenta/5 blur-3xl animate-blob animation-delay-4000"></div>
+        <div className="absolute bottom-[5%] right-[15%] h-64 w-64 rounded-full bg-sky-blue/10 blur-3xl animate-blob animation-delay-6000"></div>
       </div>
       
-      <div className="container mx-auto px-6 sm:px-8 lg:px-10 relative">
-        
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Hero Content */}
         <div className="text-center max-w-4xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amplify-coral/10 to-electric-purple/10 border border-amplify-coral/20 text-deep-charcoal text-sm font-medium mb-8 animate-fadeIn" style={{animationDelay: '0.2s'}}>
@@ -88,7 +119,6 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Trust indicators */}
           <div className="flex items-center justify-center gap-8 mt-12 text-sm text-slate-gray animate-fadeIn flex-wrap" style={{animationDelay: '1s'}}>
             <div className="flex items-center gap-2">
               <Check className="h-4 w-4 text-lime-green" />
@@ -106,12 +136,13 @@ const Hero = () => {
         </div>
 
         {/* Hero Dashboard Preview */}
-        <div className="relative max-w-6xl mx-auto animate-slideUp [animation-delay:1.2s] [animation-duration:8s] animate-dashboard-float" style={{animationPlayState: 'running'}}>
-          <div className="absolute -inset-4 bg-gradient-to-r from-amplify-coral/20 via-electric-purple/20 to-vibrant-magenta/20 rounded-3xl blur-3xl"></div>
-          <div className="relative shadow-2xl shadow-slate-gray/20 border-2 border-slate-gray/10 overflow-hidden bg-white rounded-3xl">
-            
-            {/* Dashboard Header */}
-            <div className="px-6 pt-6 pb-4 border-b border-slate-gray/10 bg-gradient-to-r from-light-slate/50 to-white">
+        <div ref={dashboardRef} className={cn("relative max-w-6xl mx-auto transition-transform duration-300 ease-out [transform-style:preserve-3d]", isMounted && "animate-slideUp [animation-duration:1s] [animation-delay:1.2s]")}>
+           <div className="absolute -inset-4 bg-gradient-to-r from-amplify-coral/20 via-electric-purple/20 to-vibrant-magenta/20 rounded-3xl blur-3xl opacity-60"></div>
+          <div className="relative shadow-2xl shadow-slate-gray/20 border-2 border-slate-gray/10 overflow-hidden bg-white/80 backdrop-blur-sm rounded-3xl transition-all duration-300 hover:shadow-slate-gray/30 group">
+             {/* Glow effect */}
+            <div className="absolute top-0 left-0 h-full w-full bg-[radial-gradient(400px_at_var(--x)_var(--y),rgba(255,255,255,0.3),transparent)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+
+            <div className="px-6 pt-6 pb-4 border-b border-slate-gray/10 bg-gradient-to-r from-light-slate/50 to-white/80">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amplify-coral to-electric-purple flex items-center justify-center shadow-lg shadow-amplify-coral/20">
@@ -122,7 +153,6 @@ const Hero = () => {
                     <div className="text-sm text-slate-gray">Multi-channel analytics overview</div>
                   </div>
                 </div>
-
                 <div className="flex items-center gap-3">
                   <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-lime-green/10 to-lime-green/5 border border-lime-green/20">
                     <div className="h-2 w-2 rounded-full bg-lime-green animate-pulse-glow"></div>
@@ -136,11 +166,9 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Dashboard Content Area */}
-            <div className="p-8 bg-gradient-to-br from-white to-light-slate/30">
+            <div className="p-8 bg-gradient-to-br from-white/80 to-light-slate/30">
               <div className="grid md:grid-cols-3 gap-6 mb-6">
-                {/* Stat Card 1 */}
-                <div className="p-6 rounded-2xl bg-white border-2 border-amplify-coral/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
+                <div className="p-6 rounded-2xl bg-white/80 border-2 border-amplify-coral/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
                   <div className="text-4xl font-bold text-amplify-coral mb-2 font-display">+{engagement}%</div>
                   <div className="text-sm text-slate-gray">Campaign Engagement</div>
                   <div className="flex items-center gap-1 mt-2">
@@ -148,9 +176,7 @@ const Hero = () => {
                     <span className="text-xs text-lime-green">+24% vs last month</span>
                   </div>
                 </div>
-
-                {/* Stat Card 2 */}
-                <div className="p-6 rounded-2xl bg-white border-2 border-electric-purple/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
+                <div className="p-6 rounded-2xl bg-white/80 border-2 border-electric-purple/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
                   <div className="text-4xl font-bold text-electric-purple mb-2 font-display">{reach}M</div>
                   <div className="text-sm text-slate-gray">Total Reach</div>
                   <div className="flex items-center gap-1 mt-2">
@@ -158,9 +184,7 @@ const Hero = () => {
                     <span className="text-xs text-lime-green">Across 5 platforms</span>
                   </div>
                 </div>
-
-                {/* Stat Card 3 */}
-                <div className="p-6 rounded-2xl bg-white border-2 border-sky-blue/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
+                <div className="p-6 rounded-2xl bg-white/80 border-2 border-sky-blue/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
                   <div className="text-4xl font-bold text-sky-blue mb-2 font-display">${cpc}</div>
                   <div className="text-sm text-slate-gray">Avg. Cost Per Click</div>
                   <div className="flex items-center gap-1 mt-2">
@@ -169,24 +193,25 @@ const Hero = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Platform Performance Pills */}
               <div className="flex flex-wrap gap-3 justify-center">
                 {[
-                  { color: 'amplify-coral', platform: 'Instagram', value: '24.7%', delay: '1.7s' },
-                  { color: 'sky-blue', platform: 'LinkedIn', value: '18.3%', delay: '1.8s' },
-                  { color: 'electric-purple', platform: 'Google Ads', value: '22.1%', delay: '1.9s' },
-                  { color: 'vibrant-magenta', platform: 'Meta', value: '19.6%', delay: '2.0s' },
-                  { color: 'lime-green', platform: 'TikTok', value: '15.3%', delay: '2.1s' },
+                  { color: 'amplify-coral', platform: 'Instagram', value: '24.7%', delay: 1.7 },
+                  { color: 'sky-blue', platform: 'LinkedIn', value: '18.3%', delay: 1.8 },
+                  { color: 'electric-purple', platform: 'Google Ads', value: '22.1%', delay: 1.9 },
+                  { color: 'vibrant-magenta', platform: 'Meta', value: '19.6%', delay: 2.0 },
+                  { color: 'lime-green', platform: 'TikTok', value: '15.3%', delay: 2.1 },
                 ].map(item => (
-                  <div key={item.platform} className="px-4 py-2 rounded-full bg-gradient-to-r from-transparent to-transparent border text-sm font-medium text-deep-charcoal animate-fadeIn"
-                    style={{
-                      '--tw-gradient-from': `hsl(var(--${item.color})) / 10%`,
-                      '--tw-gradient-to': `hsl(var(--${item.color})) / 5%`,
-                      'borderColor': `hsl(var(--${item.color})) / 20%`,
-                      'animationDelay': item.delay,
-                      'animationFillMode': 'backwards',
-                    } as React.CSSProperties}
+                  <div key={item.platform}
+                    className={cn("px-4 py-2 rounded-full bg-gradient-to-r from-transparent to-transparent border text-sm font-medium text-deep-charcoal opacity-0", isMounted && "animate-fadeIn")}
+                    style={
+                      {
+                        '--tw-gradient-from': `hsl(var(--${item.color})) / 10%`,
+                        '--tw-gradient-to': `hsl(var(--${item.color})) / 5%`,
+                        'borderColor': `hsl(var(--${item.color})) / 20%`,
+                        'animationDelay': `${item.delay}s`,
+                        'animationFillMode': 'forwards',
+                      } as React.CSSProperties
+                    }
                   >
                     <span style={{ color: `hsl(var(--${item.color}))` }}>●</span> {item.platform} • {item.value}
                   </div>
