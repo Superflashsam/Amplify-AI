@@ -186,12 +186,12 @@ const Hero = () => {
 
         {/* Hero Dashboard Preview */}
         <div ref={dashboardRef} className={cn("relative max-w-6xl mx-auto transition-transform duration-300 ease-out perspective-container", isMounted && "animate-slideUp [animation-duration:1s] [animation-delay:1.2s]")}>
-          <div className="absolute -inset-4 bg-gradient-to-r from-amplify-coral/20 via-electric-purple/20 to-vibrant-magenta/20 rounded-3xl blur-3xl opacity-60"></div>
-          <div className="dashboard-3d relative shadow-2xl shadow-slate-gray/20 border-2 border-slate-gray/10 overflow-hidden bg-white/80 backdrop-blur-sm rounded-3xl transition-all duration-300 group">
+          <div className="absolute -inset-4 bg-gradient-to-r from-amplify-coral/20 via-electric-purple/20 to-vibrant-magenta/20 rounded-3xl blur-3xl opacity-60 animate-dashboard-float"></div>
+          <div className="dashboard-3d relative shadow-2xl shadow-slate-gray/20 border-2 border-white/20 overflow-hidden bg-white/60 backdrop-blur-xl rounded-3xl transition-all duration-300 group">
              {/* Glow effect */}
             <div className="absolute top-0 left-0 h-full w-full bg-[radial-gradient(400px_at_var(--x)_var(--y),rgba(255,255,255,0.3),transparent)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
 
-            <div className="px-6 pt-6 pb-4 border-b border-slate-gray/10 bg-gradient-to-r from-light-slate/50 to-white/80">
+            <div className="px-6 pt-6 pb-4 border-b border-slate-gray/10 bg-gradient-to-r from-white/80 to-white/60">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amplify-coral to-electric-purple flex items-center justify-center shadow-lg shadow-amplify-coral/20">
@@ -207,7 +207,7 @@ const Hero = () => {
                     <div className="h-2 w-2 rounded-full bg-lime-green animate-pulse-glow"></div>
                     <span className="text-sm text-lime-green font-medium">Live</span>
                   </div>
-                  <Button variant="outline" className="h-9 px-4 rounded-xl bg-light-slate text-slate-gray hover:bg-slate-gray/10 hover:text-deep-charcoal transition-all duration-200 border-slate-gray/10 text-sm">
+                  <Button variant="outline" className="h-9 px-4 rounded-xl bg-white/80 text-slate-gray hover:bg-white/90 hover:text-deep-charcoal transition-all duration-200 border-slate-gray/10 text-sm">
                     <Calendar className="h-4 w-4 mr-2" />
                     Last 30 Days
                   </Button>
@@ -215,9 +215,9 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className="p-4 sm:p-8 bg-gradient-to-br from-white/80 to-light-slate/30">
+            <div className="p-4 sm:p-8 bg-gradient-to-br from-white/60 to-white/40">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6 dashboard-grid">
-                <div className="p-4 sm:p-6 rounded-2xl bg-white/80 border-2 border-amplify-coral/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
+                <div className="p-4 sm:p-6 rounded-2xl bg-white/80 border border-amplify-coral/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
                   <div className="text-3xl sm:text-4xl font-bold text-amplify-coral mb-2 font-display">+{engagement}%</div>
                   <div className="text-sm text-slate-gray">Campaign Engagement</div>
                   <div className="flex items-center gap-1 mt-2">
@@ -225,7 +225,7 @@ const Hero = () => {
                     <span className="text-xs text-lime-green">+24% vs last month</span>
                   </div>
                 </div>
-                <div className="p-4 sm:p-6 rounded-2xl bg-white/80 border-2 border-electric-purple/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
+                <div className="p-4 sm:p-6 rounded-2xl bg-white/80 border border-electric-purple/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
                   <div className="text-3xl sm:text-4xl font-bold text-electric-purple mb-2 font-display">{reach}M</div>
                   <div className="text-sm text-slate-gray">Total Reach</div>
                   <div className="flex items-center gap-1 mt-2">
@@ -233,7 +233,7 @@ const Hero = () => {
                     <span className="text-xs text-lime-green">Across 5 platforms</span>
                   </div>
                 </div>
-                <div className="p-4 sm:p-6 rounded-2xl bg-white/80 border-2 border-sky-blue/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect hidden md:block">
+                <div className="p-4 sm:p-6 rounded-2xl bg-white/80 border border-sky-blue/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect hidden md:block">
                   <div className="text-3xl sm:text-4xl font-bold text-sky-blue mb-2 font-display">${cpc}</div>
                   <div className="text-sm text-slate-gray">Avg. Cost Per Click</div>
                   <div className="flex items-center gap-1 mt-2">
