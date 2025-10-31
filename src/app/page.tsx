@@ -1,6 +1,5 @@
 import Header from '@/components/landing/Header';
 import Hero from '@/components/landing/Hero';
-import SocialProof from '@/components/landing/SocialProof';
 import Features from '@/components/landing/Features';
 import HowItWorks from '@/components/landing/HowItWorks';
 import Testimonials from '@/components/landing/Testimonials';
@@ -14,7 +13,6 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <Hero />
-        <SocialProof />
         <Features />
         <HowItWorks />
         <Testimonials />
