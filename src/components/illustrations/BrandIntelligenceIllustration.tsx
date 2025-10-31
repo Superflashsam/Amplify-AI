@@ -2,6 +2,48 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+
+function ClientOnlyAnimatedColorWheel() {
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
+
+  return (
+    <motion.g transform="translate(80, 140)">
+      <motion.circle
+        r="20"
+        fill="none"
+        stroke="#84CC16"
+        strokeWidth="2"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+      />
+      {[0, 60, 120, 180, 240, 300].map((angle, i) => (
+        <motion.circle
+          key={i}
+          cx={Math.cos((angle * Math.PI) / 180) * 20}
+          cy={Math.sin((angle * Math.PI) / 180) * 20}
+          r="4"
+          fill={['#FF6B5B', '#8B5CF6', '#EC4899', '#38BDF8', '#84CC16', '#FDE047'][i]}
+          initial={{ scale: 0 }}
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{
+            duration: 1.5,
+            delay: i * 0.2,
+            repeat: Infinity,
+            repeatType: 'loop',
+          }}
+        />
+      ))}
+    </motion.g>
+  );
+}
 
 export default function BrandIntelligenceIllustration() {
   return (
@@ -54,7 +96,7 @@ export default function BrandIntelligenceIllustration() {
         fill="none"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
-        transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
+        transition={{ duration: 2, delay: 0.5, ease: 'easeInOut' }}
       />
 
       {/* Data Points */}
@@ -91,40 +133,14 @@ export default function BrandIntelligenceIllustration() {
               duration: 2,
               delay: 0.5 + i * 0.1,
               repeat: Infinity,
-              repeatType: "loop",
+              repeatType: 'loop',
             }}
           />
         </motion.g>
       ))}
 
       {/* Animated Color Wheel */}
-      <motion.g transform="translate(80, 140)">
-        <motion.circle
-          r="20"
-          fill="none"
-          stroke="#84CC16"
-          strokeWidth="2"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-        />
-        {[0, 60, 120, 180, 240, 300].map((angle, i) => (
-          <motion.circle
-            key={i}
-            cx={Math.cos((angle * Math.PI) / 180) * 20}
-            cy={Math.sin((angle * Math.PI) / 180) * 20}
-            r="4"
-            fill={['#FF6B5B', '#8B5CF6', '#EC4899', '#38BDF8', '#84CC16', '#FDE047'][i]}
-            initial={{ scale: 0 }}
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{
-              duration: 1.5,
-              delay: i * 0.2,
-              repeat: Infinity,
-              repeatType: "loop",
-            }}
-          />
-        ))}
-      </motion.g>
+      <ClientOnlyAnimatedColorWheel />
 
       {/* Sparkles */}
       {[
@@ -145,7 +161,7 @@ export default function BrandIntelligenceIllustration() {
               duration: 3,
               delay: i * 0.5,
               repeat: Infinity,
-              repeatType: "loop",
+              repeatType: 'loop',
             }}
           />
         </motion.g>
