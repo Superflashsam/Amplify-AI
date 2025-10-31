@@ -54,10 +54,14 @@ const Header = () => {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Button variant="ghost" className="hidden sm:inline-flex">Sign In</Button>
-          <Button className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-amplify-coral to-electric-purple hover:shadow-lg text-white text-sm font-semibold rounded-xl shadow-md shadow-amplify-coral/25 transition-all duration-200">
-            Start Free Trial
-            <ChevronRight className="h-4 w-4" />
+          <Button variant="ghost" className="hidden sm:inline-flex" asChild>
+            <Link href="/auth">Sign In</Link>
+          </Button>
+          <Button className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-amplify-coral to-electric-purple hover:shadow-lg text-white text-sm font-semibold rounded-xl shadow-md shadow-amplify-coral/25 transition-all duration-200" asChild>
+            <Link href="/auth">
+              Start Free Trial
+              <ChevronRight className="h-4 w-4" />
+            </Link>
           </Button>
 
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
@@ -93,8 +97,12 @@ const Header = () => {
                   ))}
                 </nav>
                 <div className="mt-auto flex flex-col gap-4 p-6 border-t">
-                   <Button variant="ghost" size="lg">Sign In</Button>
-                   <Button size="lg" className="bg-gradient-to-r from-amplify-coral to-electric-purple text-white">Start Free Trial</Button>
+                   <Button variant="ghost" size="lg" asChild>
+                      <Link href="/auth">Sign In</Link>
+                   </Button>
+                   <Button size="lg" className="bg-gradient-to-r from-amplify-coral to-electric-purple text-white" asChild>
+                      <Link href="/auth">Start Free Trial</Link>
+                   </Button>
                 </div>
               </div>
             </SheetContent>
