@@ -110,6 +110,24 @@
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-amplify-coral via-electric-purple to-vibrant-magenta;
   }
+  .perspective-container {
+    perspective: 1500px;
+  }
+  .dashboard-3d {
+    transform: rotateX(2deg) rotateY(-2deg) translateZ(0);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+  .dashboard-3d:hover {
+    @media (hover: hover) {
+      transform: rotateX(0deg) rotateY(0deg) translateZ(20px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .dashboard-3d {
+      transform: none !important;
+    }
+  }
 }
 
 @keyframes fadeIn {

@@ -52,23 +52,30 @@ const Hero = () => {
   useEffect(() => {
     setIsMounted(true);
     const ref = dashboardRef.current;
-    if (!ref) return;
+    if (!ref || window.innerWidth <= 768) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       const { left, top, width, height } = ref.getBoundingClientRect();
       const x = (e.clientX - left) / width;
       const y = (e.clientY - top) / height;
 
-      const rotateX = (y - 0.5) * -12;
+      const rotateX = (y - 0.5) * -12; // Inverted for natural feel
       const rotateY = (x - 0.5) * 12;
 
       ref.style.setProperty('--x', `${x * 100}%`);
       ref.style.setProperty('--y', `${y * 100}%`);
-      ref.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1, 1, 1)`;
+      
+      const dashboard3d = ref.querySelector('.dashboard-3d') as HTMLElement;
+      if (dashboard3d) {
+        dashboard3d.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+      }
     };
     
     const handleMouseLeave = () => {
-      ref.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+      const dashboard3d = ref.querySelector('.dashboard-3d') as HTMLElement;
+      if (dashboard3d) {
+        dashboard3d.style.transform = 'rotateX(2deg) rotateY(-2deg) translateZ(0)';
+      }
     };
     
     ref.addEventListener('mousemove', handleMouseMove);
@@ -136,9 +143,9 @@ const Hero = () => {
         </div>
 
         {/* Hero Dashboard Preview */}
-        <div ref={dashboardRef} className={cn("relative max-w-6xl mx-auto transition-transform duration-300 ease-out [transform-style:preserve-3d]", isMounted && "animate-slideUp [animation-duration:1s] [animation-delay:1.2s]")}>
-           <div className="absolute -inset-4 bg-gradient-to-r from-amplify-coral/20 via-electric-purple/20 to-vibrant-magenta/20 rounded-3xl blur-3xl opacity-60"></div>
-          <div className="relative shadow-2xl shadow-slate-gray/20 border-2 border-slate-gray/10 overflow-hidden bg-white/80 backdrop-blur-sm rounded-3xl transition-all duration-300 hover:shadow-slate-gray/30 group">
+        <div ref={dashboardRef} className={cn("relative max-w-6xl mx-auto transition-transform duration-300 ease-out perspective-container", isMounted && "animate-slideUp [animation-duration:1s] [animation-delay:1.2s]")}>
+          <div className="absolute -inset-4 bg-gradient-to-r from-amplify-coral/20 via-electric-purple/20 to-vibrant-magenta/20 rounded-3xl blur-3xl opacity-60"></div>
+          <div className="dashboard-3d relative shadow-2xl shadow-slate-gray/20 border-2 border-slate-gray/10 overflow-hidden bg-white/80 backdrop-blur-sm rounded-3xl transition-all duration-300 group">
              {/* Glow effect */}
             <div className="absolute top-0 left-0 h-full w-full bg-[radial-gradient(400px_at_var(--x)_var(--y),rgba(255,255,255,0.3),transparent)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
 
