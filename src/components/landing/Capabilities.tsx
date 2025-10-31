@@ -9,28 +9,28 @@ import PerformanceShieldIllustration from '../icons/performance-shield-illustrat
 const capabilities = [
   {
     title: 'Brand Intelligence',
-    description: 'Our AI discovers your unique brand DNA, analyzing your assets to build a foundation for all future content creation.',
+    description: 'Our AI learns your brand DNA to ensure all content is consistently on-brand.',
     icon: BookOpen,
     illustration: BrandIntelligenceIllustration,
     theme: 'mint',
   },
   {
     title: 'Content Studio',
-    description: 'Generate high-quality, on-brand content in minutes. From social posts to video scripts, scale your output effortlessly.',
+    description: 'Create on-brand content in minutes. Scale your output effortlessly.',
     icon: SquarePen,
     illustration: ContentStudioIllustration,
     theme: 'coral',
   },
   {
     title: 'Campaign Brain',
-    description: 'An AI-powered strategist that plans, orchestrates, and optimizes your multi-channel campaigns for maximum impact.',
+    description: 'Our AI strategist plans and optimizes multi-channel campaigns for max impact.',
     icon: BrainCircuit,
     illustration: CampaignBrainIllustration,
     theme: 'blue',
   },
   {
     title: 'Performance Shield',
-    description: 'Get real-time analytics and proactive insights to ensure your marketing efforts are always hitting the mark.',
+    description: 'Get real-time analytics and insights to ensure your marketing hits the mark.',
     icon: ShieldCheck,
     illustration: PerformanceShieldIllustration,
     theme: 'yellow',
@@ -80,15 +80,15 @@ const Capabilities = () => {
           <Badge variant="outline" className="text-sm font-semibold border-primary/50 text-primary">
             The Amplify Platform
           </Badge>
-          <h2 className="mt-4 text-display-lg font-bold">
+          <h2 className="mt-4 text-4xl font-bold">
             The intelligent platform that <span className="text-gradient">amplifies marketing</span>
           </h2>
-          <p className="mt-6 text-body-lg text-muted-foreground">
+          <p className="mt-6 text-lg text-muted-foreground">
             Go beyond generation. AmplifyAI understands your brand, crafts content, orchestrates campaigns, and analyzes performance—all in one place.
           </p>
         </div>
 
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {capabilities.map((card) => {
             const theme = themeClasses[card.theme as keyof typeof themeClasses];
             const Illustration = card.illustration;
@@ -106,8 +106,8 @@ const Capabilities = () => {
                   <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${theme.icon} mb-6`}>
                     <Icon className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-heading-lg font-bold text-foreground">{card.title}</h3>
-                  <p className="mt-2 text-body-lg text-muted-foreground max-w-sm">{card.description}</p>
+                  <h3 className="text-xl font-bold text-foreground">{card.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground max-w-sm">{card.description}</p>
                 </div>
 
                 <div className="mt-8 flex-grow flex items-end justify-center">
