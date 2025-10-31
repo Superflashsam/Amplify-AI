@@ -3,9 +3,9 @@
 
 export const firebaseConfig = {
   apiKey: "AIzaSyB-...",
-  authDomain: "your-project-id.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-project-id.appspot.com",
+  authDomain: "amplify-ai.firebaseapp.com",
+  projectId: "amplify-ai",
+  storageBucket: "amplify-ai.appspot.com",
   messagingSenderId: "...",
   appId: "1:...:web:...",
   measurementId: "G-..."
