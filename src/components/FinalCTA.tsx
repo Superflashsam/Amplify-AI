@@ -14,10 +14,16 @@ const Cursors = () => {
         color: 'bg-red-500', 
         imgSrc: 'https://picsum.photos/seed/101/48/48',
         animation: {
-          x: ['20vw', '50vw', '45vw', '30vw', '20vw'],
-          y: ['20vh', '40vh', '55vh', '60vh', '20vh'],
-          scale: [1, 1, 1.2, 1, 1],
-          transition: { duration: 15, repeat: Infinity, ease: 'easeInOut', times: [0, 0.4, 0.5, 0.8, 1] }
+          keyframes: [
+            { x: '20vw', y: '20vh', scale: 1, transition: { duration: 5, ease: 'easeInOut' } }, // start
+            { x: '48vw', y: '65vh', scale: 1, transition: { duration: 3, ease: 'easeOut' } }, // move to "start free trial"
+            { scale: 0.9, transition: { duration: 0.2 } }, // click down
+            { scale: 1, transition: { duration: 0.2 } }, // click up
+            { x: '60vw', y: '30vh', scale: 1, transition: { duration: 4, ease: 'easeInOut' } }, // move away
+            { x: '20vw', y: '20vh', scale: 1, transition: { duration: 5, ease: 'easeInOut' } } // back to start
+          ],
+          repeat: Infinity,
+          repeatType: 'loop',
         }
       },
       { 
@@ -26,11 +32,17 @@ const Cursors = () => {
         color: 'bg-lime-500', 
         imgSrc: 'https://picsum.photos/seed/102/48/48',
         animation: {
-          x: ['80vw', '60vw', '55vw', '70vw', '80vw'],
-          y: ['30vh', '60vh', '55vh', '40vh', '30vh'],
-          scale: [1, 1, 1.2, 1, 1],
-          transition: { duration: 18, repeat: Infinity, ease: 'easeInOut', times: [0, 0.3, 0.5, 0.7, 1] }
-        }
+            keyframes: [
+                { x: '80vw', y: '30vh', scale: 1, transition: { duration: 4, ease: 'easeInOut' } }, // start
+                { x: '60vw', y: '65vh', scale: 1, transition: { duration: 4, ease: 'easeOut' } }, // move to "get a demo"
+                { scale: 0.9, transition: { duration: 0.2 } }, // click down
+                { scale: 1, transition: { duration: 0.2 } },   // click up
+                { x: '70vw', y: '40vh', scale: 1, transition: { duration: 3, ease: 'easeInOut' } }, // move away
+                { x: '80vw', y: '30vh', scale: 1, transition: { duration: 4, ease: 'easeInOut' } }  // back to start
+            ],
+            repeat: Infinity,
+            repeatType: 'loop',
+          }
       },
       { 
         id: 3, 
@@ -38,11 +50,15 @@ const Cursors = () => {
         color: 'bg-pink-500', 
         imgSrc: 'https://picsum.photos/seed/103/48/48',
         animation: {
-          x: ['10vw', '30vw', '20vw', '10vw'],
-          y: ['70vh', '50vh', '80vh', '70vh'],
-          scale: [1, 1.2, 1, 1],
-          transition: { duration: 12, repeat: Infinity, ease: 'easeInOut' }
-        }
+            keyframes: [
+                { x: '10vw', y: '70vh', scale: 1, transition: { duration: 6, ease: 'easeInOut' } },
+                { x: '30vw', y: '50vh', scale: 1.1, transition: { duration: 4, ease: 'easeInOut' } },
+                { x: '20vw', y: '80vh', scale: 1, transition: { duration: 5, ease: 'easeInOut' } },
+                { x: '10vw', y: '70vh', scale: 1, transition: { duration: 6, ease: 'easeInOut' } },
+            ],
+            repeat: Infinity,
+            repeatType: 'loop',
+          }
       },
     ];
   
@@ -51,14 +67,8 @@ const Cursors = () => {
         {cursors.map((cursor) => (
           <motion.div
             key={cursor.id}
-            className="absolute z-10"
-            initial={{ x: cursor.animation.x[0], y: cursor.animation.y[0] }}
-            animate={{
-                x: cursor.animation.x,
-                y: cursor.animation.y,
-                scale: cursor.animation.scale
-            }}
-            transition={cursor.animation.transition}
+            className="absolute z-30"
+            animate={cursor.animation}
           >
             <div className="relative">
               <svg
@@ -106,19 +116,19 @@ export default function FinalCTA() {
       {/* Abstract Shapes */}
       <motion.div
         className="absolute z-10"
-        style={{ top: '50%', left: '50%', x: '-60%', y: '-50%' }}
+        style={{ top: '20%', left: '15%', opacity: 0.3 }}
         animate={{ rotate: [0, 5, -5, 0]}}
         transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
       >
-        <div className="w-64 h-64 bg-red-500/80" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 20%, 0 80%)' }} />
+        <div className="w-80 h-80 bg-red-500" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 20%, 0 80%)' }} />
       </motion.div>
       <motion.div
         className="absolute z-10"
-        style={{ top: '50%', left: '50%', x: '10%', y: '-50%' }}
+        style={{ top: '25%', right: '15%', opacity: 0.3 }}
         animate={{ scale: [1, 1.05, 1]}}
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       >
-        <div className="w-56 h-56 rounded-full bg-lime-500/80" />
+        <div className="w-72 h-72 rounded-full bg-lime-500" />
       </motion.div>
 
       {/* Main Card */}
