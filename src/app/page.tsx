@@ -18,8 +18,8 @@ export default function Home() {
         <HowItWorks />
         <Testimonials />
         <Pricing />
-        <ContactDemo />
         <FinalCTA />
+        <ContactDemo />
       </main>
       <Footer />
     </div>
