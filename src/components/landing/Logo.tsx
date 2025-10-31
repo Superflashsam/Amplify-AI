@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-const Logo = ({ className }: { className?: string }) => {
+const Logo = ({ className, dark=false }: { className?: string, dark?: boolean }) => {
   return (
     <div className={cn("flex items-center gap-3", className)}>
       <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amplify-coral to-electric-purple flex items-center justify-center shadow-lg shadow-amplify-coral/20">
@@ -8,7 +8,7 @@ const Logo = ({ className }: { className?: string }) => {
           <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
         </svg>
       </div>
-      <div className="text-xl font-semibold tracking-tight text-deep-charcoal font-display">
+      <div className={cn("text-xl font-semibold tracking-tight font-display", dark ? "text-white" : "text-deep-charcoal")}>
         Amplify
       </div>
     </div>
