@@ -108,7 +108,10 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-amplify-coral via-electric-purple to-vibrant-magenta;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(to right, hsl(var(--amplify-coral)), hsl(var(--electric-purple)), hsl(var(--vibrant-magenta)));
   }
   .perspective-container {
     perspective: 1500px;
@@ -141,6 +144,16 @@
       transform: rotateX(0deg) rotateY(0deg) translateZ(20px);
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
     }
+  }
+  .hero-cta-stack {
+    @apply flex-col w-full sm:flex-row;
+  }
+  .hero-cta-stack > * {
+    @apply w-full sm:w-auto min-h-[52px] justify-center;
+  }
+  
+  .dashboard-grid {
+    @apply grid-cols-1;
   }
 
   /* Responsive Typography & Layout */
@@ -244,8 +257,12 @@
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  10%, 100% { transform: translateX(100%); }
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 
 .shimmer-effect::after {
@@ -291,7 +308,7 @@
 }
 
 .announcement-shimmer {
-  animation: shimmer 5s ease-in-out infinite;
+  animation: announcement-shimmer 5s ease-in-out infinite;
 }
 
 @keyframes spin-slow {

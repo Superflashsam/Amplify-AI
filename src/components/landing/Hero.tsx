@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Check, CheckCircle, TrendingUp, TrendingDown, Play, Calendar, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { MovingBorderButton } from '@/components/ui/moving-border';
 
 const useCountUp = (end: number, duration: number, isFloat = false) => {
   const [count, setCount] = useState(0);
@@ -102,17 +103,18 @@ const Hero = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Hero Content */}
         <div className="text-center max-w-4xl mx-auto mb-16">
-          <Link href="#">
-            <div className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-gradient-to-r from-amplify-coral/10 via-electric-purple/10 to-vibrant-magenta/10 border border-amplify-coral/30 text-deep-charcoal text-sm font-medium mb-8 animate-slideDown font-inter cursor-pointer hover:scale-105 transition-transform duration-300 group relative overflow-hidden" style={{ animationDelay: '0.2s' }}>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amplify-coral via-electric-purple to-vibrant-magenta opacity-20 blur-sm animate-spin-slow"></div>
-              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent announcement-shimmer"></div>
-              <div className="relative flex items-center justify-center">
+          <Link href="#" className='mb-8 inline-block'>
+            <MovingBorderButton
+              borderRadius="1.75rem"
+              containerClassName="h-auto"
+              className="bg-white/80 dark:bg-slate-900/80 text-deep-charcoal dark:text-white border-neutral-200/20 dark:border-slate-800/80 px-4 py-2"
+            >
+              <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-amplify-coral animate-pulse"></div>
-                <div className="absolute h-3 w-3 rounded-full bg-amplify-coral/30 animate-ping"></div>
+                 New: Multi-channel campaign orchestration
+                <ChevronRight className="h-3.5 w-3.5 text-slate-gray" />
               </div>
-              <span className="relative z-10">New: Multi-channel campaign orchestration</span>
-              <ChevronRight className="h-3.5 w-3.5 text-slate-gray group-hover:translate-x-1 transition-transform duration-200" />
-            </div>
+            </MovingBorderButton>
           </Link>
           
 
