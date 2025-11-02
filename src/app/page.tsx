@@ -6,7 +6,6 @@ import Testimonials from '@/components/landing/Testimonials';
 import Pricing from '@/components/landing/Pricing';
 import FinalCTA from '@/components/FinalCTA';
 import ContactDemo from '@/components/ContactDemo';
-import InteractiveFeatures from '@/components/landing/InteractiveFeatures';
 import Footer from '@/components/landing/Footer';
 
 export default function Home() {
@@ -17,7 +16,6 @@ export default function Home() {
         <Hero />
         <PlatformShowcase />
         <HowItWorks />
-        <InteractiveFeatures />
         <Testimonials />
         <Pricing />
         <FinalCTA />
