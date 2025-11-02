@@ -203,6 +203,42 @@
       "description": "A smiling person, representing a social media manager.",
       "imageUrl": "https://images.unsplash.com/photo-1631377307475-9acfa929b062?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzbWlsaW5nJTIwcGVyc29ufGVufDB8fHx8MTc2MTgzODk0MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "smiling person"
+    },
+    {
+      "id": "featureBrandDNA",
+      "description": "Abstract visualization of brand analysis dashboard.",
+      "imageUrl": "https://images.unsplash.com/photo-1542903660-eedba2cda473?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YWJzdHJhY3QlMjBkYXRhfGVufDB8fHx8MTc2MTk5OTIzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract data"
+    },
+    {
+      "id": "featureContentStudio",
+      "description": "Screenshot of a content generation interface.",
+      "imageUrl": "https://images.unsplash.com/photo-1545235617-9465d2a55698?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxVSSUyMGRlc2lnbnxlbnwwfHx8fDE3NjIwNzIzNDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "UI design"
+    },
+    {
+      "id": "featureRepurposeEngine",
+      "description": "Diagram showing one document being repurposed into multiple formats.",
+      "imageUrl": "https://images.unsplash.com/photo-1646617747563-4f080bddf282?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmbG93JTIwY2hhcnR8ZW58MHx8fHwxNzYyMDY0NzUyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "flow chart"
+    },
+    {
+      "id": "featureSmartScheduler",
+      "description": "Calendar interface with social media icons and time suggestions.",
+      "imageUrl": "https://images.unsplash.com/photo-1691050985285-caaf3d2df0f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjYWxlbmRhciUyMFVJfGVufDB8fHx8MTc2MjA0Njc3NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "calendar UI"
+    },
+    {
+      "id": "featurePerformanceAnalytics",
+      "description": "Analytics dashboard with performance graphs.",
+      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkYXNoYm9hcmQlMjBncmFwaHxlbnwwfHx8fDE3NjIwMDMzMDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dashboard graph"
+    },
+    {
+      "id": "featureTemplateLibrary",
+      "description": "Gallery of different design templates.",
+      "imageUrl": "https://images.unsplash.com/photo-1496112303716-6750f0ebbac5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkZXNpZ24lMjBnYWxsZXJ5fGVufDB8fHx8MTc2MjA3MjM0M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "design gallery"
     }
   ]
 }
