@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Check, CheckCircle, TrendingUp, TrendingDown, Play, Calendar, ChevronRight } from 'lucide-react';
+import { Check, CheckCircle, TrendingUp, TrendingDown, Play, Calendar, ChevronRight, Sparkles, MessageSquare, Link2, Users } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { MovingBorderButton } from '@/components/ui/moving-border';
@@ -13,43 +13,72 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip as RechartsTooltip,
+  ResponsiveContainer,
+} from 'recharts';
 
 const useCountUp = (end: number, duration: number, isFloat = false) => {
   const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    let start = 0;
-    const startTime = Date.now();
-    let animationFrameId: number;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          let start = 0;
+          const startTime = Date.now();
+          let animationFrameId: number;
 
-    const animateCount = () => {
-      const now = Date.now();
-      const progress = Math.min(1, (now - startTime) / duration);
-      const current = start + progress * (end - start);
+          const animateCount = () => {
+            const now = Date.now();
+            const progress = Math.min(1, (now - startTime) / duration);
+            const current = start + progress * (end - start);
 
-      if (isFloat) {
-        setCount(parseFloat(current.toFixed(2)));
-      } else {
-        setCount(Math.floor(current));
-      }
+            if (isFloat) {
+              setCount(parseFloat(current.toFixed(1)));
+            } else {
+              setCount(Math.floor(current));
+            }
 
-      if (progress < 1) {
-        animationFrameId = requestAnimationFrame(animateCount);
-      }
-    };
+            if (progress < 1) {
+              animationFrameId = requestAnimationFrame(animateCount);
+            }
+          };
+          animationFrameId = requestAnimationFrame(animateCount);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
 
-    const timeout = setTimeout(() => {
-      animationFrameId = requestAnimationFrame(animateCount);
-    }, 1500);
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
 
     return () => {
-      clearTimeout(timeout);
-      cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
     };
   }, [end, duration, isFloat]);
 
-  return count;
+  return <span ref={ref}>{count}</span>;
 };
+
+
+const chartData = [
+  { name: 'Jan', audience: 2400 },
+  { name: 'Feb', audience: 2210 },
+  { name: 'Mar', audience: 2290 },
+  { name: 'Apr', audience: 2000 },
+  { name: 'May', audience: 2181 },
+  { name: 'Jun', audience: 2500 },
+  { name: 'Jul', audience: 2100 },
+];
 
 const Hero = () => {
   const engagement = useCountUp(127, 2000);
@@ -191,80 +220,126 @@ const Hero = () => {
              {/* Glow effect */}
             <div className="absolute top-0 left-0 h-full w-full bg-[radial-gradient(400px_at_var(--x)_var(--y),rgba(255,255,255,0.3),transparent)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
 
-            <div className="px-6 pt-6 pb-4 border-b border-slate-gray/10 bg-gradient-to-r from-white/80 to-white/60">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-amplify-coral to-electric-purple flex items-center justify-center shadow-lg shadow-amplify-coral/20">
-                    <TrendingUp className="h-5 w-5 text-white" />
+            <div className="flex flex-col md:flex-row">
+              {/* Left Sidebar */}
+              <div className="w-full md:w-64 p-6 border-b md:border-r border-slate-gray/10 bg-white/60 flex-shrink-0">
+                <div className="flex items-center gap-2 mb-8">
+                  <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-amplify-coral to-electric-purple flex items-center justify-center shadow-lg shadow-amplify-coral/20">
+                    <Sparkles className="h-4 w-4 text-white" />
                   </div>
-                  <div>
-                    <div className="text-lg font-semibold tracking-tight text-deep-charcoal font-display">Campaign Performance</div>
-                    <div className="text-sm text-slate-gray">Multi-channel analytics overview</div>
-                  </div>
+                  <div className="text-lg font-semibold tracking-tight text-deep-charcoal font-display">Amplify</div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-lime-green/10 to-lime-green/5 border border-lime-green/20">
-                    <div className="h-2 w-2 rounded-full bg-lime-green animate-pulse-glow"></div>
-                    <span className="text-sm text-lime-green font-medium">Live</span>
-                  </div>
-                  <Button variant="outline" className="h-9 px-4 rounded-xl bg-white/80 text-slate-gray hover:bg-white/90 hover:text-deep-charcoal transition-all duration-200 border-slate-gray/10 text-sm">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    Last 30 Days
-                  </Button>
+                <div className="space-y-2">
+                  <Button variant="ghost" className="w-full justify-start bg-slate-gray/10 text-deep-charcoal">Dashboard</Button>
+                  <Button variant="ghost" className="w-full justify-start">Campaigns</Button>
+                  <Button variant="ghost" className="w-full justify-start">Content</Button>
+                  <Button variant="ghost" className="w-full justify-start">Analytics</Button>
+                  <Button variant="ghost" className="w-full justify-start">Settings</Button>
                 </div>
               </div>
-            </div>
 
-            <div className="p-4 sm:p-8 bg-gradient-to-br from-white/60 to-white/40">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6 dashboard-grid">
-                <div className="p-4 sm:p-6 rounded-2xl bg-white/80 border border-amplify-coral/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
-                  <div className="text-3xl sm:text-4xl font-bold text-amplify-coral mb-2 font-display">+{engagement}%</div>
-                  <div className="text-sm text-slate-gray">Campaign Engagement</div>
-                  <div className="flex items-center gap-1 mt-2">
-                    <TrendingUp className="h-3.5 w-3.5 text-lime-green" />
-                    <span className="text-xs text-lime-green">+24% vs last month</span>
+              {/* Main Content */}
+              <div className="flex-1 p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <h2 className="text-xl font-bold font-display text-deep-charcoal">Dashboard</h2>
+                    <p className="text-sm text-slate-gray">Welcome back, marketer!</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button variant="outline" size="sm" className="bg-white/80">Export</Button>
+                    <Button size="sm" className="bg-gradient-to-r from-amplify-coral to-electric-purple text-white">New Campaign</Button>
                   </div>
                 </div>
-                <div className="p-4 sm:p-6 rounded-2xl bg-white/80 border border-electric-purple/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect">
-                  <div className="text-3xl sm:text-4xl font-bold text-electric-purple mb-2 font-display">{reach}M</div>
-                  <div className="text-sm text-slate-gray">Total Reach</div>
-                  <div className="flex items-center gap-1 mt-2">
-                    <TrendingUp className="h-3.5 w-3.5 text-lime-green" />
-                    <span className="text-xs text-lime-green">Across 5 platforms</span>
+                
+                {/* Stats Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                  <div className="p-4 rounded-xl bg-white/80 border border-slate-gray/10">
+                    <div className="flex items-center gap-2 mb-1">
+                      <TrendingUp className="h-4 w-4 text-lime-green" />
+                      <p className="text-sm font-semibold text-deep-charcoal">Engagement</p>
+                    </div>
+                    <p className="text-2xl font-bold font-display text-deep-charcoal">+{engagement}%</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-white/80 border border-slate-gray/10">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Users className="h-4 w-4 text-sky-blue" />
+                      <p className="text-sm font-semibold text-deep-charcoal">Reach</p>
+                    </div>
+                    <p className="text-2xl font-bold font-display text-deep-charcoal">{reach}M</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-white/80 border border-slate-gray/10">
+                     <div className="flex items-center gap-2 mb-1">
+                      <TrendingDown className="h-4 w-4 text-vibrant-magenta" />
+                      <p className="text-sm font-semibold text-deep-charcoal">CPC</p>
+                    </div>
+                    <p className="text-2xl font-bold font-display text-deep-charcoal">${cpc}</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-white/80 border border-slate-gray/10">
+                     <div className="flex items-center gap-2 mb-1">
+                      <MessageSquare className="h-4 w-4 text-amplify-orange" />
+                      <p className="text-sm font-semibold text-deep-charcoal">Mentions</p>
+                    </div>
+                    <p className="text-2xl font-bold font-display text-deep-charcoal">1.2k</p>
                   </div>
                 </div>
-                <div className="p-4 sm:p-6 rounded-2xl bg-white/80 border border-sky-blue/20 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden shimmer-effect hidden md:block">
-                  <div className="text-3xl sm:text-4xl font-bold text-sky-blue mb-2 font-display">${cpc}</div>
-                  <div className="text-sm text-slate-gray">Avg. Cost Per Click</div>
-                  <div className="flex items-center gap-1 mt-2">
-                    <TrendingDown className="h-3.5 w-3.5 text-vibrant-magenta" />
-                    <span className="text-xs text-vibrant-magenta">-12% cost reduction</span>
+                
+                {/* Chart and Recent Activity */}
+                <div className="grid lg:grid-cols-3 gap-6">
+                  <div className="lg:col-span-2 p-4 rounded-xl bg-white/80 border border-slate-gray/10">
+                    <h3 className="text-md font-semibold text-deep-charcoal mb-2">Audience Growth</h3>
+                    <div className="h-[200px]">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <LineChart data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
+                          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border) / 0.5)" />
+                          <XAxis dataKey="name" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
+                          <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
+                          <RechartsTooltip 
+                            contentStyle={{
+                              background: "hsl(var(--background))",
+                              border: "1px solid hsl(var(--border))",
+                              borderRadius: "var(--radius)",
+                            }}
+                          />
+                          <Line type="monotone" dataKey="audience" stroke="hsl(var(--electric-purple))" strokeWidth={2} dot={{ r: 4, fill: "hsl(var(--electric-purple))" }} activeDot={{ r: 6 }} />
+                        </LineChart>
+                      </ResponsiveContainer>
+                    </div>
+                  </div>
+                  <div className="p-4 rounded-xl bg-white/80 border border-slate-gray/10">
+                    <h3 className="text-md font-semibold text-deep-charcoal mb-4">Campaigns</h3>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center gap-2">
+                           <div className="w-2 h-2 rounded-full bg-lime-green"></div>
+                           <span>Summer Sale</span>
+                        </div>
+                        <span className="font-semibold">Live</span>
+                      </div>
+                      <div className="flex items-center justify-between text-sm">
+                         <div className="flex items-center gap-2">
+                           <div className="w-2 h-2 rounded-full bg-sunshine-yellow"></div>
+                           <span>Q3 Product Launch</span>
+                        </div>
+                        <span className="text-slate-gray">Draft</span>
+                      </div>
+                      <div className="flex items-center justify-between text-sm">
+                         <div className="flex items-center gap-2">
+                           <div className="w-2 h-2 rounded-full bg-vibrant-magenta"></div>
+                           <span>Holiday Giveaway</span>
+                        </div>
+                        <span className="text-slate-gray">Ended</span>
+                      </div>
+                       <div className="flex items-center justify-between text-sm">
+                         <div className="flex items-center gap-2">
+                           <div className="w-2 h-2 rounded-full bg-lime-green"></div>
+                           <span>New Year Promo</span>
+                        </div>
+                        <span className="font-semibold">Live</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex flex-wrap gap-3 justify-center">
-                {[
-                  { color: 'amplify-coral', platform: 'Instagram', value: '24.7%', delay: 1.7 },
-                  { color: 'sky-blue', platform: 'LinkedIn', value: '18.3%', delay: 1.8 },
-                  { color: 'electric-purple', platform: 'Google Ads', value: '22.1%', delay: 1.9 },
-                  { color: 'vibrant-magenta', platform: 'Meta', value: '19.6%', delay: 2.0 },
-                  { color: 'lime-green', platform: 'TikTok', value: '15.3%', delay: 2.1 },
-                ].map(item => (
-                  <div key={item.platform}
-                    className={cn("px-3 sm:px-4 py-2 rounded-full bg-gradient-to-r from-transparent to-transparent border text-xs sm:text-sm font-medium text-deep-charcoal opacity-0", isMounted && "animate-fadeIn")}
-                    style={
-                      {
-                        '--tw-gradient-from': `hsl(var(--${item.color})) / 10%`,
-                        '--tw-gradient-to': `hsl(var(--${item.color})) / 5%`,
-                        'borderColor': `hsl(var(--${item.color})) / 20%`,
-                        'animationDelay': `${item.delay}s`,
-                        'animationFillMode': 'forwards',
-                      } as React.CSSProperties
-                    }
-                  >
-                    <span style={{ color: `hsl(var(--${item.color}))` }}>●</span> {item.platform} • {item.value}
-                  </div>
-                ))}
+
               </div>
             </div>
           </div>
