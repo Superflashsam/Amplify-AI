@@ -7,6 +7,7 @@ import Pricing from '@/components/landing/Pricing';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/landing/Footer';
 import ContactDemo from '@/components/ContactDemo';
+import CoreFeatures from '@/components/landing/CoreFeatures';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <Hero />
         <PlatformShowcase />
         <HowItWorks />
+        <CoreFeatures />
         <Testimonials />
         <Pricing />
         <FinalCTA />
