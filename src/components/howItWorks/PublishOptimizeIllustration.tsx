@@ -4,14 +4,17 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 function ClientOnlyChart() {
-    const [isClient, setIsClient] = useState(false);
+    const [chartData, setChartData] = useState<number[]>([]);
   
     useEffect(() => {
-      setIsClient(true);
+      // Generate random data only on the client side
+      setChartData(
+        Array.from({ length: 7 }, () => 20 + Math.random() * 30)
+      );
     }, []);
   
-    if (!isClient) {
-      // Return a static placeholder or null on the server
+    if (chartData.length === 0) {
+      // Return a static placeholder or null on the server and initial client render
       const staticBars = [30, 45, 25, 50, 35, 40, 28];
       return (
         <g>
@@ -32,7 +35,7 @@ function ClientOnlyChart() {
   
     return (
         <motion.g>
-        {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+        {chartData.map((height, i) => (
           <motion.rect
             key={i}
             x={240 + i * 30}
@@ -43,8 +46,8 @@ function ClientOnlyChart() {
             fill="url(#gradient-chart)"
             initial={{ height: 0, y: 220 }}
             animate={{ 
-              height: 20 + Math.random() * 30,
-              y: 220 - (20 + Math.random() * 30)
+              height: height,
+              y: 220 - height
             }}
             transition={{ delay: 2.5 + i * 0.1, duration: 0.5 }}
           />
