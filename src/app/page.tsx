@@ -2,6 +2,7 @@ import Header from '@/components/landing/Header';
 import Hero from '@/components/landing/Hero';
 import PlatformShowcase from '@/components/PlatformShowcase';
 import HowItWorks from '@/components/landing/HowItWorks';
+import Features from '@/components/landing/Features';
 import Testimonials from '@/components/landing/Testimonials';
 import Pricing from '@/components/landing/Pricing';
 import FinalCTA from '@/components/FinalCTA';
@@ -16,6 +17,7 @@ export default function Home() {
         <Hero />
         <PlatformShowcase />
         <HowItWorks />
+        <Features />
         <Testimonials />
         <Pricing />
         <FinalCTA />
