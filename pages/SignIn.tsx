@@ -98,7 +98,7 @@ export const SignIn: React.FC = () => {
         </div>
       </div>
       <div className="flex flex-col items-center">
-        <div className="mb-6 text-xl font-display font-bold text-dark">ARTISAN</div>
+        <div className="mb-6 text-xl font-display font-bold text-dark">Amplify.ai</div>
         <div className="w-full max-w-sm bg-white/80 backdrop-blur rounded-2xl border border-gray-100 shadow-xl p-6">
           <div className="text-center mb-6">
             <div className="text-2xl font-display font-bold text-dark">Welcome Back!</div>

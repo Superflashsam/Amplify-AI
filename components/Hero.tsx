@@ -1,10 +1,12 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Play, Check, Sparkles } from 'lucide-react';
 import { DashboardVisual, LogoMarquee } from './UiElements';
 
 export const Hero: React.FC = () => {
+  const navigate = useNavigate();
   // Premium Easing Curves
   // "Soft Settling" for large elements
   const softEase = [0.25, 0.1, 0.25, 1.0] as const;
@@ -118,7 +120,7 @@ export const Hero: React.FC = () => {
           {/* 5. CTA Group */}
           <motion.div variants={buttonVariant} className="flex flex-col sm:flex-row items-center gap-5 mb-16 z-20">
             <div className="flex flex-col items-center gap-2">
-              <button aria-label="Start Free Trial" className="group relative px-8 py-4 btn-gradient rounded-full text-white text-lg font-bold shadow-xl shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-1 active:scale-[0.98] flex items-center gap-2 min-w-[200px] justify-center overflow-hidden focus-ring">
+              <button onClick={() => navigate('/signin')} aria-label="Start Free Trial" className="group relative px-8 py-4 btn-gradient rounded-full text-white text-lg font-bold shadow-xl shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-1 active:scale-[0.98] flex items-center gap-2 min-w-[200px] justify-center overflow-hidden focus-ring">
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                 <span className="relative z-10 btn-text-glow playfair-cta whitespace-nowrap">Start Free Trial</span>
                 <div className="relative">
@@ -130,7 +132,7 @@ export const Hero: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center gap-2">
-              <button aria-label="Watch Demo" className="group px-8 py-4 btn-gradient rounded-full text-white text-lg font-bold hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-1 active:scale-[0.98] flex items-center gap-2 min-w-[200px] justify-center shadow-xl focus-ring">
+              <button onClick={() => navigate('/signin')} aria-label="Watch Demo" className="group px-8 py-4 btn-gradient rounded-full text-white text-lg font-bold hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-1 active:scale-[0.98] flex items-center gap-2 min-w-[200px] justify-center shadow-xl focus-ring">
                 <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-colors border border-white/30">
                   <Play size={14} fill="currentColor" className="ml-0.5" />
                 </div>
