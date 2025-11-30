@@ -19,16 +19,25 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     {
-      name: 'Features',
-      href: '#features',
+      name: 'Product',
+      href: '#product',
       hasDropdown: true,
       items: [
-        { title: 'Content Generation', desc: 'Blog posts, social captions & more' },
-        { title: 'Campaign Manager', desc: 'Plan 30 days in 5 minutes' },
-        { title: 'Brand Voice', desc: 'Consistent AI personality' }
+        { title: 'Content Studio', desc: 'Generate posts, scripts, and assets' },
+        { title: 'Calendar', desc: 'Plan and schedule across platforms' },
+        { title: 'Analytics', desc: 'Measure and optimize campaigns' }
       ]
     },
-    { name: 'Pricing', href: '#pricing', hasDropdown: false },
+    {
+      name: 'Solutions',
+      href: '#solutions',
+      hasDropdown: true,
+      items: [
+        { title: 'Startups', desc: 'Grow faster with AI workflows' },
+        { title: 'Agencies', desc: 'Scale client content production' },
+        { title: 'Enterprise', desc: 'Security, SSO, guardrails' }
+      ]
+    },
     {
       name: 'Resources',
       href: '#resources',
@@ -39,7 +48,7 @@ export const Navbar: React.FC = () => {
         { title: 'Help Center', desc: 'Guides and documentation' }
       ]
     },
-    { name: 'Enterprise', href: '#enterprise', hasDropdown: false },
+    { name: 'Pricing', href: '#pricing', hasDropdown: false },
   ];
 
   return (
@@ -53,15 +62,13 @@ export const Navbar: React.FC = () => {
           : 'bg-transparent border-b border-transparent'
           }`}
       >
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12 h-[72px] flex items-center justify-between">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 h-[72px] flex items-center justify-between bg-white/80 backdrop-blur-md rounded-full border border-gray-100 shadow-md">
           {/* Left: Logo */}
           <a href="/" className="flex items-center gap-2 group z-50">
             <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-[#977DFF] to-[#0600AB] shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-all duration-300 group-hover:scale-105">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
-            <span className="font-display font-bold text-xl tracking-tight text-dark group-hover:text-primary transition-colors">
-              Amplify<span className="gradient-text">.ai</span>
-            </span>
+            <span className="font-display font-bold text-xl tracking-tight text-dark group-hover:text-primary transition-colors">Amplify</span>
           </a>
 
           {/* Center: Desktop Nav */}
@@ -107,16 +114,11 @@ export const Navbar: React.FC = () => {
 
           {/* Right: CTA Buttons */}
           <div className="hidden md:flex items-center gap-6">
-            <button onClick={() => navigate('/signin')} className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors hover:bg-primary/5 px-4 py-2 rounded-lg">
-              Sign In
-            </button>
-            <button onClick={() => navigate('/signin')} aria-label="Get started free" className="group relative px-6 py-2.5 btn-gradient rounded-full text-white text-base font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 active:translate-y-0 overflow-hidden focus-ring">
-              <span className="relative z-10 flex items-center gap-2 btn-text-glow whitespace-nowrap">
-                Get started free
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </span>
+            <button onClick={() => navigate('/signin')} className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors hover:bg-primary/5 px-4 py-2 rounded-lg">Login</button>
+            <a href="mailto:sales@amplify.ai" aria-label="Talk to Sales" className="group relative px-6 py-2.5 btn-gradient rounded-full text-white text-base font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 active:translate-y-0 overflow-hidden focus-ring">
+              <span className="relative z-10 flex items-center gap-2 btn-text-glow whitespace-nowrap">Talk to Sales<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" /></span>
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            </button>
+            </a>
           </div>
 
           {/* Mobile Toggle */}

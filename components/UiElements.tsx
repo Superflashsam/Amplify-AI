@@ -75,6 +75,51 @@ export const DashboardVisual: React.FC = () => {
       
       {/* --- Background Glow --- */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-ai-superpowers blur-[140px] rounded-full opacity-[0.22] animate-pulse-glow-soft -z-10" />
+
+      <motion.section
+        role="region"
+        aria-labelledby="trusted-heading"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] as const }}
+        className="relative mt-8 md:mt-10 px-4"
+      >
+        <h2
+          id="trusted-heading"
+          className="text-center text-sm md:text-base font-semibold text-gray-400 uppercase tracking-wider"
+        >
+          Trusted by 1,000+ marketing teams at startups and enterprises
+        </h2>
+        <div className="mt-4">
+          <LogoMarquee />
+        </div>
+        <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
+          <figure className="bg-white/70 backdrop-blur-sm border border-gray-100 rounded-xl p-3 shadow-sm flex items-center gap-2" tabIndex={0} aria-label="Security: SOC 2 & GDPR compliant">
+            <div className="w-7 h-7 rounded-lg bg-green-50 text-green-600 flex items-center justify-center">
+              <ShieldCheck size={16} />
+            </div>
+            <figcaption className="text-[11px] md:text-xs font-bold text-gray-700">SOC 2 & GDPR</figcaption>
+          </figure>
+          <figure className="bg-white/70 backdrop-blur-sm border border-gray-100 rounded-xl p-3 shadow-sm flex items-center gap-2" tabIndex={0} aria-label="Teams: 12,000+ users">
+            <div className="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+              <Users size={16} />
+            </div>
+            <figcaption className="text-[11px] md:text-xs font-bold text-gray-700">12,000+ users</figcaption>
+          </figure>
+          <figure className="bg-white/70 backdrop-blur-sm border border-gray-100 rounded-xl p-3 shadow-sm flex items-center gap-2" tabIndex={0} aria-label="Uptime: 99.98%">
+            <div className="w-7 h-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center">
+              <Clock size={16} />
+            </div>
+            <figcaption className="text-[11px] md:text-xs font-bold text-gray-700">99.98% uptime</figcaption>
+          </figure>
+          <figure className="bg-white/70 backdrop-blur-sm border border-gray-100 rounded-xl p-3 shadow-sm flex items-center gap-2" tabIndex={0} aria-label="Average ROI uplift: +324%">
+            <div className="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+              <TrendingUp size={16} />
+            </div>
+            <figcaption className="text-[11px] md:text-xs font-bold text-gray-700">+324% ROI uplift</figcaption>
+          </figure>
+        </div>
+      </motion.section>
       
       {/* --- Wrapper for entrance animation --- */}
       <div className="relative">
