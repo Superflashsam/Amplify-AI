@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown, Sparkles, ArrowRight } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -105,10 +107,10 @@ export const Navbar: React.FC = () => {
 
           {/* Right: CTA Buttons */}
           <div className="hidden md:flex items-center gap-6">
-            <button className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors hover:bg-primary/5 px-4 py-2 rounded-lg">
+            <button onClick={() => navigate('/signin')} className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors hover:bg-primary/5 px-4 py-2 rounded-lg">
               Sign In
             </button>
-            <button aria-label="Get started free" className="group relative px-6 py-2.5 btn-gradient rounded-full text-white text-base font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 active:translate-y-0 overflow-hidden focus-ring">
+            <button onClick={() => navigate('/signin')} aria-label="Get started free" className="group relative px-6 py-2.5 btn-gradient rounded-full text-white text-base font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 active:translate-y-0 overflow-hidden focus-ring">
               <span className="relative z-10 flex items-center gap-2 btn-text-glow whitespace-nowrap">
                 Get started free
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
