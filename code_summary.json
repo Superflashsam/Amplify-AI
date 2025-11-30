@@ -1,0 +1,64 @@
+{
+  "project": {
+    "name": "amplify.ai-landing-page",
+    "framework": "React + Vite",
+    "language": "TypeScript"
+  },
+  "devServer": {
+    "host": "localhost",
+    "port": 3004,
+    "fallbackPorts": [3002],
+    "pathname": "/",
+    "source": "vite.config.ts (server.port=3002, strictPort=false) and runtime detection"
+  },
+  "previewServer": {
+    "host": "localhost",
+    "port": 3000,
+    "strictPort": true
+  },
+  "entryPoints": {
+    "html": "index.html",
+    "index": "index.tsx",
+    "app": "App.tsx"
+  },
+  "routing": {
+    "type": "single-page",
+    "pages": [
+      { "path": "/", "component": "App.tsx" },
+      { "path": "/signin", "component": "pages/SignIn.tsx" }
+    ]
+  },
+  "components": [
+    "components/Navbar.tsx",
+    "components/Hero.tsx",
+    "components/SocialProofSection.tsx",
+    "components/ProductShowcase.tsx",
+    "components/HowItWorksSection.tsx",
+    "components/WhyChooseSection.tsx",
+    "components/FeatureBento.tsx",
+    "components/IntegrationsSection.tsx",
+    "components/PricingSection.tsx",
+    "components/TestimonialsSection.tsx",
+    "components/CtaSection.tsx",
+    "components/Footer.tsx",
+    "components/AICalendarCard.tsx",
+    "components/BentoVisuals.tsx",
+    "components/FloatingStatCard.tsx",
+    "components/UiElements.tsx"
+  ],
+  "tests": {
+    "unit": [
+      "tests/signin.test.tsx"
+    ],
+    "integration": [
+      "tests/auth.integration.test.ts"
+    ],
+    "e2e": [
+      "e2e/signin.spec.ts"
+    ]
+  },
+  "build": {
+    "script": "vite build",
+    "dist": "dist/index.html"
+  }
+}

@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { TrendingUp, Clock, DollarSign, Star, ArrowUpRight } from 'lucide-react';
 
 const BRANDS = [
-  { name: 'Stripe', url: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg' },
   { name: 'HubSpot', url: 'https://upload.wikimedia.org/wikipedia/commons/1/11/HubSpot_Logo.svg' },
   { name: 'Canva', url: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Canva_icon_2021.svg' }, // Using icon for better fit or full logo
   { name: 'Shopify', url: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg' },

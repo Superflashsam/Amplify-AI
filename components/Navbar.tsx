@@ -16,9 +16,9 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { 
-      name: 'Features', 
-      href: '#features', 
+    {
+      name: 'Features',
+      href: '#features',
       hasDropdown: true,
       items: [
         { title: 'Content Generation', desc: 'Blog posts, social captions & more' },
@@ -27,9 +27,9 @@ export const Navbar: React.FC = () => {
       ]
     },
     { name: 'Pricing', href: '#pricing', hasDropdown: false },
-    { 
-      name: 'Resources', 
-      href: '#resources', 
+    {
+      name: 'Resources',
+      href: '#resources',
       hasDropdown: true,
       items: [
         { title: 'Blog', desc: 'Marketing tips & tricks' },
@@ -46,28 +46,27 @@ export const Navbar: React.FC = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled || isMobileOpen
-            ? 'bg-white/80 backdrop-blur-md border-b border-gray-100/50 shadow-sm'
-            : 'bg-transparent border-b border-transparent'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isMobileOpen
+          ? 'bg-white/80 backdrop-blur-md border-b border-gray-100/50 shadow-sm'
+          : 'bg-transparent border-b border-transparent'
+          }`}
       >
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 h-[72px] flex items-center justify-between">
           {/* Left: Logo */}
           <a href="/" className="flex items-center gap-2 group z-50">
-            <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-secondary shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-all duration-300 group-hover:scale-105">
+            <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-[#977DFF] to-[#0600AB] shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-all duration-300 group-hover:scale-105">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
             <span className="font-display font-bold text-xl tracking-tight text-dark group-hover:text-primary transition-colors">
-              Amplify<span className="text-primary">.ai</span>
+              Amplify<span className="gradient-text">.ai</span>
             </span>
           </a>
 
           {/* Center: Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <div 
-                key={link.name} 
+              <div
+                key={link.name}
                 className="relative group h-[72px] flex items-center"
                 onMouseEnter={() => setHoveredLink(link.name)}
                 onMouseLeave={() => setHoveredLink(null)}
@@ -77,28 +76,28 @@ export const Navbar: React.FC = () => {
                   {link.hasDropdown && (
                     <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 text-gray-400 group-hover:text-primary" />
                   )}
-                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full rounded-full" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-[#977DFF] to-[#0600AB] transition-all duration-300 group-hover:w-full rounded-full" />
                 </button>
-                
+
                 {/* Dropdown Menu */}
                 {link.hasDropdown && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 translate-y-4 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300 ease-out">
-                        <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl shadow-primary/5 border border-gray-100 p-2 w-72 overflow-hidden ring-1 ring-black/5">
-                            <div className="grid grid-cols-1 gap-1">
-                                {link.items?.map((item, i) => (
-                                  <a key={i} href="#" className="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group/item">
-                                      <div className="mt-1 w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover/item:bg-primary group-hover/item:text-white transition-colors">
-                                        <Sparkles size={14} />
-                                      </div>
-                                      <div>
-                                          <div className="font-bold text-sm text-gray-900">{item.title}</div>
-                                          <div className="text-xs text-gray-500 mt-0.5">{item.desc}</div>
-                                      </div>
-                                  </a>
-                                ))}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 translate-y-4 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300 ease-out">
+                    <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl shadow-primary/5 border border-gray-100 p-2 w-72 overflow-hidden ring-1 ring-black/5">
+                      <div className="grid grid-cols-1 gap-1">
+                        {link.items?.map((item, i) => (
+                          <a key={i} href="#" className="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group/item">
+                            <div className="mt-1 w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover/item:bg-primary group-hover/item:text-white transition-colors">
+                              <Sparkles size={14} />
                             </div>
-                        </div>
+                            <div>
+                              <div className="font-bold text-sm text-gray-900">{item.title}</div>
+                              <div className="text-xs text-gray-500 mt-0.5">{item.desc}</div>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
                     </div>
+                  </div>
                 )}
               </div>
             ))}
@@ -109,8 +108,8 @@ export const Navbar: React.FC = () => {
             <button className="text-sm font-semibold text-gray-600 hover:text-primary transition-colors hover:bg-primary/5 px-4 py-2 rounded-lg">
               Sign In
             </button>
-            <button className="group relative px-6 py-2.5 bg-gradient-to-r from-primary to-secondary rounded-full text-white text-sm font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 active:translate-y-0 overflow-hidden">
-              <span className="relative z-10 flex items-center gap-2">
+            <button aria-label="Get started free" className="group relative px-6 py-2.5 btn-gradient rounded-full text-white text-base font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 active:translate-y-0 overflow-hidden focus-ring">
+              <span className="relative z-10 flex items-center gap-2 btn-text-glow whitespace-nowrap">
                 Get started free
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </span>
@@ -165,8 +164,8 @@ export const Navbar: React.FC = () => {
                 <button className="w-full py-4 rounded-xl border border-gray-200 font-bold text-gray-700 hover:bg-gray-50 transition-colors">
                   Sign In
                 </button>
-                <button className="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-secondary text-white font-bold shadow-xl shadow-primary/30 active:scale-[0.98] transition-transform">
-                  Get started free
+                <button aria-label="Get started free" className="w-full py-4 rounded-xl btn-gradient text-white font-bold shadow-xl shadow-primary/30 active:scale-[0.98] transition-transform focus-ring">
+                  <span className="btn-text-glow whitespace-nowrap">Get started free</span>
                 </button>
                 <div className="text-center text-xs text-gray-400 mt-2 font-medium">
                   No credit card required

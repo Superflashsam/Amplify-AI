@@ -5,7 +5,9 @@ import { Hero } from './components/Hero';
 import { SocialProofSection } from './components/SocialProofSection';
 import { ProductShowcase } from './components/ProductShowcase';
 import { HowItWorksSection } from './components/HowItWorksSection';
-import { FeatureDeepDiveSection } from './components/FeatureDeepDiveSection';
+import { WhyChooseSection } from './components/WhyChooseSection';
+
+import FeatureBento from './components/FeatureBento';
 import { IntegrationsSection } from './components/IntegrationsSection';
 import { PricingSection } from './components/PricingSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
@@ -19,9 +21,11 @@ const App: React.FC = () => {
       <main>
         <Hero />
         <SocialProofSection />
+        <WhyChooseSection />
         <ProductShowcase />
         <HowItWorksSection />
-        <FeatureDeepDiveSection />
+
+        <FeatureBento />
         <IntegrationsSection />
         <PricingSection />
         <TestimonialsSection />

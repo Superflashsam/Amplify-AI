@@ -49,10 +49,10 @@ export const ProductShowcase: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="font-display font-bold text-4xl md:text-5xl text-dark mb-6 tracking-tight">
             Your Entire Marketing Workflow,<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Powered by AI.</span>
+            <span className="heading-gradient">Powered by AI.</span>
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            Plan campaigns, create content, analyze performance, and optimize ROI — all inside one intelligent workspace.
+            Plan campaigns, create content, analyze performance, and optimize ROI — all inside one <span className="subhead-highlight">intelligent workspace</span>.
           </p>
         </div>
 
@@ -65,11 +65,11 @@ export const ProductShowcase: React.FC = () => {
                 onClick={() => setActiveTab(tab.id as TabId)}
                 className={`relative px-4 py-2.5 rounded-xl flex items-center gap-2 text-sm font-bold transition-all duration-300 ${
                   activeTab === tab.id 
-                    ? 'text-gray-900 bg-white shadow-sm ring-1 ring-gray-200' 
+                    ? 'text-white bg-gradient-premium shadow-md' 
                     : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200/50'
                 }`}
               >
-                <tab.icon size={16} className={activeTab === tab.id ? 'text-primary' : 'text-gray-400'} />
+                <tab.icon size={16} className={activeTab === tab.id ? 'text-white' : 'text-gray-400'} />
                 {tab.label}
               </button>
             ))}
@@ -119,7 +119,7 @@ export const ProductShowcase: React.FC = () => {
                    <p className="text-xs text-gray-600 leading-relaxed mb-3">
                      Your recent LinkedIn posts are trending. Posting at <span className="font-bold text-gray-900">10:00 AM</span> could boost reach by 24%.
                    </p>
-                   <button className="w-full py-1.5 bg-primary text-white rounded-lg text-xs font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-shadow">
+                   <button className="w-full py-1.5 bg-gradient-premium text-white rounded-lg text-xs font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-shadow">
                       Apply Optimization
                    </button>
                 </div>
@@ -383,8 +383,8 @@ export const ProductShowcase: React.FC = () => {
 
         {/* Bottom CTA */}
         <div className="flex justify-center mt-16">
-          <button className="group flex items-center gap-2 text-lg font-bold text-dark hover:text-primary transition-colors">
-            Explore Live Demo
+          <button aria-label="Explore Live Demo" className="group flex items-center gap-2 text-lg font-bold text-dark hover:text-primary transition-colors focus-ring">
+            <span className="gradient-text playfair-cta whitespace-nowrap z-10">Explore Live Demo</span>
             <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
               <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
             </span>
