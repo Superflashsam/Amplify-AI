@@ -9,8 +9,8 @@ const memoryStorage: StorageLike = {
   removeItem: k => { delete memory[k] }
 }
 
-const url = import.meta.env.VITE_SUPABASE_URL as string
-const key = import.meta.env.VITE_SUPABASE_ANON_KEY as string
+const url = (typeof process !== 'undefined' && process.env?.VITE_SUPABASE_URL) || 'https://placeholder.supabase.co'
+const key = (typeof process !== 'undefined' && process.env?.VITE_SUPABASE_ANON_KEY) || 'placeholder-key'
 
 export const supabaseLocal = createClient(url, key, { auth: { storage: localStorage, autoRefreshToken: true, persistSession: true, detectSessionInUrl: true } })
 export const supabaseSession = createClient(url, key, { auth: { storage: sessionStorage, autoRefreshToken: true, persistSession: true, detectSessionInUrl: true } })
