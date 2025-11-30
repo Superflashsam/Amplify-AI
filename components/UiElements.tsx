@@ -28,12 +28,12 @@ const LOGOS = [
 
 export const LogoMarquee: React.FC = () => {
   return (
-    <div className="w-full overflow-hidden opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
-      <div className="flex animate-marquee whitespace-nowrap hover:[animation-play-state:paused] items-center">
+    <div className="w-full overflow-hidden opacity-90 hover:opacity-100 transition-opacity duration-300">
+      <div className="flex animate-marquee whitespace-nowrap hover:[animation-play-state:paused] items-center py-2">
         {[...LOGOS, ...LOGOS, ...LOGOS].map((logo, i) => (
-          <div key={i} className="mx-8 flex items-center gap-2">
-             <div className="w-6 h-6 rounded bg-gray-200" />
-             <span className="text-lg font-display font-bold text-gray-400">{logo}</span>
+          <div key={i} className="group mx-8 md:mx-10 flex items-center gap-3" tabIndex={0}>
+             <div className="w-7 h-7 rounded-md bg-gray-200 border border-gray-300 shadow-sm filter grayscale transition-[filter] duration-300 ease-in-out group-hover:grayscale-0 group-focus:grayscale-0 group-active:grayscale-0" />
+             <span className="text-base md:text-lg font-display font-bold text-gray-800">{logo}</span>
           </div>
         ))}
       </div>
@@ -74,7 +74,7 @@ export const DashboardVisual: React.FC = () => {
     <div className="relative w-full max-w-[1000px] mx-auto mt-10 mb-20 z-20 perspective-1000">
       
       {/* --- Background Glow --- */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-gradient-to-r from-primary/20 via-purple-500/15 to-secondary/20 blur-[120px] rounded-full opacity-60 animate-pulse-glow -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-ai-superpowers blur-[140px] rounded-full opacity-[0.22] animate-pulse-glow-soft -z-10" />
       
       {/* --- Wrapper for entrance animation --- */}
       <div className="relative">
@@ -325,8 +325,8 @@ export const DashboardVisual: React.FC = () => {
                              </div>
                              <div className="flex-1 bg-white border border-gray-100 rounded-xl overflow-hidden flex flex-col shadow-sm">
                                 <div className="grid grid-cols-7 border-b border-gray-100 bg-gray-50">
-                                   {['S','M','T','W','T','F','S'].map(d => (
-                                      <div key={d} className="py-2 text-center text-[10px] font-bold text-gray-400">{d}</div>
+                                   {['S','M','T','W','T','F','S'].map((d, idx) => (
+                                      <div key={`weekday-${idx}`} className="py-2 text-center text-[10px] font-bold text-gray-400">{d}</div>
                                    ))}
                                 </div>
                                 <div className="flex-1 grid grid-cols-7 grid-rows-4">

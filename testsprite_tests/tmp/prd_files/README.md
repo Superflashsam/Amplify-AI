@@ -15,7 +15,7 @@
 
 **Amplify Your Marketing With AI-Superpowers**
 
-[View Preview](http://localhost:3000) · [Report Bug](https://github.com/Superflashsam/Amplify-AI/issues) · [Request Feature](https://github.com/Superflashsam/Amplify-AI/issues)
+[View Demo](http://localhost:3000) · [Report Bug](https://github.com/yourusername/Amplify-AI/issues) · [Request Feature](https://github.com/yourusername/Amplify-AI/issues)
 
 </div>
 
@@ -187,7 +187,7 @@ Before you begin, ensure you have the following installed:
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/Superflashsam/Amplify-AI.git
+git clone https://github.com/yourusername/Amplify-AI.git
 cd Amplify-AI
 ```
 
@@ -207,13 +207,13 @@ npm run dev
 
 2. **Open your browser**
 
-Navigate to [http://localhost:3002](http://localhost:3002)
+Navigate to [http://localhost:3000](http://localhost:3000)
 
 The page will automatically reload when you make changes to the source code.
 
 ### Available Scripts
 
-- `npm run dev` - Start development server on port 3002
+- `npm run dev` - Start development server on port 3000
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build locally
 
@@ -372,11 +372,11 @@ vercel
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-1. Fork the project or create a feature branch from the upstream repository
-2. Create your branch (`git checkout -b feat/readme-update`)
-3. Follow Conventional Commits for all commits (e.g., `docs: update README with setup and config`)
-4. Push to your branch (`git push origin feat/readme-update`)
-5. Open a pull request against `main` with a clear title, detailed description, labels, and any linked issues
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
@@ -388,13 +388,13 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📧 Contact
 
-**Project Maintainer**: Superflashsam
+**Project Maintainer**: Your Name
 
 - Email: your.email@example.com
 - GitHub: [@yourusername](https://github.com/yourusername)
 - LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
 
-**Project Link**: [https://github.com/Superflashsam/Amplify-AI](https://github.com/Superflashsam/Amplify-AI)
+**Project Link**: [https://github.com/yourusername/Amplify-AI](https://github.com/yourusername/Amplify-AI)
 
 ---
 
