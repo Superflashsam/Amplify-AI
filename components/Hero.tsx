@@ -132,7 +132,7 @@ export const Hero: React.FC = () => {
             </div>
 
             <div className="flex flex-col items-center gap-2">
-              <button onClick={() => navigate('/signin')} aria-label="Watch Demo" className="group px-8 py-4 btn-gradient rounded-full text-white text-lg font-bold hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-1 active:scale-[0.98] flex items-center gap-2 min-w-[200px] justify-center shadow-xl focus-ring">
+              <button onClick={() => navigate('/signin')} aria-label="Watch Demo" className="group px-8 py-4 btn-demo-distinct rounded-full text-white text-lg font-bold transition-all duration-300 hover:-translate-y-1 active:scale-[0.98] flex items-center gap-2 min-w-[200px] justify-center focus-ring">
                 <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-colors border border-white/30">
                   <Play size={14} fill="currentColor" className="ml-0.5" />
                 </div>
