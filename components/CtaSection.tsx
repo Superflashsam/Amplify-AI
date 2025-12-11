@@ -61,7 +61,7 @@ export const CtaSection: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 }}
-                  className="font-display font-extrabold text-5xl md:text-7xl mb-6 tracking-tight leading-[1.1]"
+                  className="font-serif font-extrabold text-5xl md:text-7xl mb-6 tracking-tight leading-[1.1]"
                >
                   Ready to scale your <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 animate-gradient-x">

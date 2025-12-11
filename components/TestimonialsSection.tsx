@@ -126,11 +126,11 @@ export const TestimonialsSection: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 }}
-                  className="font-display font-bold text-4xl md:text-6xl text-gray-900 mb-6 tracking-tight leading-[1.1]"
+                  className="font-serif font-bold text-4xl md:text-6xl text-gray-900 mb-6 tracking-tight leading-[1.1]"
                >
                   Real Teams. Real Growth.<br />
                   <span className="gradient-text">Real Results.</span>
-              </motion.h2>
+               </motion.h2>
                <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -228,7 +228,7 @@ export const TestimonialsSection: React.FC = () => {
 
             {/* BOTTOM CTA */}
             <div className="text-center max-w-3xl mx-auto pb-12">
-               <h2 className="font-display font-bold text-4xl md:text-5xl text-dark mb-8">
+               <h2 className="font-serif font-bold text-4xl md:text-5xl text-dark mb-8">
                   Ready to Amplify Your Growth?
                </h2>
                <motion.button

@@ -68,11 +68,11 @@ export const Navbar: React.FC = () => {
             <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-[#977DFF] to-[#0600AB] shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-all duration-300 group-hover:scale-105">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
-            <span className="font-display font-bold text-xl tracking-tight text-dark group-hover:text-primary transition-colors">Amplify</span>
+            <span className="font-serif font-bold text-xl tracking-tight text-dark group-hover:text-primary transition-colors">Amplify</span>
           </a>
 
           {/* Center: Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <div
                 key={link.name}
@@ -80,7 +80,7 @@ export const Navbar: React.FC = () => {
                 onMouseEnter={() => setHoveredLink(link.name)}
                 onMouseLeave={() => setHoveredLink(null)}
               >
-                <button className="flex items-center gap-1.5 text-sm font-semibold text-gray-600 hover:text-dark transition-colors relative">
+                <button className="flex items-center gap-1.5 text-sm font-bold text-gray-700 hover:text-dark transition-colors relative">
                   {link.name}
                   {link.hasDropdown && (
                     <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 text-gray-400 group-hover:text-primary" />
@@ -150,7 +150,7 @@ export const Navbar: React.FC = () => {
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 + i * 0.1 }}
-                    className="flex items-center justify-between text-2xl font-display font-bold text-gray-800 py-4 border-b border-gray-50 active:bg-gray-50 active:scale-[0.98] transition-all"
+                    className="flex items-center justify-between text-2xl font-serif font-bold text-gray-800 py-4 border-b border-gray-50 active:bg-gray-50 active:scale-[0.98] transition-all"
                     onClick={() => setIsMobileOpen(false)}
                   >
                     {link.name}

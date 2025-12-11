@@ -8,266 +8,14 @@ import {
 } from 'lucide-react';
 
 import {
-    DNAVisual, VideoScriptVisual, CalendarVisual as BentoCalendarVisual,
-    CopywriterVisual as BentoCopywriterVisual, IntelVisual, PublishVisual as BentoPublishVisual,
-    MultiModalVisual, AnalyticsVisual as BentoAnalyticsVisual
+    CalendarVisual as BentoCalendarVisual,
+    CopywriterVisual as BentoCopywriterVisual,
+    IntelVisual, PublishVisual as BentoPublishVisual,
+    MultiModalVisual, AnalyticsVisual as BentoAnalyticsVisual,
+    VideoScriptVisual, DNAVisual
 } from './BentoVisuals';
 
-// --- VISUAL COMPONENTS FROM FEATURE DEEP DIVE ---
 
-const CalendarVisual: React.FC = () => (
-    <div className="w-full h-full bg-gray-50 p-6 md:p-8 flex flex-col relative overflow-hidden font-sans">
-        {/* Grid Background */}
-        <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(#e5e7eb 1px, transparent 1px), linear-gradient(90deg, #e5e7eb 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.4 }} />
-
-        {/* Header UI */}
-        <div className="flex justify-between items-center mb-6 relative z-10">
-            <div className="bg-white border border-gray-200 rounded-lg px-3 py-1.5 shadow-sm flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-xs font-bold text-gray-700">Active Campaign</span>
-            </div>
-            <div className="flex -space-x-2">
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-gray-200" />
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-gray-300" />
-            </div>
-        </div>
-
-        {/* Main Calendar Card */}
-        <motion.div
-            className="bg-white rounded-xl shadow-xl border border-gray-200/60 flex-1 p-4 relative z-10 overflow-hidden"
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-        >
-            <div className="grid grid-cols-7 gap-px bg-gray-100 border border-gray-100 rounded-lg overflow-hidden mb-4">
-                {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, idx) => (
-                    <div key={`day-${idx}`} className="bg-gray-50 py-2 text-center text-[10px] font-bold text-gray-400">{d}</div>
-                ))}
-                {Array.from({ length: 28 }).map((_, i) => (
-                    <div key={i} className="bg-white h-16 md:h-20 p-1 relative group transition-colors hover:bg-purple-50/30">
-                        <span className="text-[10px] text-gray-300 font-medium">{i + 1}</span>
-                        {[3, 8, 12, 15, 22].includes(i) && (
-                            <motion.div
-                                initial={{ scale: 0 }}
-                                whileInView={{ scale: 1 }}
-                                transition={{ delay: 0.2 + (i * 0.02) }}
-                                className="absolute bottom-1 right-1 left-1 h-1.5 rounded-full bg-purple-100"
-                            >
-                                <div className="h-full w-2/3 bg-purple-500 rounded-full" />
-                            </motion.div>
-                        )}
-                    </div>
-                ))}
-            </div>
-        </motion.div>
-
-        {/* Floating Cards Parallax */}
-        <motion.div
-            animate={{ y: [-10, 10, -10] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-20 right-8 z-20 bg-white p-3 rounded-xl shadow-2xl border border-gray-100 w-40 rotate-3 hidden sm:block"
-        >
-            <div className="flex items-center gap-2 mb-2">
-                <div className="bg-pink-500 text-white p-1 rounded"><Instagram size={12} /></div>
-                <span className="text-[10px] font-bold text-gray-600">Stories</span>
-            </div>
-            <div className="h-20 bg-gray-100 rounded-lg mb-2 overflow-hidden relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-100 to-pink-100 opacity-50" />
-            </div>
-            <div className="flex justify-between text-[10px] text-gray-400">
-                <span>10:00 AM</span>
-                <span className="text-green-500 font-bold">Ready</span>
-            </div>
-        </motion.div>
-
-        <motion.div
-            animate={{ y: [15, -5, 15] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-12 left-8 z-20 bg-white p-3 rounded-xl shadow-2xl border border-gray-100 w-48 -rotate-2 hidden sm:block"
-        >
-            <div className="flex items-center gap-2 mb-2">
-                <div className="bg-blue-700 text-white p-1 rounded"><Linkedin size={12} /></div>
-                <span className="text-[10px] font-bold text-gray-600">Article</span>
-            </div>
-            <div className="space-y-1.5">
-                <div className="h-2 w-full bg-gray-100 rounded-full" />
-                <div className="h-2 w-3/4 bg-gray-100 rounded-full" />
-            </div>
-            <div className="mt-3 flex gap-2">
-                <div className="px-2 py-0.5 bg-blue-50 text-blue-600 text-[9px] font-bold rounded">Tech</div>
-                <div className="px-2 py-0.5 bg-purple-50 text-purple-600 text-[9px] font-bold rounded">AI</div>
-            </div>
-        </motion.div>
-    </div>
-);
-
-const CopywriterVisual: React.FC = () => (
-    <div className="w-full h-full bg-gray-50 p-6 md:p-8 flex items-center justify-center relative overflow-hidden font-sans">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 opacity-50" />
-
-        <motion.div
-            className="relative z-10 bg-white rounded-2xl shadow-2xl border border-gray-200 p-6 w-full max-w-md"
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-        >
-            <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-purple-100 rounded-lg">
-                    <Sparkles size={20} className="text-purple-600" />
-                </div>
-                <div>
-                    <div className="text-xs text-gray-400 font-bold">AI COPYWRITER</div>
-                    <div className="text-sm font-bold text-gray-900">Generating...</div>
-                </div>
-            </div>
-
-            <div className="space-y-3 mb-4">
-                <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "100%" }}
-                    transition={{ delay: 0.3, duration: 0.8 }}
-                    className="h-2 bg-gray-100 rounded-full"
-                />
-                <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "85%" }}
-                    transition={{ delay: 0.5, duration: 0.8 }}
-                    className="h-2 bg-gray-100 rounded-full"
-                />
-                <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "95%" }}
-                    transition={{ delay: 0.7, duration: 0.8 }}
-                    className="h-2 bg-gray-100 rounded-full"
-                />
-            </div>
-
-            <div className="flex items-center gap-2 text-xs text-green-600 font-bold">
-                <CheckCircle2 size={16} />
-                <span>Content optimized for engagement</span>
-            </div>
-        </motion.div>
-    </div>
-);
-
-const AnalyticsVisual: React.FC = () => (
-    <div className="w-full h-full bg-slate-50 p-6 md:p-8 relative overflow-hidden flex flex-col justify-center font-sans">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100/50 rounded-full blur-3xl" />
-
-        <div className="bg-white rounded-xl shadow-xl border border-gray-200/60 p-5 relative z-10">
-            <div className="flex justify-between items-center mb-6">
-                <div>
-                    <h4 className="text-lg font-bold text-gray-900">Campaign ROI</h4>
-                    <p className="text-xs text-gray-400">Last 30 Days</p>
-                </div>
-                <div className="text-right">
-                    <div className="text-2xl font-display font-bold text-gray-900">$14,205</div>
-                    <div className="text-xs font-bold text-green-500 flex items-center justify-end gap-1">
-                        <TrendingUp size={12} /> +24.5%
-                    </div>
-                </div>
-            </div>
-
-            <div className="h-32 flex items-end gap-2 mb-6">
-                {[40, 65, 45, 70, 55, 85, 60, 95, 75, 90].map((h, i) => (
-                    <motion.div
-                        key={i}
-                        initial={{ height: 0 }}
-                        whileInView={{ height: `${h}%` }}
-                        transition={{ delay: i * 0.05, duration: 0.5 }}
-                        className="flex-1 bg-gradient-to-t from-blue-500 to-cyan-400 rounded-t-sm opacity-80 hover:opacity-100 transition-opacity"
-                    />
-                ))}
-            </div>
-
-            <motion.div
-                initial={{ x: -20, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ delay: 1 }}
-                className="bg-gradient-to-r from-gray-900 to-gray-800 text-white p-3 rounded-lg shadow-lg flex items-center gap-3"
-            >
-                <div className="p-1.5 bg-white/10 rounded-md">
-                    <Zap size={14} className="text-yellow-400" />
-                </div>
-                <div>
-                    <div className="text-[10px] font-bold text-gray-400 uppercase">Optimization</div>
-                    <div className="text-xs font-medium">Increase ad spend on Weekends for <span className="text-green-400">+12% ROI</span>.</div>
-                </div>
-                <button className="ml-auto px-2 py-1 bg-white/10 rounded text-[10px] font-bold hover:bg-white/20 transition-colors">Apply</button>
-            </motion.div>
-        </div>
-    </div>
-);
-
-const PublishingVisual: React.FC = () => (
-    <div className="w-full h-full bg-gray-900 p-6 md:p-8 flex items-center justify-center relative overflow-hidden font-sans">
-        <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(#1f2937 1px, transparent 1px), linear-gradient(90deg, #1f2937 1px, transparent 1px)', backgroundSize: '40px 40px', opacity: 0.3 }} />
-
-        <div className="w-full max-w-sm bg-gray-800/90 backdrop-blur-xl rounded-2xl border border-gray-700 shadow-2xl p-6 relative z-10">
-            <div className="flex justify-between items-center mb-6 border-b border-gray-700 pb-4">
-                <h4 className="text-white font-bold flex items-center gap-2">
-                    <Send size={16} className="text-gray-400" /> Distribution
-                </h4>
-                <div className="bg-green-500/20 text-green-400 px-2 py-1 rounded text-[10px] font-bold border border-green-500/30 flex items-center gap-1">
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" /> Online
-                </div>
-            </div>
-
-            <div className="space-y-4">
-                {[
-                    { name: "Instagram", icon: Instagram, color: "text-pink-500", status: "Published" },
-                    { name: "LinkedIn", icon: Linkedin, color: "text-blue-500", status: "Published" },
-                    { name: "Twitter / X", icon: Twitter, color: "text-sky-400", status: "Sending..." },
-                    { name: "YouTube", icon: Youtube, color: "text-red-500", status: "Scheduled" }
-                ].map((platform, i) => (
-                    <div key={i} className="flex items-center justify-between group">
-                        <div className="flex items-center gap-3">
-                            <div className={`p-2 rounded-lg bg-gray-700 ${platform.color} bg-opacity-10`}>
-                                <platform.icon size={16} className={platform.color} />
-                            </div>
-                            <span className="text-gray-300 text-sm font-medium group-hover:text-white transition-colors">{platform.name}</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            {platform.status === "Sending..." ? (
-                                <div className="text-gray-500 animate-spin">⟳</div>
-                            ) : platform.status === "Published" ? (
-                                <motion.div
-                                    initial={{ scale: 0 }}
-                                    whileInView={{ scale: 1 }}
-                                    transition={{ delay: 0.5 + (i * 0.2) }}
-                                    className="text-green-400"
-                                >
-                                    <Check size={16} />
-                                </motion.div>
-                            ) : (
-                                <span className="text-[10px] text-gray-500 font-mono">10:00 AM</span>
-                            )}
-
-                            <div className={`w-8 h-4 rounded-full relative transition-colors ${platform.status === 'Scheduled' ? 'bg-gray-600' : 'bg-green-600'}`}>
-                                <div className={`absolute top-0.5 left-0.5 w-3 h-3 bg-white rounded-full transition-transform ${platform.status === 'Scheduled' ? '' : 'translate-x-4'}`} />
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-gray-700">
-                <div className="flex justify-between text-[10px] text-gray-400 mb-2">
-                    <span>Campaign Progress</span>
-                    <span>75%</span>
-                </div>
-                <div className="w-full h-1.5 bg-gray-700 rounded-full overflow-hidden">
-                    <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: "75%" }}
-                        transition={{ duration: 1.5, delay: 0.5 }}
-                        className="h-full bg-gradient-to-r from-green-500 to-emerald-400"
-                    />
-                </div>
-            </div>
-        </div>
-    </div>
-);
 
 // --- FEATURE DATA ---
 
@@ -286,7 +34,7 @@ const DEEP_DIVE_FEATURES = [
         align: 'left',
         icon: Calendar,
         colorClass: 'bg-purple-500',
-        VisualComponent: CalendarVisual
+        VisualComponent: BentoCalendarVisual
     },
     {
         id: 'copywriter',
@@ -302,7 +50,7 @@ const DEEP_DIVE_FEATURES = [
         align: 'right',
         icon: PenTool,
         colorClass: 'bg-pink-500',
-        VisualComponent: CopywriterVisual
+        VisualComponent: BentoCopywriterVisual
     },
     {
         id: 'analytics',
@@ -318,7 +66,7 @@ const DEEP_DIVE_FEATURES = [
         align: 'left',
         icon: BarChart3,
         colorClass: 'bg-blue-500',
-        VisualComponent: AnalyticsVisual
+        VisualComponent: BentoAnalyticsVisual
     },
     {
         id: 'publishing',
@@ -334,7 +82,7 @@ const DEEP_DIVE_FEATURES = [
         align: 'right',
         icon: Send,
         colorClass: 'bg-green-500',
-        VisualComponent: PublishingVisual
+        VisualComponent: BentoPublishVisual
     }
 ];
 
@@ -361,7 +109,7 @@ const bentoFeatures: FeatureTileProps[] = [
         bullets: ["Tone-style imprint", "Competitor divergence", "Voice consistency"],
         icon: Dna,
         size: 'large',
-        visual: <DNAVisual />,
+        visual: <div className="w-full h-full bg-gradient-to-br from-indigo-50 to-purple-50 flex items-center justify-center"><Dna size={64} className="text-indigo-400 opacity-30" /></div>,
         colSpan: 'md:col-span-2',
         rowSpan: 'md:row-span-2',
         hasCTA: true
@@ -518,7 +266,7 @@ const FeatureBento: React.FC = () => {
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="text-4xl md:text-5xl lg:text-6xl font-display text-slate-900 mb-6 leading-[1.1] tracking-tight"
+                    className="text-4xl md:text-5xl lg:text-6xl font-serif text-slate-900 mb-6 leading-[1.1] tracking-tight"
                 >
                     Everything You Need to Build <br />
                     <span className="gradient-text">High-Performance</span> Brand Content
@@ -549,7 +297,7 @@ const FeatureBento: React.FC = () => {
                             <div className={`w-12 h-12 rounded-2xl ${feature.colorClass} bg-opacity-10 flex items-center justify-center mb-6`}>
                                 <feature.icon size={24} className={feature.colorClass.replace('bg-', 'text-')} />
                             </div>
-                            <h3 className="font-display font-bold text-3xl md:text-4xl text-gray-900 mb-4 leading-tight">
+                            <h3 className="font-sans font-bold text-3xl md:text-4xl text-gray-900 mb-4 leading-tight">
                                 {feature.title}
                             </h3>
                             <p className="text-lg text-gray-600 leading-relaxed mb-8">
@@ -666,7 +414,7 @@ const FeatureBento: React.FC = () => {
                                         )}
                                     </div>
 
-                                    <h3 className={`font-display font-bold text-slate-900 mb-2 leading-tight ${feature.size === 'large' ? 'text-2xl' : 'text-lg'}`}>
+                                    <h3 className={`font-sans font-bold text-slate-900 mb-2 leading-tight ${feature.size === 'large' ? 'text-2xl' : 'text-lg'}`}>
                                         {feature.title}
                                     </h3>
 
@@ -766,7 +514,7 @@ const FeatureBento: React.FC = () => {
                                     <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${selectedFeature.colorClass} bg-opacity-10 text-xs font-bold uppercase tracking-wide mb-4`}>
                                         <span className={selectedFeature.colorClass.replace('bg-', 'text-')}>Live Demo</span>
                                     </div>
-                                    <h3 className="font-display font-bold text-2xl md:text-3xl text-gray-900 mb-2">
+                                    <h3 className="font-sans font-bold text-2xl md:text-3xl text-gray-900 mb-2">
                                         {selectedFeature.title}
                                     </h3>
                                     <p className="text-gray-600 max-w-2xl">
