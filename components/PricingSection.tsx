@@ -114,7 +114,7 @@ export const PricingSection: React.FC = () => {
 
         {/* HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="font-display font-bold text-4xl md:text-5xl text-dark mb-6 tracking-tight">
+          <h2 className="font-serif font-bold text-4xl md:text-5xl text-dark mb-6 tracking-tight">
             Choose the plan that <span className="gradient-text">grows</span> with you
           </h2>
           <p className="text-xl text-gray-500 leading-relaxed mb-10">
@@ -192,10 +192,10 @@ export const PricingSection: React.FC = () => {
               </div>
 
               <button className={`group relative w-full py-4 rounded-xl font-bold text-sm transition-all duration-300 transform active:scale-[0.98] overflow-hidden ${plan.popular
-                  ? 'btn-gradient text-white shadow-lg shadow-primary/25 hover:shadow-primary/40 focus-ring'
-                  : plan.id === 'enterprise'
-                    ? 'bg-dark text-white hover:bg-gray-800 focus-ring'
-                    : 'bg-white border border-gray-200 text-dark hover:border-primary/50 hover:text-primary focus-ring'
+                ? 'btn-gradient text-white shadow-lg shadow-primary/25 hover:shadow-primary/40 focus-ring'
+                : plan.id === 'enterprise'
+                  ? 'bg-dark text-white hover:bg-gray-800 focus-ring'
+                  : 'bg-white border border-gray-200 text-dark hover:border-primary/50 hover:text-primary focus-ring'
                 }`}>
                 {plan.popular && (
                   <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />

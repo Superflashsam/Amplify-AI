@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amplify.ai Design System Reference</title>
+    <link rel="stylesheet" href="./globals.css">
+    <style>
+        body {
+            padding: var(--space-12) var(--space-6);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: var(--space-20);
+            padding-bottom: var(--space-12);
+            border-bottom: 1px solid rgba(160, 160, 168, 0.2);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            font-weight: var(--weight-bold);
+            letter-spacing: var(--tracking-widest);
+            text-transform: uppercase;
+            color: var(--color-ultra-violet);
+            margin-bottom: var(--space-6);
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--space-6);
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .color-swatch {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-4);
+            border-radius: var(--radius-md);
+            background: var(--color-off-white);
+        }
+
+        .color-box {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+        }
+
+        .color-info {
+            flex: 1;
+        }
+
+        .color-name {
+            font-weight: var(--weight-semibold);
+            font-size: var(--text-sm);
+            color: var(--color-charcoal);
+        }
+
+        .color-value {
+            font-family: 'Courier New', monospace;
+            font-size: var(--text-xs);
+            color: var(--color-soft-gray);
+        }
+
+        .gradient-bar {
+            height: 80px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: var(--weight-bold);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .spacing-demo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-3);
+        }
+
+        .spacing-box {
+            background: var(--color-ultra-violet);
+            height: 40px;
+            border-radius: var(--radius-sm);
+        }
+
+        .spacing-label {
+            font-family: 'Courier New', monospace;
+            font-size: var(--text-sm);
+            color: var(--color-slate);
+        }
+
+        .example-card {
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            background: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+            align-items: center;
+        }
+
+        .type-sample {
+            margin-bottom: var(--space-6);
+            padding: var(--space-4);
+            background: var(--color-off-white);
+            border-radius: var(--radius-md);
+        }
+
+        .type-label {
+            font-size: var(--text-xs);
+            color: var(--color-soft-gray);
+            margin-bottom: var(--space-2);
+            font-family: 'Courier New', monospace;
+        }
+
+        .shadow-demo {
+            padding: var(--space-6);
+            background: white;
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header style="margin-bottom: var(--space-20); text-align: center;">
+        <h1 class="hero-heading gradient-text-premium" style="margin-bottom: var(--space-4);">
+            Amplify.ai
+        </h1>
+        <p class="text-xl text-slate">
+            Design System Reference Guide
+        </p>
+        <p class="caption" style="margin-top: var(--space-2);">
+            Premium • Bold • Elegant • Futuristic
+        </p>
+    </header>
+
+    <!-- Typography Hierarchy -->
+    <section class="section">
+        <h2 class="section-title">Typography Hierarchy</h2>
+
+        <div class="type-sample">
+            <div class="type-label">Hero H1 — 60-84px, Playfair Display Black, -3% tracking</div>
+            <h1 class="hero-heading">Transform Your Marketing</h1>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">H1 — 48-72px, Playfair Display Black</div>
+            <h1>Section Headline Example</h1>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">H2 — 36-56px, Playfair Display ExtraBold</div>
+            <h2>Subsection Title Example</h2>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">H3 — 28-40px, Playfair Display Bold</div>
+            <h3>Feature Heading Example</h3>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">H4 — 24-32px, Playfair Display SemiBold</div>
+            <h4>Card Title Example</h4>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">H5 — 20-24px, Playfair Display SemiBold</div>
+            <h5>Small Heading Example</h5>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">H6 — 18-20px, Playfair Display SemiBold, Uppercase</div>
+            <h6>Micro Heading</h6>
+        </div>
+    </section>
+
+    <!-- Body Text -->
+    <section class="section">
+        <h2 class="section-title">Body Text — Inter</h2>
+
+        <div class="type-sample">
+            <div class="type-label">Text XL — 24px</div>
+            <p class="text-xl">Large body text for subtitles and emphasized content. Perfect for hero descriptions.</p>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">Text Large — 20px</div>
+            <p class="text-lg">Emphasized paragraph text for important information and feature descriptions.</p>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">Text Base — 16px (Default)</div>
+            <p class="text-base">Default body text for general content. This is the most commonly used text size across
+                the application.</p>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">Text Small — 14px</div>
+            <p class="text-sm">Small body text for secondary information and supporting content.</p>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">Caption — 12px, Uppercase, Medium</div>
+            <p class="caption">Label Text Example</p>
+        </div>
+    </section>
+
+    <!-- Special Typography -->
+    <section class="section">
+        <h2 class="section-title">Special Typography</h2>
+
+        <div class="type-sample" style="background: var(--color-charcoal); padding: var(--space-8);">
+            <div class="type-label" style="color: var(--color-soft-gray);">AI Superpower Accent — Sora SemiBold with
+                Gradient Glow</div>
+            <h1 style="color: white; margin-top: var(--space-4);">
+                Unlock Your <span class="ai-superpower">AI Superpower</span>
+            </h1>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">Gradient Text — Premium</div>
+            <h2 class="gradient-text-premium">Everything You Need to Succeed</h2>
+        </div>
+
+        <div class="type-sample">
+            <div class="type-label">Gradient Text — Primary</div>
+            <h2 class="gradient-text">Transform Your Business Today</h2>
+        </div>
+    </section>
+
+    <!-- Color System -->
+    <section class="section">
+        <h2 class="section-title">Color System</h2>
+
+        <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-4); font-family: var(--font-body);">Primary
+            Colors</h3>
+        <div class="grid grid-2" style="margin-bottom: var(--space-8);">
+            <div class="color-swatch">
+                <div class="color-box" style="background: var(--color-ultra-violet);"></div>
+                <div class="color-info">
+                    <div class="color-name">Ultra Violet</div>
+                    <div class="color-value">#6A4CFF</div>
+                </div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background: var(--color-neon-magenta);"></div>
+                <div class="color-info">
+                    <div class="color-name">Neon Magenta</div>
+                    <div class="color-value">#FF67D1</div>
+                </div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background: var(--color-electric-blue);"></div>
+                <div class="color-info">
+                    <div class="color-name">Electric Blue</div>
+                    <div class="color-value">#4D8CFF</div>
+                </div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background: var(--color-amber-glow);"></div>
+                <div class="color-info">
+                    <div class="color-name">Amber Glow</div>
+                    <div class="color-value">#FFB23F</div>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="font-size: var(--text-lg); margin-bottom: var(--space-4); font-family: var(--font-body);">Neutrals
+        </h3>
+        <div class="grid grid-3">
+            <div class="color-swatch">
+                <div class="color-box" style="background: var(--color-charcoal);"></div>
+                <div class="color-info">
+                    <div class="color-name">Charcoal</div>
+                    <div class="color-value">#0F0F12</div>
+                </div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background: var(--color-slate);"></div>
+                <div class="color-info">
+                    <div class="color-name">Slate</div>
+                    <div class="color-value">#1A1A1E</div>
+                </div>
+            </div>
+            <div class="color-swatch">
+                <div class="color-box" style="background: var(--color-soft-gray);"></div>
+                <div class="color-info">
+                    <div class="color-name">Soft Gray</div>
+                    <div class="color-value">#A0A0A8</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gradients -->
+    <section class="section">
+        <h2 class="section-title">Gradient System</h2>
+
+        <div class="grid" style="gap: var(--space-4);">
+            <div class="gradient-bar" style="background: var(--gradient-primary);">
+                Primary Gradient
+            </div>
+            <div class="gradient-bar" style="background: var(--gradient-secondary);">
+                Secondary Gradient
+            </div>
+            <div class="gradient-bar" style="background: var(--gradient-accent);">
+                Accent Gradient
+            </div>
+            <div class="gradient-bar" style="background: var(--gradient-premium);">
+                Premium Gradient (4-stop)
+            </div>
+            <div class="gradient-bar animate-gradient"
+                style="background: var(--gradient-ai-glow); background-size: 200% auto;">
+                AI Glow Gradient (Animated)
+            </div>
+        </div>
+    </section>
+
+    <!-- Spacing System -->
+    <section class="section">
+        <h2 class="section-title">Spacing System (4px base)</h2>
+
+        <div class="spacing-demo">
+            <div class="spacing-box" style="width: 4px;"></div>
+            <span class="spacing-label">--space-1: 4px</span>
+        </div>
+        <div class="spacing-demo">
+            <div class="spacing-box" style="width: 8px;"></div>
+            <span class="spacing-label">--space-2: 8px</span>
+        </div>
+        <div class="spacing-demo">
+            <div class="spacing-box" style="width: 12px;"></div>
+            <span class="spacing-label">--space-3: 12px</span>
+        </div>
+        <div class="spacing-demo">
+            <div class="spacing-box" style="width: 16px;"></div>
+            <span class="spacing-label">--space-4: 16px</span>
+        </div>
+        <div class="spacing-demo">
+            <div class="spacing-box" style="width: 24px;"></div>
+            <span class="spacing-label">--space-6: 24px</span>
+        </div>
+        <div class="spacing-demo">
+            <div class="spacing-box" style="width: 32px;"></div>
+            <span class="spacing-label">--space-8: 32px</span>
+        </div>
+        <div class="spacing-demo">
+            <div class="spacing-box" style="width: 48px;"></div>
+            <span class="spacing-label">--space-12: 48px</span>
+        </div>
+        <div class="spacing-demo">
+            <div class="spacing-box" style="width: 64px;"></div>
+            <span class="spacing-label">--space-16: 64px</span>
+        </div>
+    </section>
+
+    <!-- Buttons -->
+    <section class="section">
+        <h2 class="section-title">Button Styles</h2>
+
+        <h3 style="font-size: var(--text-md); margin-bottom: var(--space-4); font-family: var(--font-body);">Primary
+            Buttons</h3>
+        <div class="button-group" style="margin-bottom: var(--space-8);">
+            <button class="btn btn-primary btn-lg">Large Primary</button>
+            <button class="btn btn-primary">Default Primary</button>
+            <button class="btn btn-primary btn-sm">Small Primary</button>
+        </div>
+
+        <h3 style="font-size: var(--text-md); margin-bottom: var(--space-4); font-family: var(--font-body);">Secondary
+            Buttons</h3>
+        <div class="button-group" style="margin-bottom: var(--space-8);">
+            <button class="btn btn-secondary btn-lg">Large Secondary</button>
+            <button class="btn btn-secondary">Default Secondary</button>
+            <button class="btn btn-secondary btn-sm">Small Secondary</button>
+        </div>
+
+        <h3 style="font-size: var(--text-md); margin-bottom: var(--space-4); font-family: var(--font-body);">Ghost
+            Buttons</h3>
+        <div class="button-group">
+            <button class="btn btn-ghost btn-lg">Large Ghost</button>
+            <button class="btn btn-ghost">Default Ghost</button>
+            <button class="btn btn-ghost btn-sm">Small Ghost</button>
+        </div>
+    </section>
+
+    <!-- Effects -->
+    <section class="section">
+        <h2 class="section-title">Effects & Shadows</h2>
+
+        <h3 style="font-size: var(--text-md); margin-bottom: var(--space-4); font-family: var(--font-body);">Glass
+            Morphism</h3>
+        <div class="grid grid-2" style="margin-bottom: var(--space-8);">
+            <div class="glass-card">
+                <h4>Glass Card</h4>
+                <p class="text-sm" style="margin-top: var(--space-2);">
+                    Frosted glass effect with blur and transparency
+                </p>
+            </div>
+            <div class="glass-panel" style="padding: var(--space-6);">
+                <h4 style="color: var(--color-charcoal);">Glass Panel</h4>
+                <p class="text-sm" style="margin-top: var(--space-2); color: var(--color-slate);">
+                    Subtle glass effect for dark backgrounds
+                </p>
+            </div>
+        </div>
+
+        <h3 style="font-size: var(--text-md); margin-bottom: var(--space-4); font-family: var(--font-body);">Shadow
+            Scale</h3>
+        <div class="grid grid-3">
+            <div class="shadow-demo" style="box-shadow: var(--shadow-sm);">
+                <p class="text-sm font-medium">Shadow SM</p>
+            </div>
+            <div class="shadow-demo" style="box-shadow: var(--shadow-md);">
+                <p class="text-sm font-medium">Shadow MD</p>
+            </div>
+            <div class="shadow-demo" style="box-shadow: var(--shadow-lg);">
+                <p class="text-sm font-medium">Shadow LG</p>
+            </div>
+            <div class="shadow-demo" style="box-shadow: var(--shadow-xl);">
+                <p class="text-sm font-medium">Shadow XL</p>
+            </div>
+            <div class="shadow-demo" style="box-shadow: var(--shadow-2xl);">
+                <p class="text-sm font-medium">Shadow 2XL</p>
+            </div>
+            <div class="shadow-demo animate-breathing" style="background: var(--color-ultra-violet); color: white;">
+                <p class="text-sm font-medium">Breathing Halo</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Example Composition -->
+    <section class="section">
+        <h2 class="section-title">Example Composition</h2>
+
+        <div class="glass-card" style="padding: var(--space-12); text-align: center;">
+            <p class="caption" style="color: var(--color-ultra-violet);">FEATURES</p>
+            <h2 class="gradient-text-premium" style="margin-top: var(--space-3); margin-bottom: var(--space-4);">
+                Unlock Your <span class="ai-superpower">AI Superpower</span>
+            </h2>
+            <p class="text-lg text-slate" style="max-width: 600px; margin: 0 auto var(--space-6);">
+                Leverage advanced analytics, automation, and AI-driven insights to transform your marketing strategy and
+                achieve unprecedented growth.
+            </p>
+            <div class="button-group" style="justify-content: center;">
+                <button class="btn btn-primary btn-lg">Get Started Free</button>
+                <button class="btn btn-secondary btn-lg">Watch Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+        style="text-align: center; padding-top: var(--space-12); margin-top: var(--space-20); border-top: 1px solid rgba(160, 160, 168, 0.2);">
+        <p class="text-sm text-gray">
+            Amplify.ai Design System v1.0.0 — Last updated December 11, 2025
+        </p>
+    </footer>
+
+</body>
+
+</html>

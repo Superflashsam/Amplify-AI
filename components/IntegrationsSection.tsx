@@ -1,9 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Instagram, Linkedin, Youtube, Twitter,
   Figma, Slack, HardDrive, Layout,
-  Layers, Database, Share2, Sparkles
+  Share2, Sparkles, Layers, Database,
+  Github, Cloud, Music2, Image,
+  Zap, Shield, Globe
 } from 'lucide-react';
 
 interface Integration {
@@ -21,6 +23,8 @@ const INPUTS: Integration[] = [
   { id: 'notion', name: 'Notion', icon: Layout, color: 'text-gray-800', bg: 'bg-gray-50', desc: 'Sync content calendar' },
   { id: 'drive', name: 'Google Drive', icon: HardDrive, color: 'text-blue-600', bg: 'bg-blue-50', desc: 'Backup media library' },
   { id: 'slk', name: 'Slack', icon: Slack, color: 'text-amber-600', bg: 'bg-amber-50', desc: 'Team approval flow' },
+  { id: 'dbx', name: 'Dropbox', icon: Cloud, color: 'text-blue-500', bg: 'bg-blue-50', desc: 'Asset cloud storage' },
+  { id: 'gh', name: 'GitHub', icon: Github, color: 'text-gray-900', bg: 'bg-gray-100', desc: 'Version control sync' },
 ];
 
 // Right Column Data
@@ -29,19 +33,48 @@ const OUTPUTS: Integration[] = [
   { id: 'li', name: 'LinkedIn', icon: Linkedin, color: 'text-blue-700', bg: 'bg-blue-50', desc: 'Company updates' },
   { id: 'x', name: 'Twitter / X', icon: Twitter, color: 'text-black', bg: 'bg-gray-100', desc: 'Engagement tracking' },
   { id: 'yt', name: 'YouTube', icon: Youtube, color: 'text-red-600', bg: 'bg-red-50', desc: 'Shorts upload' },
+  { id: 'tt', name: 'TikTok', icon: Music2, color: 'text-pink-500', bg: 'bg-pink-50', desc: 'Viral video content' },
+  { id: 'pin', name: 'Pinterest', icon: Image, color: 'text-red-600', bg: 'bg-red-50', desc: 'Visual discovery' },
+];
+
+const BENEFITS = [
+  {
+    icon: Zap,
+    title: "Real-time Sync",
+    desc: "Updates propagate instantly across all connected platforms.",
+    color: "text-amber-500",
+    bg: "bg-amber-50"
+  },
+  {
+    icon: Shield,
+    title: "Enterprise Security",
+    desc: "SOC2 compliant data handling for your creative assets.",
+    color: "text-blue-500",
+    bg: "bg-blue-50"
+  },
+  {
+    icon: Globe,
+    title: "Global Distribution",
+    desc: "Publish to 20+ channels simultaneously with one click.",
+    color: "text-green-500",
+    bg: "bg-green-50"
+  }
 ];
 
 export const IntegrationsSection: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   // Geometry for SVG paths
+  const ITEM_COUNT = Math.max(INPUTS.length, OUTPUTS.length);
   const CARD_HEIGHT = 80;
   const GAP = 24;
   const PADDING_Y = 40;
 
+  // Dynamic Height Calculation
+  const CONTAINER_HEIGHT = (PADDING_Y * 2) + (ITEM_COUNT * CARD_HEIGHT) + ((ITEM_COUNT - 1) * GAP);
+
   const getCardY = (index: number) => PADDING_Y + (index * (CARD_HEIGHT + GAP)) + (CARD_HEIGHT / 2);
-  const CENTER_Y = (PADDING_Y * 2 + (4 * CARD_HEIGHT) + (3 * GAP)) / 2;
+  const CENTER_Y = CONTAINER_HEIGHT / 2;
 
   // Animation Constants
   const CYCLE_DURATION = 3; // Time for one packet to travel (seconds)
@@ -54,12 +87,12 @@ export const IntegrationsSection: React.FC = () => {
       <div className="max-w-[1280px] mx-auto px-6 relative z-10">
 
         {/* Header - SEO Optimized */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-50 to-purple-50 border border-pink-100 text-pink-600 text-xs font-bold uppercase tracking-wider mb-6"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-50 to-purple-50 border border-pink-100 text-brand-pink text-xs font-bold uppercase tracking-wider mb-6"
           >
             <Sparkles size={12} className="fill-current" />
             Seamless Integrations
@@ -70,7 +103,7 @@ export const IntegrationsSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-display font-bold text-3xl md:text-5xl text-dark mb-6 tracking-tight"
+            className="font-serif font-bold text-3xl md:text-5xl text-brand-dark mb-6 tracking-tight"
           >
             Connect Your <span className="heading-gradient">Entire Marketing Stack</span>
           </motion.h2>
@@ -86,6 +119,26 @@ export const IntegrationsSection: React.FC = () => {
           </motion.p>
         </div>
 
+        {/* Benefits Section */}
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-24">
+          {BENEFITS.map((benefit, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 + (i * 0.1) }}
+              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+            >
+              <div className={`w-10 h-10 rounded-lg ${benefit.bg} ${benefit.color} flex items-center justify-center mb-4`}>
+                <benefit.icon size={20} />
+              </div>
+              <h3 className="font-bold text-gray-900 mb-2">{benefit.title}</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">{benefit.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
         {/* Diagram Headers */}
         <div className="flex justify-between items-end mb-10 max-w-[1100px] mx-auto px-2">
           <div className="hidden md:flex items-center gap-2 text-gray-400 text-xs font-bold tracking-widest uppercase">
@@ -97,15 +150,15 @@ export const IntegrationsSection: React.FC = () => {
         </div>
 
         {/* Diagram Area */}
-        <div className="relative max-w-[1100px] mx-auto h-[480px]">
+        <div className="relative max-w-[1100px] mx-auto" style={{ height: CONTAINER_HEIGHT }}>
 
           {/* 
               SVG Layer 
-              ViewBox 0 0 1100 480 matches container dimensions
+              ViewBox matches container dimensions
             */}
           <svg
             className="absolute inset-0 w-full h-full pointer-events-none z-0 hidden md:block"
-            viewBox="0 0 1100 480"
+            viewBox={`0 0 1100 ${CONTAINER_HEIGHT}`}
             preserveAspectRatio="none"
           >
             <defs>

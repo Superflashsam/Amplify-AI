@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
                <div>
                   <div className="flex items-center gap-2 mb-6 text-white">
                      <div className="w-8 h-8"><AmplifyLogo3D /></div>
-                     <span className="font-display font-bold text-2xl">Amplify.ai</span>
+                     <span className="font-serif font-bold text-2xl">Amplify.ai</span>
                   </div>
                   <p className="text-lg text-gray-400 max-w-md leading-relaxed">
                      The AI marketing operating system for modern teams.
