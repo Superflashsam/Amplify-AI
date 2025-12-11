@@ -273,6 +273,20 @@ const HeroPNGExporter: React.FC = () => {
   )
 }
 
+/**
+ * Draws a rounded rectangle path on the given canvas context and optionally fills and/or strokes it.
+ *
+ * The function reduces the corner radius if it exceeds half the rectangle's width or height so corners remain valid.
+ *
+ * @param ctx - Canvas 2D rendering context to draw on
+ * @param x - X-coordinate of the rectangle's top-left corner
+ * @param y - Y-coordinate of the rectangle's top-left corner
+ * @param w - Width of the rectangle
+ * @param h - Height of the rectangle
+ * @param r - Desired corner radius; may be reduced to fit the rectangle
+ * @param fill - If true, fills the rectangle using the context's current fillStyle
+ * @param stroke - If true, strokes the rectangle using the context's current strokeStyle
+ */
 function roundRect(ctx:CanvasRenderingContext2D, x:number, y:number, w:number, h:number, r:number, fill:boolean, stroke:boolean){
   if (w<2*r) r=w/2
   if (h<2*r) r=h/2
