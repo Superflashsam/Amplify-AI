@@ -8,6 +8,13 @@ import { getSupabaseClient, supabaseLocal, supabaseSession } from '../../auth/su
 import { ensureCsrfToken, validateCsrf } from '../../auth/csrf'
 import { canAttempt, resetBucket } from '../../auth/rateLimit'
 
+/**
+ * Render the sign-in page offering OAuth providers and passwordless email (magic link) authentication.
+ *
+ * Manages client-side state for email input, loading, notices, and errors; validates CSRF and rate limits, initiates magic-link email sign-in, and starts OAuth sign-in flows.
+ *
+ * @returns The sign-in page React element.
+ */
 export default function Page() {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
