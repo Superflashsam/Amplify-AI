@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { TrendingUp, Clock, DollarSign, Star, ArrowUpRight, CheckCircle } from 'lucide-react';
-import { BrandItem, HubSpotLogo, CanvaLogo, ShopifyLogo, MondayLogo, AirtableLogo, FigmaLogo } from './BrandLogos';
-import { cn } from '../utils/cn';
+import { BrandItem, HubSpotLogo, CanvaLogo, ShopifyLogo, MondayLogo, AirtableLogo, FigmaLogo } from '@/components/BrandLogos';
+import { cn } from '@/utils/cn';
 
 const STATS = [
     {

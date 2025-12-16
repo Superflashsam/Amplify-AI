@@ -7,71 +7,83 @@ const PLANS = [
   {
     id: 'starter',
     name: 'Starter',
-    desc: 'For creators & solo marketers just getting started.',
-    priceMonthly: 29,
-    priceYearly: 19,
+    desc: 'For solo creators getting their first AI assistant.',
+    priceMonthly: 12,
+    priceYearly: 9,
     features: [
-      '20 AI-generated posts/month',
-      '1 brand workspace',
-      'Multi-platform publishing',
-      'Stock assets access',
-      'AI caption + hashtag generator',
-      'Basic analytics'
+      'Up to 6 social accounts',
+      'Unlimited scheduled posts & drafts',
+      '300 AI text generations / month',
+      '1 workspace',
+      'Basic Brand DNA profile',
+      'AI content studio (posts, captions, basic ads)',
+      'Basic analytics dashboard',
+      'Email support'
     ],
     cta: 'Start Free',
+    ctaSubtext: '7-day free trial · No credit card required',
     popular: false,
     gradient: 'from-gray-100 to-gray-200'
   },
   {
     id: 'growth',
     name: 'Growth',
-    desc: 'Most popular for startups and agencies.',
-    priceMonthly: 69,
-    priceYearly: 49,
+    desc: 'For growing teams and agile agencies.',
+    priceMonthly: 29,
+    priceYearly: 24,
     features: [
-      'Unlimited AI posts & scheduling',
-      'Full Creative Studio access',
-      'AI Strategy Calendar 30+ days',
-      'Collaboration for 5 users',
-      'AI Optimization Engine',
-      'Performance analytics & reporting',
-      'Automation workflows',
-      'Priority support'
+      'Up to 10 social accounts',
+      'Unlimited posts & scheduling',
+      '2,000 AI generations / month',
+      '2 workspaces',
+      'Advanced Brand DNA (tone, color palette, keyword memory)',
+      'AI campaign generator (30-day content packs)',
+      'AI image & carousel creator',
+      'Advanced analytics & reporting',
+      '3 team members included',
+      'Priority chat support'
     ],
-    cta: 'Try 14-Day Pro Trial',
+    cta: 'Try 7-Day Free Trial',
+    ctaSubtext: '$0 today · Cancel anytime',
     popular: true,
     gradient: 'from-primary to-secondary'
   },
   {
-    id: 'enterprise',
-    name: 'Enterprise',
-    desc: 'For large teams managing multiple brands.',
-    priceMonthly: null, // Custom
-    priceYearly: null,
+    id: 'scale',
+    name: 'Scale',
+    desc: 'For agencies and brands managing multiple clients.',
+    priceMonthly: 69,
+    priceYearly: 59,
     features: [
-      'Unlimited brands & users',
-      'SSO & advanced permissions',
-      'Dedicated AI training',
-      'Custom voice model',
-      'Dedicated success manager',
-      'API access & integrations',
-      'SOC2-ready compliance'
+      'Up to 25 social accounts',
+      'Unlimited scheduled posts & drafts',
+      '8,000 AI generations / month',
+      'Up to 5 workspaces',
+      'Full Brand DNA suite + brand embeddings',
+      'Advanced campaign strategy (Gemini Pro)',
+      'AI image + short-video creatives',
+      'Team collaboration & approvals (5 seats included)',
+      'Client-ready PDF and white-label reports',
+      'Priority support & SLA'
     ],
-    cta: 'Book Demo',
+    cta: 'Talk to Sales',
+    ctaSubtext: 'Perfect for agencies & larger teams',
     popular: false,
     gradient: 'from-blue-600 to-indigo-600'
   }
 ];
 
 const FEATURES_TABLE = [
-  { feature: 'AI Content Library', starter: 'Basic', growth: 'Pro', enterprise: 'Custom' },
-  { feature: 'Image & Video Creative Studio', starter: false, growth: true, enterprise: true },
-  { feature: 'Team Collaboration', starter: false, growth: '5 seats', enterprise: 'Unlimited' },
-  { feature: 'Automation Workflows', starter: false, growth: true, enterprise: 'Advanced' },
-  { feature: 'Real-time Analytics', starter: 'Basic', growth: 'Pro', enterprise: 'Full Control' },
-  { feature: 'Custom Brand Voice', starter: false, growth: true, enterprise: 'Custom training' },
-  { feature: 'API & Integrations', starter: false, growth: false, enterprise: true },
-  { feature: '24/7 Support', starter: 'Community', growth: 'Priority', enterprise: 'White-glove' },
+  { feature: 'AI Content Library', starter: 'Basic', growth: 'Pro', scale: 'Pro + client folders' },
+  { feature: 'Image & Video Creative Studio', starter: '—', growth: 'Images + carousels', scale: 'Images + short-video' },
+  { feature: 'Team Collaboration', starter: 'Solo', growth: '3 seats', scale: '5 seats' },
+  { feature: 'Automation Workflows', starter: 'Single-step', growth: 'Multi-step', scale: 'Advanced + webhooks' },
+  { feature: 'Real-time Analytics', starter: 'Basic', growth: 'Pro', scale: 'Full funnel' },
+  { feature: 'Brand DNA & Memory', starter: 'Basic profile', growth: 'Advanced', scale: 'Advanced + embeddings' },
+  { feature: 'AI Generations / Month', starter: '300', growth: '2,000', scale: '8,000' },
+  { feature: 'Social Accounts', starter: '6', growth: '10', scale: '25' },
+  { feature: 'API & Integrations', starter: '—', growth: 'Standard', scale: 'Advanced' },
+  { feature: 'Support', starter: 'Email', growth: 'Priority', scale: 'Priority + SLA' },
 ];
 
 const FAQS = [
@@ -118,7 +130,7 @@ export const PricingSection: React.FC = () => {
             Choose the plan that <span className="gradient-text">grows</span> with you
           </h2>
           <p className="text-xl text-gray-500 leading-relaxed mb-10">
-            Scalable AI power for creators, teams, and enterprises — pay only for the features you need.
+            Flexible AI pricing for creators, teams, and agencies — pay only for the power you need.
           </p>
 
           {/* Toggle */}
@@ -135,7 +147,7 @@ export const PricingSection: React.FC = () => {
               />
             </button>
             <span className={`text-sm font-bold ${isAnnual ? 'text-dark' : 'text-gray-400'}`}>
-              Yearly <span className="text-xs text-green-600 font-extrabold bg-green-50 px-2 py-0.5 rounded-full ml-1">-30%</span>
+              Yearly <span className="text-xs text-green-600 font-extrabold bg-green-50 px-2 py-0.5 rounded-full ml-1">-20%</span>
             </span>
           </div>
         </div>
@@ -164,19 +176,26 @@ export const PricingSection: React.FC = () => {
 
               <div className="mb-8">
                 {plan.priceMonthly !== null ? (
-                  <div className="flex items-end gap-1">
-                    <span className="text-4xl font-display font-bold text-dark tracking-tight">
-                      ${isAnnual ? plan.priceYearly : plan.priceMonthly}
-                    </span>
-                    <span className="text-gray-400 font-medium mb-1">/month</span>
+                  <div className="flex flex-col">
+                    <div className="flex items-end gap-1 mb-1">
+                      <span className="text-4xl font-display font-bold text-dark tracking-tight">
+                        ${isAnnual ? plan.priceYearly : plan.priceMonthly}
+                      </span>
+                      <span className="text-gray-400 font-medium mb-1">/month</span>
+                    </div>
+                    <div className="text-xs font-medium text-gray-500">
+                      {isAnnual ? (
+                        <span>${plan.priceYearly! * 12} billed yearly · <span className="text-green-600 font-bold">save {Math.round(((plan.priceMonthly! - plan.priceYearly!) / plan.priceMonthly!) * 100)}%</span></span>
+                      ) : 'billed monthly'}
+                    </div>
+                    {!isAnnual && (
+                      <div className="text-xs text-green-600 font-bold mt-1">
+                        Or ${plan.priceYearly} / month billed yearly (save {Math.round(((plan.priceMonthly! - plan.priceYearly!) / plan.priceMonthly!) * 100)}%)
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <div className="text-4xl font-display font-bold text-dark tracking-tight">Custom</div>
-                )}
-                {plan.priceMonthly !== null && isAnnual && (
-                  <div className="text-xs text-green-600 font-bold mt-1">
-                    Billed ${plan.priceYearly! * 12} yearly
-                  </div>
                 )}
               </div>
 
@@ -193,7 +212,7 @@ export const PricingSection: React.FC = () => {
 
               <button className={`group relative w-full py-4 rounded-xl font-bold text-sm transition-all duration-300 transform active:scale-[0.98] overflow-hidden ${plan.popular
                 ? 'btn-gradient text-white shadow-lg shadow-primary/25 hover:shadow-primary/40 focus-ring'
-                : plan.id === 'enterprise'
+                : plan.id === 'scale'
                   ? 'bg-dark text-white hover:bg-gray-800 focus-ring'
                   : 'bg-white border border-gray-200 text-dark hover:border-primary/50 hover:text-primary focus-ring'
                 }`}>
@@ -202,6 +221,12 @@ export const PricingSection: React.FC = () => {
                 )}
                 <span className={plan.popular ? 'relative z-10 btn-text-glow playfair-cta whitespace-nowrap' : 'playfair-cta'}>{plan.cta} {plan.popular && '→'}</span>
               </button>
+              {
+                // @ts-ignore
+                plan.ctaSubtext && (
+                  // @ts-ignore
+                  <p className="text-xs text-center text-gray-400 mt-3 font-medium">{plan.ctaSubtext}</p>
+                )}
             </motion.div>
           ))}
         </div>
@@ -217,7 +242,7 @@ export const PricingSection: React.FC = () => {
                 <div className="font-bold text-gray-500 uppercase text-xs tracking-wider">Feature</div>
                 <div className="font-bold text-gray-900 text-center">Starter</div>
                 <div className="font-bold text-primary text-center">Growth</div>
-                <div className="font-bold text-gray-900 text-center">Enterprise</div>
+                <div className="font-bold text-gray-900 text-center">Scale</div>
               </div>
 
               {/* Rows */}
@@ -228,23 +253,17 @@ export const PricingSection: React.FC = () => {
 
                     {/* Starter */}
                     <div className="text-center text-sm text-gray-600 flex justify-center items-center">
-                      {row.starter === true ? <Check size={18} className="text-green-500" /> :
-                        row.starter === false ? <Minus size={18} className="text-gray-300" /> :
-                          row.starter}
+                      {row.starter}
                     </div>
 
                     {/* Growth */}
                     <div className="text-center text-sm font-bold text-dark flex justify-center items-center bg-purple-50/50 -my-4 py-4 group-hover:bg-purple-50 transition-colors">
-                      {row.growth === true ? <Check size={18} className="text-primary" /> :
-                        row.growth === false ? <Minus size={18} className="text-gray-300" /> :
-                          row.growth}
+                      {row.growth}
                     </div>
 
-                    {/* Enterprise */}
+                    {/* Scale */}
                     <div className="text-center text-sm text-gray-600 flex justify-center items-center">
-                      {row.enterprise === true ? <Check size={18} className="text-blue-600" /> :
-                        row.enterprise === false ? <Minus size={18} className="text-gray-300" /> :
-                          row.enterprise}
+                      {row.scale}
                     </div>
                   </div>
                 ))}
